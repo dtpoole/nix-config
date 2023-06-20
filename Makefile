@@ -15,3 +15,6 @@ format:
 
 cleanup:
 	nix-collect-garbage -d
+
+upgrade:
+	make update && make switch
