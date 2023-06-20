@@ -21,6 +21,7 @@ in
     ./bat.nix
     ./git.nix
     ./htop.nix
+    ./btop.nix
   ];
 
   # Let Home Manager install and manage itself.
