@@ -9,7 +9,6 @@ function Map(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, options)
 end
 
-
 -- function InsertTabWrapper()
 --     local col = vim.fn.col('.') - 1
 --     if not col or not string.match(vim.fn.getline('.')[col - 1], '\k') then
@@ -33,15 +32,9 @@ vim.cmd([[command! FormatFile lua Preserve("normal gg=G")]])
 Map('n', '_=', ':FormatFile<CR>')
 
 
-
-
-
-
 -- Editor
 g.mapleader = ','
-
 Map('i', 'jj', '<Esc>')
---map('t', 'jj', '<C-\><C-n>', {noremap = true})
 
 opt.linebreak = true
 
@@ -131,68 +124,19 @@ g['g:netrw_browse_split'] = 4
 g['g:netrw_altv'] = 1
 
 -- fzf
-opt.runtimepath:append('~/.fzf')
 Map('n', '<leader>b', ':Buffers<CR>')
 Map('n', '<leader>f', ':<c-u>FZF<CR>')
-
---- grepper
---let g:grepper = {}
---g['g:grepper'] = {}
-g['g:grepper.tools'] = 'rg, grep, git'
---let g:grepper.tools = ['rg', 'grep', 'git']
-g['g:grepper.next_tool'] = '<leader>g'
---let g:grepper.next_tool = '<leader>g'
--- Search for the current word
---nnoremap <Leader>* :Grepper -cword -noprompt<CR>
-Map('n', '<Leader>*', ':Grepper -cword -noprompt')
-
--- search for the current selection
-Map('n', '<leader>g', ':Grepper')
--- nmap gs <plug>(GrepperOperator)
--- xmap gs <plug>(GrepperOperator)
--- nnoremap <leader>g :Grepper<cr>
-
-
---- ale
--- Disable linting for all minified JS files.
---g['g:ale_pattern_options'] = ['rg', 'grep', 'git']
---let g:ale_pattern_options = {'\.min.js$': {'ale_enabled': 0}}
-
-g['g:ale_fix_on_save'] = 1
-g['g:ale_lint_on_text_changed'] = 'normal'
-g['g:ale_lint_on_insert_leave'] = 1
-g['g:let g:ale_lint_delay'] = 0
-g['g:let g:ale_set_quickfix'] = 0
-g['g:let g:ale_set_loclist'] = 0
-
 
 
 -- Colors / Display
 opt.background = 'dark'
 opt.cursorline = true
---set fillchars=
+
 opt.fillchars = ''
 opt.fillchars:append('vert:│', 'stl: ', 'stlnc:-')
---set fillchars=
-opt.termguicolors = true
-opt.ttyfast = true --                " Faster redrawing.
---opt.lazyredraw = true --             " Only redraw when necessary.
---opt.showmode = true
-g['nord_italic'] = 1
-g['nord_italic_comments'] = 1
-g['nord_underline'] = 1
 
-vim.cmd('colorscheme nord')
+opt.termguicolors = true
+opt.ttyfast = true -- Faster redrawing.
 
 opt.laststatus = 1
 
-require'nvim-treesitter.configs'.setup {
-    highlight = {
-      enable = true,
-      disable = {},
-    },
-    indent = {
-      enable = false,
-      disable = {},
-    },
-}
