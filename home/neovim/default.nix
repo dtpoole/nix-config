@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  
+
   programs.neovim = {
     enable = true;
     vimAlias = true;
@@ -10,7 +10,7 @@
     defaultEditor = true;
 
     plugins = with pkgs.vimPlugins; [
-      vim-nix
+      
       {
         plugin = ale;
         type = "lua";
@@ -85,10 +85,11 @@
           }
         '';
       }
-
-      polyglot
+      
       fzf-vim
+      polyglot
       tcomment_vim
+      vim-nix
       vim-fugitive
       vim-surround
 
