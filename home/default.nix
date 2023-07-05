@@ -1,4 +1,4 @@
-{ config, pkgs, username, ... }:
+{ pkgs, username, ... }:
 let
   inherit (pkgs.stdenv) isLinux isDarwin;
 in
