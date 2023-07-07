@@ -11,8 +11,9 @@ in
   home.packages = with pkgs; [
     gnuls
     direnv
-    figlet
     fd
+    figlet
+    file
     gnumake
     jq
     keychain
