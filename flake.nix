@@ -36,7 +36,7 @@
       # 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs username; };
           modules = [ 
             ./hosts/nixos/configuration.nix 
             ./home/nixos.nix
