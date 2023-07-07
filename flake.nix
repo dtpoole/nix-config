@@ -33,8 +33,18 @@
         import ./shell.nix { inherit pkgs; }
       );
 
+      # 'nixos-rebuild --flake .#your-hostname'
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [ ./hosts/nixos/configuration.nix ];
+        };
+      };
+
+      # 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
         "${username}@mini" = hmc "x86_64-darwin";
+        "${username}@nixos" = hmc "x86_64-linux";
         "${username}@slippy" = hmc "x86_64-linux";
         "${username}@chacha" = hmc "aarch64-linux";
         "${username}@north" = hmc "x86_64-linux";
