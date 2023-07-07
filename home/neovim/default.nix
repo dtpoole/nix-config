@@ -10,7 +10,7 @@
     defaultEditor = true;
 
     plugins = with pkgs.vimPlugins; [
-      
+
       {
         plugin = ale;
         type = "lua";
@@ -41,7 +41,7 @@
           require('nord').set()
         '';
       }
-      
+
       {
         plugin = lualine-nvim;
         type = "lua";
@@ -85,7 +85,7 @@
           }
         '';
       }
-      
+
       fzf-vim
       polyglot
       tcomment_vim
