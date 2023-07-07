@@ -37,7 +37,15 @@
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
-          modules = [ ./hosts/nixos/configuration.nix ];
+          modules = [ 
+            ./hosts/nixos/configuration.nix 
+            ./home/nixos.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${user} = import ./home;
+            }
+          ];
         };
       };
 
