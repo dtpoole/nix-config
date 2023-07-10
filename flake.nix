@@ -16,16 +16,19 @@
 
       username = "dave";
 
-      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
-
-      hmc = system: home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = { inherit inputs outputs username; };
+      mkHomeConfig = system: home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          inherit system;
+        };
+        extraSpecialArgs = { inherit username; };
         modules = [ ./home ];
-        pkgs = nixpkgs.legacyPackages."${system}";
       };
+
+      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
 
     in
     {
+
       devShells = forAllSystems (system:
         let
           pkgs = import nixpkgs { system = system; };
@@ -33,12 +36,32 @@
         import ./shell.nix { inherit pkgs; }
       );
 
-      homeConfigurations = {
-        "${username}@mini" = hmc "x86_64-darwin";
-        "${username}@slippy" = hmc "x86_64-linux";
-        "${username}@chacha" = hmc "aarch64-linux";
-        "${username}@north" = hmc "x86_64-linux";
-        "${username}@PF2N1Y5V" = hmc "x86_64-linux";
+      # 'nixos-rebuild --flake .#your-hostname'
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs username; };
+          modules = [
+            ./hosts/nixos/configuration.nix
+            ./home/nixos.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${username} = import ./home;
+              home-manager.extraSpecialArgs = { inherit inputs outputs username; };
+            }
+          ];
+        };
       };
+
+      # 'home-manager --flake .#your-username@your-hostname'
+      homeConfigurations = {
+        "${username}@mini" = mkHomeConfig "x86_64-darwin";
+        "${username}@slippy" = mkHomeConfig "x86_64-linux";
+        "${username}@chacha" = mkHomeConfig "aarch64-linux";
+        "${username}@north" = mkHomeConfig "x86_64-linux";
+        "${username}@PF2N1Y5V" = mkHomeConfig "x86_64-linux";
+      };
+
     };
 }
