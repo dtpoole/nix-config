@@ -16,21 +16,24 @@
 
       username = "dave";
 
-      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
-
-      hmc = system: home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = { inherit inputs outputs username; };
+      mkHomeConfig = system: home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          inherit system;
+        };
+        extraSpecialArgs = { inherit username; };
         modules = [ ./home ];
-        pkgs = nixpkgs.legacyPackages."${system}";
       };
+
+      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
 
     in
     {
+      
       devShells = forAllSystems (system:
         let
           pkgs = import nixpkgs { system = system; };
         in
-        import ./shell.nix { inherit pkgs; }
+          import ./shell.nix { inherit pkgs; }
       );
 
       # 'nixos-rebuild --flake .#your-hostname'
@@ -52,12 +55,12 @@
 
       # 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
-        "${username}@mini" = hmc "x86_64-darwin";
-        "${username}@nixos" = hmc "x86_64-linux";
-        "${username}@slippy" = hmc "x86_64-linux";
-        "${username}@chacha" = hmc "aarch64-linux";
-        "${username}@north" = hmc "x86_64-linux";
-        "${username}@PF2N1Y5V" = hmc "x86_64-linux";
+        "${username}@mini"  = mkHomeConfig "x86_64-darwin";
+        "${username}@slippy" = mkHomeConfig "x86_64-linux";
+        "${username}@chacha" = mkHomeConfig "aarch64-linux";
+        "${username}@north" = mkHomeConfig "x86_64-linux";
+        "${username}@PF2N1Y5V" = mkHomeConfig "x86_64-linux";
       };
+
     };
 }
