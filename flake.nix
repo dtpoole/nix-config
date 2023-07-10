@@ -28,22 +28,23 @@
 
     in
     {
-      
+
       devShells = forAllSystems (system:
         let
           pkgs = import nixpkgs { system = system; };
         in
-          import ./shell.nix { inherit pkgs; }
+        import ./shell.nix { inherit pkgs; }
       );
 
       # 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs username; };
-          modules = [ 
-            ./hosts/nixos/configuration.nix 
+          modules = [
+            ./hosts/nixos/configuration.nix
             ./home/nixos.nix
-            home-manager.nixosModules.home-manager {
+            home-manager.nixosModules.home-manager
+            {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${username} = import ./home;
@@ -55,7 +56,7 @@
 
       # 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
-        "${username}@mini"  = mkHomeConfig "x86_64-darwin";
+        "${username}@mini" = mkHomeConfig "x86_64-darwin";
         "${username}@slippy" = mkHomeConfig "x86_64-linux";
         "${username}@chacha" = mkHomeConfig "aarch64-linux";
         "${username}@north" = mkHomeConfig "x86_64-linux";
