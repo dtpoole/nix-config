@@ -10,6 +10,7 @@ in
 
   home.packages = with pkgs; [
     gnuls
+    dig
     direnv
     fd
     figlet
