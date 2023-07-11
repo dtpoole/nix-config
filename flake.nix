@@ -16,7 +16,7 @@
 
       username = "dave";
 
-      mkNixSystem host: nixpkgs.lib.nixosSystem {
+      mkNixSystem = host: nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs username; };
         modules = [
           ./hosts/${host}/configuration.nix
