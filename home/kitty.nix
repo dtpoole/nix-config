@@ -1,15 +1,15 @@
 { pkgs, ... }:
 let
-  inherit (pkgs.stdenv) isLinux isDarwin;
+  inherit (pkgs.stdenv) isDarwin;
 in
 {
 
   programs.kitty = {
-    enable = if isDarwin then true else false;
+    enable = true;
 
     settings = {
       font_family = "Fira Code Light";
-      font_size = "13.0";
+      font_size = if isDarwin then "13.0" else "12.0";
       bold_font = "Fira Code Medium";
 
       # Window layout
@@ -19,7 +19,7 @@ in
       cursor_blink_interval = "0";
       # Tab bar
       tab_bar_edge = "top";
-      #   tab_bar_style = "powerline";
+      # tab_bar_style = "powerline";
       tab_title_template = "{index} {title}";
       active_tab_font_style = "bold";
       inactive_tab_font_style = "normal";
