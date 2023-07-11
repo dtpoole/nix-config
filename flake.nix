@@ -16,6 +16,21 @@
 
       username = "dave";
 
+      mkNixSystem host: nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs username; };
+        modules = [
+          ./hosts/${host}/configuration.nix
+          ./home/nixos.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${username} = import ./home;
+            home-manager.extraSpecialArgs = { inherit username; };
+          }
+        ];
+      };
+
       mkHomeConfig = system: home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           inherit system;
@@ -36,25 +51,10 @@
         import ./shell.nix { inherit pkgs; }
       );
 
-      # 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs username; };
-          modules = [
-            ./hosts/nixos/configuration.nix
-            ./home/nixos.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${username} = import ./home;
-              home-manager.extraSpecialArgs = { inherit inputs outputs username; };
-            }
-          ];
-        };
+        nixos = mkNixSystem "nixos";
       };
 
-      # 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
         "${username}@mini" = mkHomeConfig "x86_64-darwin";
         "${username}@slippy" = mkHomeConfig "x86_64-linux";
