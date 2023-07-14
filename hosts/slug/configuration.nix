@@ -14,6 +14,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.kernel.sysctl = { "vm.swappiness" = 10; };
+
   networking.hostName = "slug"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -55,9 +57,6 @@
     xkbVariant = "";
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = false;
-
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -81,14 +80,19 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
+
+  security.sudo.wheelNeedsPassword = false;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
     curl
-  #  vim
+    vim
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
