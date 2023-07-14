@@ -14,7 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "slug"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -55,6 +55,8 @@
     xkbVariant = "";
   };
 
+  # Enable CUPS to print documents.
+  services.printing.enable = false;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -79,28 +81,16 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
-
-  security.sudo.wheelNeedsPassword = false;
-
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    curl
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
-    gnumake
-    vim
-    zsh
- ];
-  
-  
-  virtualisation.vmware.guest.enable = true;
-  
+    curl
+  #  vim
+  ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -108,12 +98,12 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-  
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
+  services.xrdp.enable = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -129,3 +119,4 @@
   system.stateVersion = "23.05"; # Did you read the comment?
 
 }
+
