@@ -20,7 +20,7 @@
         specialArgs = { inherit inputs username; };
         modules = [
           ./hosts/${host}/configuration.nix
-          ./home/nixos.nix
+          ./hosts/user.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -53,6 +53,7 @@
 
       nixosConfigurations = {
         nixos = mkNixSystem "nixos";
+        slug = mkNixSystem "slug";
       };
 
       homeConfigurations = {
