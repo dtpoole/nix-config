@@ -21,6 +21,7 @@
         modules = [
           ./hosts/${host}/configuration.nix
           ./hosts/user.nix
+          ./modulez/common.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
