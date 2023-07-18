@@ -15,7 +15,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernel.sysctl = { "vm.swappiness" = 110; };
+  boot.kernel.sysctl = { "vm.swappiness" = 25; };
 
   networking.hostName = "slug"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -26,16 +26,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  networking.timeServers = [
-    "0.us.pool.ntp.org"
-    "1.us.pool.ntp.org"
-    "2.us.pool.ntp.org"
-    "3.us.pool.ntp.org"
-  ];
-
-  # Set your time zone.
-  time.timeZone = "America/New_York";
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -77,6 +67,7 @@
     git
     curl
     vim
+    librewolf
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
