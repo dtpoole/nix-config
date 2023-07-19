@@ -20,8 +20,9 @@
         specialArgs = { inherit inputs username; };
         modules = [
           ./hosts/${host}/configuration.nix
-          ./hosts/user.nix
           ./modulez/common.nix
+          ./modulez/user.nix
+
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
