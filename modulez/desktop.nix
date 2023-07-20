@@ -2,25 +2,29 @@
 {
   fonts.enableDefaultFonts = true;
   fonts.fonts = with pkgs; [
+    corefonts
     fira-code
     fira-code-symbols
-    terminus_font
-    jetbrains-mono
-    powerline-fonts
     gelasio
+    jetbrains-mono
     nerdfonts
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
+    powerline-fonts
     source-code-pro
     ttf_bitstream_vera
-    terminus_font_ttf
+    ubuntu_font_family
   ];
 
 
   environment.systemPackages = with pkgs; [
     librewolf
     xscreensaver
+    nordic
+    thunderbird
+    vlc
+    vscode
   ];
 
   # Enable the X11 windowing system.
