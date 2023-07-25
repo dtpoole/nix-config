@@ -58,8 +58,8 @@
       );
 
       nixosConfigurations = {
-        nixos = makeNixos "nixos";
-        slug = makeNixos "slug";
+        nixos = makeNixos { host = "nixos"; };
+        slug = makeNixos { host = "slug"; };
       };
 
       homeConfigurations = {
