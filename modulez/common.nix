@@ -1,5 +1,7 @@
 {
 
+  boot.loader.systemd-boot.configurationLimit = 5;
+
   time.timeZone = "America/New_York";
 
   networking.timeServers = [
@@ -20,7 +22,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 1w";
     };
     settings = {
       auto-optimise-store = true;
