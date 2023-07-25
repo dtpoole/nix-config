@@ -72,9 +72,17 @@
           system = "aarch64-linux";
         };
 
-        "${username}@slippy" = makeHome;
-        "${username}@north" = makeHome;
-        "${username}@PF2N1Y5V" = makeHome;
+        "${username}@slippy" = makeHome {
+          system = "x86_64-linux";
+        };
+
+        "${username}@north" = makeHome {
+          system = "x86_64-linux";
+        };
+
+        "${username}@PF2N1Y5V" = makeHome {
+          system = "x86_64-linux";
+        };
       };
 
     };
