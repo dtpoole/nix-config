@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, lib, hasGUI, ... }:
 let
   inherit (pkgs.stdenv) isDarwin;
 in
 {
 
-  programs.kitty = {
+  programs.kitty = lib.mkIf hasGUI {
     enable = true;
 
     settings = {

@@ -16,10 +16,10 @@
 
       username = "dave";
 
-      mkNixSystem = host: nixpkgs.lib.nixosSystem {
+      makeNixos = { host, hasGUI ? true }: nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs username; };
         modules = [
-          ./hosts/${host}/configuration.nix
+          ./hosts/${host}
           ./modulez/common.nix
           ./modulez/user.nix
 
@@ -33,12 +33,16 @@
         ];
       };
 
-      mkHomeConfig = system: home-manager.lib.homeManagerConfiguration {
+      makeHome = { system ? "x86_64-linux", hasGUI ? false }: home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           inherit system;
         };
-        extraSpecialArgs = { inherit username; };
-        modules = [ ./home ];
+        extraSpecialArgs = {
+          inherit username hasGUI;
+        };
+        modules = [
+          ./home
+        ];
       };
 
       forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
@@ -54,16 +58,23 @@
       );
 
       nixosConfigurations = {
-        nixos = mkNixSystem "nixos";
-        slug = mkNixSystem "slug";
+        nixos = makeNixos "nixos";
+        slug = makeNixos "slug";
       };
 
       homeConfigurations = {
-        "${username}@mini" = mkHomeConfig "x86_64-darwin";
-        "${username}@slippy" = mkHomeConfig "x86_64-linux";
-        "${username}@chacha" = mkHomeConfig "aarch64-linux";
-        "${username}@north" = mkHomeConfig "x86_64-linux";
-        "${username}@PF2N1Y5V" = mkHomeConfig "x86_64-linux";
+        "${username}@mini" = makeHome {
+          system = "x86_64-darwin";
+          hasGUI = true;
+        };
+
+        "${username}@chacha" = makeHome {
+          system = "aarch64-linux";
+        };
+
+        "${username}@slippy" = makeHome;
+        "${username}@north" = makeHome;
+        "${username}@PF2N1Y5V" = makeHome;
       };
 
     };
