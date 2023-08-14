@@ -7,9 +7,13 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, nix-darwin, ... }:
 
     let
       inherit (self) outputs;
@@ -60,6 +64,13 @@
       nixosConfigurations = {
         nixos = makeNixos { host = "nixos"; };
         slug = makeNixos { host = "slug"; };
+      };
+
+      darwinConfigurations = {
+        "mini" = nix-darwin.lib.darwinSystem {
+          system = "x86_64-darwin";
+          modules = [ ./hosts/mini ];
+        };
       };
 
       homeConfigurations = {
