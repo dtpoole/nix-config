@@ -12,6 +12,9 @@ in
     gnuls
     dig
     direnv
+    dua
+    duf
+    du-dust
     fd
     figlet
     file
