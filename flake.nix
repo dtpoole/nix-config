@@ -37,6 +37,21 @@
         ];
       };
 
+      makeDarwin = { host, system ? "x86_64-darwin", hasGUI ? true }: nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit inputs username system; };
+        modules = [ 
+          ./hosts/${host} 
+
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${username} = import ./home;
+            home-manager.extraSpecialArgs = { inherit username hasGUI; };
+          }
+        ];
+      };
+
       makeHome = { system ? "x86_64-linux", hasGUI ? false }: home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           inherit system;
@@ -67,18 +82,10 @@
       };
 
       darwinConfigurations = {
-        "mini" = nix-darwin.lib.darwinSystem {
-          system = "x86_64-darwin";
-          modules = [ ./hosts/mini ];
-        };
+        mini = makeDarwin { host = "mini"; system = "x86_64-darwin"; };
       };
 
       homeConfigurations = {
-        "${username}@mini" = makeHome {
-          system = "x86_64-darwin";
-          hasGUI = true;
-        };
-
         "${username}@chacha" = makeHome {
           system = "aarch64-linux";
         };
