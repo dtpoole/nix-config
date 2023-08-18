@@ -58,7 +58,6 @@
       bindkey '^ ' autosuggest-accept
       AGKOZAK_MULTILINE=0
       export LS_COLORS="$(${pkgs.vivid}/bin/vivid generate nord)"
-      BAT_THEME=Nord # fix for delta
 
       fpath+=( $ZDOTDIR/functions )
       autoload -Uz ssh
@@ -66,8 +65,6 @@
       # Nix
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-      elif [ -e $HOME/.nix-profile/etc/profile.d/nix-daemon.sh ]; then
-        . $HOME/.nix-profile/etc/profile.d/nix-daemon.sh
       fi
 
       path+=/usr/local/bin
