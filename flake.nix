@@ -7,9 +7,13 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, nix-darwin, ... }:
 
     let
       inherit (self) outputs;
@@ -24,6 +28,21 @@
           ./modulez/user.nix
 
           home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${username} = import ./home;
+            home-manager.extraSpecialArgs = { inherit username hasGUI; };
+          }
+        ];
+      };
+
+      makeDarwin = { host, system ? "x86_64-darwin", hasGUI ? true }: nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit inputs username system; };
+        modules = [ 
+          ./hosts/${host} 
+
+          home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -62,12 +81,11 @@
         slug = makeNixos { host = "slug"; };
       };
 
-      homeConfigurations = {
-        "${username}@mini" = makeHome {
-          system = "x86_64-darwin";
-          hasGUI = true;
-        };
+      darwinConfigurations = {
+        mini = makeDarwin { host = "mini"; system = "x86_64-darwin"; };
+      };
 
+      homeConfigurations = {
         "${username}@chacha" = makeHome {
           system = "aarch64-linux";
         };
