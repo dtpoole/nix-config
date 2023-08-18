@@ -71,7 +71,7 @@
     '';
 
     loginExtra = ''
-      hostname -s | ${pkgs.figlet}/bin/figlet
+      hostname -s | ${pkgs.figlet}/bin/figlet -f small
     '';
 
     plugins = with pkgs; [
