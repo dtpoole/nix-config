@@ -67,7 +67,7 @@
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
       fi
 
-      path+=/usr/local/bin
+      path+=(/usr/local/bin /usr/local/sbin)
     '';
 
     loginExtra = ''
