@@ -1,13 +1,17 @@
 USER=$(shell whoami)
 HOST=$(shell hostname -s)
-UNAME := $(shell uname -a | grep NixOS)
+DISTRIBUTION := $(shell grep -s '^ID=' /etc/os-release | cut -d= -f2 )
+UNAME := $(shell uname -s)
 
-ifeq ($(UNAME),)
-switch::
-	home-manager switch --flake .#$(USER)@$(HOST)
-else
+ifeq ($(DISTRIBUTION), nixos)
 switch::
 	nixos-rebuild switch --use-remote-sudo --flake .#${HOST} -L
+else ifeq ($(UNAME), Darwin)
+switch::
+	nix run nix-darwin -- switch --flake .#${HOST} -L
+else
+switch::
+	home-manager switch --flake .#$(USER)@$(HOST)
 endif
 
 shell:
@@ -18,6 +22,9 @@ boot:
 
 test:
 	nixos-rebuild test --use-remote-sudo --flake .#${HOST} -L
+
+darwin:
+	nix run nix-darwin -- switch --flake .#${HOST} -L
 
 update:
 	nix flake update
