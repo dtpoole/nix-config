@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-23.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,6 +28,8 @@
           ./modulez/common.nix
           ./modulez/user.nix
 
+          { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system}; }; }
+
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -39,8 +42,10 @@
 
       makeDarwin = { host, system ? "x86_64-darwin", hasGUI ? true }: nix-darwin.lib.darwinSystem {
         specialArgs = { inherit inputs username system; };
-        modules = [ 
-          ./hosts/${host} 
+        modules = [
+          ./hosts/${host}
+
+          { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system}; }; }
 
           home-manager.darwinModules.home-manager
           {
