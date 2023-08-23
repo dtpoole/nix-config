@@ -21,7 +21,7 @@
 
       username = "dave";
 
-      makeNixos = { host, hasGUI ? true }: nixpkgs.lib.nixosSystem {
+      makeNixos = { host, system ? "x86_64-linux", hasGUI ? true }: nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs username; };
         modules = [
           ./hosts/${host}
