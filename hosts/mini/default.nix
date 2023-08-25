@@ -77,6 +77,7 @@
     casks = [
       "1password"
       "balenaetcher"
+      "bartender"
       "calibre"
       "fission"
       "handbrake"
