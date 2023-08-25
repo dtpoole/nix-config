@@ -30,6 +30,7 @@
     ansible
     ansible-lint
     terraform
+    rnix-lsp
   ];
 
   # fonts.fonts = with pkgs; [
