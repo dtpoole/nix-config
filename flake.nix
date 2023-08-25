@@ -22,7 +22,7 @@
       username = "dave";
 
       makeNixos = { host, system ? "x86_64-linux", hasGUI ? true }: nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs username; };
+        specialArgs = { inherit inputs username host; };
         modules = [
           ./hosts/${host}
           ./modulez/common.nix
