@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, host, ... }:
 
 {
   imports =
@@ -15,7 +15,7 @@
 
   boot.kernel.sysctl = { "vm.swappiness" = 25; };
 
-  networking.hostName = "slug"; # Define your hostname.
+  
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

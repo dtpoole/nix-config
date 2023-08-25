@@ -1,4 +1,8 @@
+{ host, ... }:
+
 {
+
+  networking.hostName = "${host}"; # Define your hostname.
 
   boot.loader.systemd-boot.configurationLimit = 5;
 
