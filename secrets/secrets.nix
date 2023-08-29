@@ -7,6 +7,7 @@ let
   };
   allUsers = builtins.attrValues users;
   allSystems = builtins.attrValues systems;
-in {
+in
+{
   "test.age".publicKeys = allUsers ++ [ systems.mini ];
 }

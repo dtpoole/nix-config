@@ -12,9 +12,13 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, nix-darwin, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, nix-darwin, agenix, ... }:
 
     let
       inherit (self) outputs;
@@ -22,7 +26,7 @@
       username = "dave";
 
       makeNixos = { host, system ? "x86_64-linux", hasGUI ? true }: nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs username host; };
+        specialArgs = { inherit inputs username host agenix; };
         modules = [
           ./hosts/${host}
           ./modulez/common.nix
@@ -30,6 +34,7 @@
 
           { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system}; }; }
 
+          agenix.nixosModule.default
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -41,12 +46,13 @@
       };
 
       makeDarwin = { host, system ? "x86_64-darwin", hasGUI ? true }: nix-darwin.lib.darwinSystem {
-        specialArgs = { inherit inputs username system; };
+        specialArgs = { inherit inputs username system agenix; };
         modules = [
           ./hosts/${host}
 
           { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system}; }; }
 
+          agenix.darwinModules.default
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

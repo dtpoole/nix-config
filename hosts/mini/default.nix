@@ -1,4 +1,4 @@
-{ pkgs, unstablePkgs, system, username, ... }:
+{ config, pkgs, unstablePkgs, system, username, agenix, ... }:
 {
 
   nixpkgs.hostPlatform = system;
@@ -31,6 +31,7 @@
     ansible-lint
     terraform
     rnix-lsp
+    agenix.packages.${system}.default
   ];
 
   # fonts.fonts = with pkgs; [
@@ -106,6 +107,15 @@
       "Numbers" = 409203825;
       "Pages" = 409201541;
       "StopTheMadness" = 1376402589;
+    };
+  };
+
+  age.secrets.test.file = ../../secrets/test.age;
+
+  environment.etc = {
+    testrc = {
+      copy = true; # symlink doesn't seem to work
+      source = config.age.secrets.test.path;
     };
   };
 
