@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
       ../../modulez/zram.nix
       ../../modulez/sshd.nix
+      ../../modulez/tailscale.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
