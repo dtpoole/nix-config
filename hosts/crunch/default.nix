@@ -67,17 +67,6 @@
   #   ];
   # };
 
-  programs.zsh.enable = true;
-
-  users.users.dave = {
-    isNormalUser = true;
-    home = "/home/dave";
-    extraGroups = [ "docker" "wheel" "networkmanager" ];
-    shell = pkgs.zsh;
-    hashedPassword = "$y$j9T$gmxeDrPZuC4w8BUb.sy0Y0$I79zQJQbz9v9PF29tmq5mKe1m.At9Lvgtnh5D2VkZk1";
-  };
-
-  environment.shells = with pkgs; [ zsh ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
