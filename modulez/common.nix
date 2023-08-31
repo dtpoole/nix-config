@@ -2,7 +2,7 @@
 
 {
 
-  networking.hostName = "${host}"; # Define your hostname.
+  networking.hostName = "${host}";
 
   boot.loader.systemd-boot.configurationLimit = 5;
 
@@ -23,6 +23,7 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+    warn-dirty = false;
     gc = {
       automatic = true;
       dates = "weekly";

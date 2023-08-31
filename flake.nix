@@ -90,6 +90,7 @@
       nixosConfigurations = {
         nixos = makeNixos { host = "nixos"; };
         slug = makeNixos { host = "slug"; };
+        crunch = makeNixos { host = "crunch"; system = "x86_64-linux"; hasGUI = false; };
       };
 
       darwinConfigurations = {
