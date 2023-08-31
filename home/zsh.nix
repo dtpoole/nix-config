@@ -90,8 +90,9 @@
     # -- ssh/keychain (call keychain on first ssh call)
     ssh() {
       unfunction "$0"
+      alias ssh="env TERM=xterm-256color ssh"
       eval "$(${pkgs.keychain}/bin/keychain -q --eval --quick --ignore-missing --agents ssh --inherit any id_rsa id_ed25519)"
-      $0 "$@"
+      env TERM=xterm-256color $0 "$@"
     }
   '';
 
