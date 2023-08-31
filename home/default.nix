@@ -97,6 +97,9 @@ in
         hostname = "north.poole.foo";
         port = 5829;
       };
+      "crunch" = {
+        hostname = "10.10.10.150";
+      };
     };
   };
 
@@ -145,5 +148,7 @@ in
     tree
     vivid
   ];
+
+  #xdg.configFile."age_test.txt".text = config.age.secrets.test.path;
 
 }
