@@ -7,7 +7,7 @@
       ../../modulez/zram.nix
       ../../modulez/sshd.nix
       ../../modulez/tailscale.nix
-      ../../modulez/healthchecks.io.nix
+      ../../modulez/healthchecks-ping.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
