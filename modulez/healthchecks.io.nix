@@ -1,19 +1,19 @@
 { config, pkgs, ... }:
 {
 
-  systemd.timers."healthchecks.io-ping" = {
+  systemd.timers."healthchecks-ping" = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
       OnBootSec = "5m";
       OnUnitActiveSec = "5m";
-      Unit = "healthchecks.io-ping.service";
+      Unit = "healthchecks-ping.service";
     };
   };
 
-  systemd.services."healthchecks.io-ping" = {
+  systemd.services."healthchecks-ping" = {
     script = ''
       set -eu
-      ${pkgs.runitor}/bin/runitor -uuid ${config.age.secrets.hc_ping.path} -- echo hi.
+      ${pkgs.runitor}/bin/runitor -uuid $(cat ${config.age.secrets.hc_ping.path}) -- echo hi.
     '';
     serviceConfig = {
       Type = "oneshot";
