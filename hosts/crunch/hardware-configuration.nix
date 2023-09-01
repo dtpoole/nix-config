@@ -12,17 +12,19 @@
   boot.extraModulePackages = [ ];
 
   boot.kernelParams = [
-	"console=tty1"
-	"console=ttyS0,115200"
-];
+    "console=tty1"
+    "console=ttyS0,115200"
+  ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/2cc5ffd3-279c-41f0-aab7-57712e170149";
+    {
+      device = "/dev/disk/by-uuid/2cc5ffd3-279c-41f0-aab7-57712e170149";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/D7F8-6563";
+    {
+      device = "/dev/disk/by-uuid/D7F8-6563";
       fsType = "vfat";
     };
 

@@ -2,7 +2,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
       ../../modulez/zram.nix
       ../../modulez/sshd.nix
