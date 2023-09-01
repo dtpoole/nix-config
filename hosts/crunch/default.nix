@@ -17,6 +17,8 @@
 
   networking.firewall.enable = true;
 
+  networking.enableIPv6 = false;
+
   system.stateVersion = "23.05"; # Did you read the comment?
 
 }
