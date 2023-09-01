@@ -1,3 +1,4 @@
+{ config, pkgs, ... }:
 {
 
   systemd.timers."healthchecks.io-ping" = {
@@ -5,7 +6,7 @@
     timerConfig = {
       OnBootSec = "5m";
       OnUnitActiveSec = "5m";
-      Unit = "hehealthchecks.io-ping.service";
+      Unit = "healthchecks.io-ping.service";
     };
   };
 

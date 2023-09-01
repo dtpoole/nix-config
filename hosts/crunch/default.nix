@@ -7,6 +7,7 @@
       ../../modulez/zram.nix
       ../../modulez/sshd.nix
       ../../modulez/tailscale.nix
+      ../../modulez/healthchecks.io.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -18,6 +19,8 @@
   networking.firewall.enable = true;
 
   networking.enableIPv6 = false;
+
+  age.secrets.hc_ping.file = ../../secrets/crunch_hc_ping_uuid.age;
 
   system.stateVersion = "23.05"; # Did you read the comment?
 
