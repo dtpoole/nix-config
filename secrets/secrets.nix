@@ -12,4 +12,5 @@ in
 {
   "test.age".publicKeys = allUsers ++ [ systems.mini ];
   "crunch_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.crunch ];
+  "acme_cloudflare_credentials.age".publicKeys = allUsers ++ [ systems.crunch ];
 }
