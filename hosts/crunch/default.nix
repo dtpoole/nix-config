@@ -43,7 +43,7 @@
         domain = "crunch.poole.foo";
         dnsProvider = "cloudflare";
         dnsResolver = "1.1.1.1:53";
-        credentialsFile = ${config.age.secrets.acme_credentials.path};
+        credentialsFile = "${config.age.secrets.acme_credentials.path}";
         extraDomainNames = [ "*.crunch.poole.foo" ];
         dnsPropagationCheck = false;
       };
