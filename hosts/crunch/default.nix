@@ -9,6 +9,7 @@
       ../../modulez/tailscale.nix
       ../../modulez/healthchecks-ping.nix
       ./acme.nix
+      ./backups.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
