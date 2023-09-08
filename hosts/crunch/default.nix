@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, username, ... }:
 
 {
   imports =
@@ -56,6 +56,8 @@
   };
 
   users.users.nginx.extraGroups = [ "acme" ];
+
+  age.secrets.hc_ping.file = ../../secrets/crunch_hc_ping_uuid.age;
 
   system.stateVersion = "23.05"; # Did you read the comment?
 
