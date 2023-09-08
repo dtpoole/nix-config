@@ -8,6 +8,7 @@
       ../../modulez/sshd.nix
       ../../modulez/tailscale.nix
       ../../modulez/healthchecks-ping.nix
+      ./acme.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -16,11 +17,12 @@
 
   services.qemuGuest.enable = true;
 
-  networking.firewall.enable = true;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 80 443 ];
+  };
 
   networking.enableIPv6 = false;
-
-  age.secrets.hc_ping.file = ../../secrets/crunch_hc_ping_uuid.age;
 
   # security.auditd.enable = true;
   # security.audit.enable = true;
@@ -28,27 +30,34 @@
   #   "-a exit,always -F arch=b64 -S execve"
   # ];
 
-  system.stateVersion = "23.05"; # Did you read the comment?
+  virtualisation.docker.enable = true;
+  users.users.${username}.extraGroups = [ "docker" ];
 
+  services.nginx = {
+    enable = true;
 
-  age.secrets.acme_credentials.file = ../../secrets/acme_cloudflare_credentials.age;
+    # Use recommended settings
+    recommendedGzipSettings = true;
+    recommendedOptimisation = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
 
-  security.acme = {
-    defaults = {
-      email = "acme@poole.foo";
-    };
-    acceptTerms = true;
-    certs = {
-      "crunch.poole.foo" = {
-        domain = "crunch.poole.foo";
-        dnsProvider = "cloudflare";
-        dnsResolver = "1.1.1.1:53";
-        credentialsFile = "${config.age.secrets.acme_credentials.path}";
-        extraDomainNames = [ "*.crunch.poole.foo" ];
-        dnsPropagationCheck = false;
+    virtualHosts = {
+      "git.poole.foo" = {
+        #serverName = "git.poole.foo";
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:3030";
+          proxyWebsockets = true;
+        };
+        addSSL = true;
+        useACMEHost = "git.poole.foo";
       };
     };
   };
+
+  users.users.nginx.extraGroups = [ "acme" ];
+
+  system.stateVersion = "23.05"; # Did you read the comment?
 
 }
 
