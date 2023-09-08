@@ -5,11 +5,10 @@
   age.secrets.restic_repository_password.file = ../../secrets/restic_repository_password.age;
 
   services.restic.backups = {
-    extraOptions = [
-      "--tag test-${host}"
-    ];
-
     remotebackup = {
+      extraOptions = [
+        "--tag test-${host}"
+      ];
       passwordFile = config.age.secrets.restic_repository_password.path;
       paths = [
         "/home"
