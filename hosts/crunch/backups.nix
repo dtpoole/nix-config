@@ -1,21 +1,28 @@
-{ config, host, ... }:
+{ config, ... }:
 {
-
   age.secrets.restic_repository.file = ../../secrets/restic_repository.age;
   age.secrets.restic_repository_password.file = ../../secrets/restic_repository_password.age;
 
   services.restic.backups = {
     remotebackup = {
-      extraOptions = [
-        "--tag test-${host}"
+      exclude = [
+        "/var/cache"
+        "/home/*/.cache"
       ];
       passwordFile = config.age.secrets.restic_repository_password.path;
       paths = [
         "/home"
+        "/var/log"
       ];
-      repository = config.age.secrets.restic_repository.path;
+      pruneOpts = [
+        "--keep-daily 7"
+        "--keep-weekly 5"
+        "--keep-monthly 3"
+      ];
+      repositoryFile = config.age.secrets.restic_repository.path;
       timerConfig = {
-        OnCalendar = "16:10";
+        OnCalendar = "hourly";
+        Persistent = true;
         RandomizedDelaySec = "1m";
       };
     };
