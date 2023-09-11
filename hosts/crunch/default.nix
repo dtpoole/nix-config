@@ -66,6 +66,7 @@
   users.users.nginx.extraGroups = [ "acme" ];
 
   age.secrets.hc_ping.file = ../../secrets/crunch_hc_ping_uuid.age;
-  age.secrets.hc_backup.path = ../../secrets/crunch_hc_backup_uuid.age;
+  age.secrets.hc_backup.file = ../../secrets/crunch_hc_backup_uuid.age;
+
 }
 

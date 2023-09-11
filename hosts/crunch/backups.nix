@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   age.secrets.restic_repository.file = ../../secrets/restic_repository.age;
   age.secrets.restic_repository_password.file = ../../secrets/restic_repository_password.age;
