@@ -110,13 +110,13 @@
     };
   };
 
-  age.secrets.test.file = ../../secrets/test.age;
+  # age.secrets.test.file = ../../secrets/test.age;
 
-  environment.etc = {
-    testrc = {
-      copy = true; # symlink doesn't seem to work
-      source = config.age.secrets.test.path;
-    };
-  };
+  # environment.etc = {
+  #   testrc = {
+  #     copy = true; # symlink doesn't seem to work
+  #     source = config.age.secrets.test.path;
+  #   };
+  # };
 
 }
