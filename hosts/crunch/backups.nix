@@ -5,7 +5,7 @@
 
   services.restic.backups = {
     remotebackup = {
-      backupCleanupCommand = '''
+      backupCleanupCommand = ''
         ${pkgs.runitor}/bin/runitor -uuid $(cat ${config.age.secrets.hc_backup.path}) -- echo backup success.
       '';
       exclude = [
@@ -24,9 +24,9 @@
       ];
       repositoryFile = config.age.secrets.restic_repository.path;
       timerConfig = {
-        OnCalendar = "hourly";
+        OnCalendar = "0/6:00";
         Persistent = true;
-        RandomizedDelaySec = "5m";
+        RandomizedDelaySec = "15m";
       };
     };
   };
