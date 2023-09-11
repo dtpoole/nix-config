@@ -5,6 +5,9 @@
 
   services.restic.backups = {
     remotebackup = {
+      backupCleanupCommand = '''
+        ${pkgs.runitor}/bin/runitor -uuid $(cat ${config.age.secrets.hc_backup.path}) -- echo backup success.
+      '';
       exclude = [
         "/var/cache"
         "/home/*/.cache"
@@ -23,7 +26,7 @@
       timerConfig = {
         OnCalendar = "hourly";
         Persistent = true;
-        RandomizedDelaySec = "1m";
+        RandomizedDelaySec = "5m";
       };
     };
   };

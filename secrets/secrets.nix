@@ -16,4 +16,5 @@ in
   "acme_cloudflare_credentials.age".publicKeys = allUsers ++ [ systems.crunch ];
   "restic_repository.age".publicKeys = allUsers ++ allSystems;
   "restic_repository_password.age".publicKeys = allUsers ++ allSystems;
+  "crunch_hc_backup_uuid.age".publicKeys = allUsers ++ [ systems.crunch ];
 }
