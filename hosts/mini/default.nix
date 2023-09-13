@@ -29,6 +29,7 @@
     unstablePkgs.yt-dlp
     ansible
     ansible-lint
+    sshpass
     terraform
     rnix-lsp
     agenix.packages.${system}.default
