@@ -93,12 +93,15 @@ in
       "mini" = {
         hostname = "10.10.10.50";
       };
-      "north" = {
-        hostname = "north.poole.foo";
-        port = 5829;
+      "slug" = {
+        hostname = "10.10.10.60";
       };
       "crunch" = {
         hostname = "10.10.10.150";
+      };
+      "north" = {
+        hostname = "north.poole.foo";
+        port = 5829;
       };
     };
   };
