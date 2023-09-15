@@ -10,6 +10,7 @@
       ../../modulez/healthchecks-ping.nix
       ./acme.nix
       ./backups.nix
+      ./monitoring.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
