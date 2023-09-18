@@ -18,7 +18,7 @@
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, nix-darwin, agenix, ... }:
+  outputs = inputs @ { nixpkgs, home-manager, nix-darwin, agenix, ... }:
 
     let
 

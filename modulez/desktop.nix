@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   fonts.enableDefaultFonts = true;
   fonts.fonts = with pkgs; [
