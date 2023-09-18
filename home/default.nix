@@ -1,6 +1,6 @@
 { pkgs, username, ... }:
 let
-  inherit (pkgs.stdenv) isLinux isDarwin;
+  inherit (pkgs.stdenv) isDarwin;
 in
 {
   home.stateVersion = "23.05";

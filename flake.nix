@@ -21,7 +21,6 @@
   outputs = inputs @ { self, nixpkgs, home-manager, nix-darwin, agenix, ... }:
 
     let
-      inherit (self) outputs;
 
       username = "dave";
 
