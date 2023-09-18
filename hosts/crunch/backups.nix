@@ -4,7 +4,7 @@
   age.secrets.restic_repository_password.file = ../../secrets/restic_repository_password.age;
 
   services.restic.backups = {
-    remotebackup = {
+    remote = {
       backupCleanupCommand = ''
         ${pkgs.runitor}/bin/runitor -uuid $(cat ${config.age.secrets.hc_backup.path}) -- echo backup success.
       '';
