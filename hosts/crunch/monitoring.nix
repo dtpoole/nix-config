@@ -2,12 +2,12 @@
 
 
   services.prometheus = {
-    port = 3020;
+    port = 4050;
     enable = true;
 
     exporters = {
       node = {
-        port = 3021;
+        port = 4051;
         enabledCollectors = [ "systemd" ];
         enable = true;
       };
@@ -28,7 +28,7 @@
   services.loki = {
     enable = true;
     configuration = {
-      server.http_listen_port = 3031;
+      server.http_listen_port = 4060;
       auth_enabled = false;
 
       ingester = {
@@ -98,7 +98,6 @@
         };
       };
     };
-    # user, group, dataDir, extraFlags, (configFile)
   };
 
 
@@ -106,7 +105,7 @@
     enable = true;
     configuration = {
       server = {
-        http_listen_port = 3032;
+        http_listen_port = 4061;
         grpc_listen_port = 0;
       };
       positions = {
@@ -132,9 +131,6 @@
     };
     # extraFlags
   };
-
-
-
 
   services.grafana = {
     enable = true;
