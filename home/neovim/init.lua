@@ -139,4 +139,3 @@ opt.termguicolors = true
 opt.ttyfast = true -- Faster redrawing.
 
 opt.laststatus = 1
-

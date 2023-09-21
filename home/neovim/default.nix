@@ -29,7 +29,7 @@
         plugin = nord-nvim;
         type = "lua";
         config = ''
-          
+
           -- nord
           vim.g.nord_contrast = false
           vim.g.nord_borders = true

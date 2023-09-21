@@ -70,4 +70,3 @@
   age.secrets.hc_backup.file = ../../secrets/crunch_hc_backup_uuid.age;
 
 }
-
