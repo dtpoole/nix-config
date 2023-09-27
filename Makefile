@@ -32,6 +32,9 @@ update:
 format:
 	nixpkgs-fmt .
 
+pre-commit:
+	pre-commit run --all-files
+
 cleanup:
 	nix-collect-garbage -d
 

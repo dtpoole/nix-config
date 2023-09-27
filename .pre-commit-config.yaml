@@ -10,3 +10,9 @@ repos:
     rev: v1.3.0
     hooks:
     -   id: nixpkgs-fmt
+-   repo: https://github.com/astro/deadnix
+    rev: v1.2.0
+    hooks:
+    -   id: deadnix
+        #args: [--edit] # Uncomment to automatically modify files
+        stages: [commit]
