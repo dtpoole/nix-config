@@ -33,7 +33,6 @@
   # ];
 
   virtualisation.docker.enable = true;
-  users.users.${username}.extraGroups = [ "docker" ];
 
   services.nginx = {
     enable = true;
