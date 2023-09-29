@@ -106,7 +106,6 @@
       );
 
       nixosConfigurations = {
-        nixos = makeNixos { host = "nixos"; };
         slug = makeNixos { host = "slug"; };
         crunch = makeNixos { host = "crunch"; system = "x86_64-linux"; hasGUI = false; };
         orion = makeNixosLxc { host = "orion"; };
@@ -117,11 +116,6 @@
       };
 
       homeConfigurations = {
-        "${username}@chacha" = makeHome {
-          system = "aarch64-linux";
-        };
-
-        "${username}@slippy" = makeHome { };
         "${username}@north" = makeHome { };
         "${username}@PF2N1Y5V" = makeHome { };
       };
