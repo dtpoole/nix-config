@@ -24,6 +24,25 @@
 
       username = "dave";
 
+      makeNixosLxc = { host, system ? "x86_64-linux", hasGUI ? false }: nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs username host agenix; };
+        modules = [
+          ./hosts/${host}
+          ./modulez/common.nix
+          ./modulez/user.nix
+
+          { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system}; }; }
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${username} = import ./home;
+            home-manager.extraSpecialArgs = { inherit username hasGUI; };
+          }
+        ];
+      };
+
       makeNixos = { host, system ? "x86_64-linux", hasGUI ? true }: nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs username host agenix; };
         modules = [
@@ -90,7 +109,7 @@
         nixos = makeNixos { host = "nixos"; };
         slug = makeNixos { host = "slug"; };
         crunch = makeNixos { host = "crunch"; system = "x86_64-linux"; hasGUI = false; };
-        orion = makeNixos { host = "orion"; system = "x86_64-linux"; hasGUI = false; };
+        orion = makeNixosLxc { host = "orion"; };
       };
 
       darwinConfigurations = {

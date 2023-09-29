@@ -2,8 +2,7 @@
 
 {
   imports = [
-    <nixpkgs/nixos/modules/virtualisation/lxc-container.nix>
-    ../../modulez/zram.nix
+    (modulesPath + "/virtualisation/lxc-container.nix")
   ];
 
   # Supress systemd units that don't work because of LXC
@@ -19,5 +18,7 @@
     wantedBy = [ "getty.target" ]; # to start at boot
     serviceConfig.Restart = "always"; # restart when session is closed
   };
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
 }
