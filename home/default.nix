@@ -80,12 +80,6 @@ in
       StrictHostKeyChecking no
     '';
     matchBlocks = {
-      "slippy" = {
-        hostname = "10.10.10.10";
-      };
-      "chacha" = {
-        hostname = "10.10.10.11";
-      };
       "tank" = {
         hostname = "10.10.10.40";
         user = "tank";
@@ -98,6 +92,9 @@ in
       };
       "crunch" = {
         hostname = "10.10.10.150";
+      };
+      "orion" = {
+        hostname = "10.10.10.75";
       };
       "north" = {
         hostname = "north.poole.foo";
@@ -129,6 +126,7 @@ in
 
   home.packages = with pkgs; [
     coreutils
+    deadnix
     dig
     direnv
     dua
@@ -144,6 +142,7 @@ in
     nixpkgs-fmt
     nmap
     parallel
+    pre-commit
     ripgrep
     shellcheck
     sqlite
@@ -151,7 +150,5 @@ in
     tree
     vivid
   ];
-
-  #xdg.configFile."age_test.txt".text = config.age.secrets.test.path;
 
 }
