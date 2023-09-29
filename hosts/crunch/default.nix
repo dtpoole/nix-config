@@ -69,4 +69,8 @@
   age.secrets.hc_ping.file = ../../secrets/crunch_hc_ping_uuid.age;
   age.secrets.hc_backup.file = ../../secrets/crunch_hc_backup_uuid.age;
 
+  # set user password
+  age.secrets.user_password.file = ../../secrets/user_password.age;
+  users.users.${username}.passwordFile = config.age.secrets.user_password.path;
+
 }
