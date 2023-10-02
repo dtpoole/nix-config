@@ -18,68 +18,37 @@
     };
   };
 
-  outputs = inputs @ { nixpkgs, home-manager, nix-darwin, agenix, ... }:
-
+  outputs = { nixpkgs, home-manager, nix-darwin, agenix, ... }@inputs:
     let
 
       username = "dave";
 
-      makeNixosLxc = { host, system ? "x86_64-linux", hasGUI ? false }: nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs username host agenix; };
-        modules = [
-          ./hosts/${host}
-          ./modulez/common.nix
-          ./modulez/user.nix
+      makeSystem = { host, system ? "x86_64-linux", isDarwin ? false, hasGUI ? false }:
 
-          { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system}; }; }
+        let
+          isLinux = if isDarwin then false else true;
+          systemFunc = if isDarwin then nix-darwin.lib.darwinSystem else nixpkgs.lib.nixosSystem;
+          home-manager = if isDarwin then inputs.home-manager.darwinModules else inputs.home-manager.nixosModules;
+        in
+        systemFunc rec {
+          specialArgs = { inherit inputs system username agenix host; };
+          modules = [
+            ./hosts/${host}
+            (if isLinux then ./modulez/common.nix else { })
+            (if isLinux then ./modulez/user.nix else { })
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${username} = import ./home;
-            home-manager.extraSpecialArgs = { inherit username hasGUI; };
-          }
-        ];
-      };
+            { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system}; }; }
+            (if isDarwin then agenix.darwinModules.default else agenix.nixosModules.default)
 
-      makeNixos = { host, system ? "x86_64-linux", hasGUI ? true }: nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs username host agenix; };
-        modules = [
-          ./hosts/${host}
-          ./modulez/common.nix
-          ./modulez/user.nix
-
-          { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system}; }; }
-
-          agenix.nixosModules.default
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${username} = import ./home;
-            home-manager.extraSpecialArgs = { inherit username hasGUI; };
-          }
-        ];
-      };
-
-      makeDarwin = { host, system ? "x86_64-darwin", hasGUI ? true }: nix-darwin.lib.darwinSystem {
-        specialArgs = { inherit inputs username system agenix; };
-        modules = [
-          ./hosts/${host}
-
-          { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system}; }; }
-
-          agenix.darwinModules.default
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${username} = import ./home;
-            home-manager.extraSpecialArgs = { inherit username hasGUI; };
-          }
-        ];
-      };
+            home-manager.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${username} = import ./home;
+              home-manager.extraSpecialArgs = { inherit username hasGUI; };
+            }
+          ];
+        };
 
       makeHome = { system ? "x86_64-linux", hasGUI ? false }: home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
@@ -106,13 +75,13 @@
       );
 
       nixosConfigurations = {
-        slug = makeNixos { host = "slug"; };
-        crunch = makeNixos { host = "crunch"; system = "x86_64-linux"; hasGUI = false; };
-        orion = makeNixosLxc { host = "orion"; };
+        slug = makeSystem { host = "slug"; system = "x86_64-linux"; isDarwin = false; hasGUI = false; };
+        crunch = makeSystem { host = "crunch"; };
+        orion = makeSystem { host = "orion"; };
       };
 
       darwinConfigurations = {
-        mini = makeDarwin { host = "mini"; system = "x86_64-darwin"; };
+        mini = makeSystem { host = "mini"; system = "x86_64-darwin"; isDarwin = true; };
       };
 
       homeConfigurations = {
