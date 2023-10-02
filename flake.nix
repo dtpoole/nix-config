@@ -23,10 +23,12 @@
 
       username = "dave";
 
-      makeSystem = { host, system ? "x86_64-linux", isDarwin ? false, hasGUI ? false }:
+      makeSystem = { host, system ? "x86_64-linux", hasGUI ? false }:
 
         let
-          isLinux = if isDarwin then false else true;
+          isDarwin = if nixpkgs.lib.strings.hasSuffix "darwin" system then true else false;
+          isLinux = if nixpkgs.lib.strings.hasSuffix "linux" system then true else false;
+
           systemFunc = if isDarwin then nix-darwin.lib.darwinSystem else nixpkgs.lib.nixosSystem;
           home-manager = if isDarwin then inputs.home-manager.darwinModules else inputs.home-manager.nixosModules;
         in
@@ -75,13 +77,13 @@
       );
 
       nixosConfigurations = {
-        slug = makeSystem { host = "slug"; system = "x86_64-linux"; isDarwin = false; hasGUI = false; };
+        slug = makeSystem { host = "slug"; system = "x86_64-linux"; hasGUI = true; };
         crunch = makeSystem { host = "crunch"; };
         orion = makeSystem { host = "orion"; };
       };
 
       darwinConfigurations = {
-        mini = makeSystem { host = "mini"; system = "x86_64-darwin"; isDarwin = true; };
+        mini = makeSystem { host = "mini"; system = "x86_64-darwin"; };
       };
 
       homeConfigurations = {
