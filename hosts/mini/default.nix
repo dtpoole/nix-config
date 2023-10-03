@@ -75,7 +75,11 @@
 
   homebrew = {
     enable = true;
-    onActivation.upgrade = true;
+
+    onActivation = {
+      upgrade = true;
+      autoUpdate = true;
+    };
 
     casks = [
       "1password"
