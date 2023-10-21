@@ -1,9 +1,15 @@
 { unstablePkgs, ... }:
 
 {
-  services.tailscale.enable = true;
-  services.tailscale.package = unstablePkgs.tailscale;
+  services.tailscale = {
+    enable = true;
+    package = unstablePkgs.tailscale;
+  };
 
-  # Tell the firewall to implicitly trust packets routed over Tailscale:
-  networking.firewall.trustedInterfaces = [ "tailscale0" ];
+  networking.firewall = {
+    trustedInterfaces = [ "tailscale0" ]; # Tell the firewall to implicitly trust packets routed over Tailscale:
+    checkReversePath = "loose";
+  };
+
+  networking.nameservers = [ "100.100.100.100" ];
 }
