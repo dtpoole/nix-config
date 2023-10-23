@@ -84,7 +84,7 @@
       };
 
       darwinConfigurations = {
-        mini = makeSystem { host = "mini"; system = "x86_64-darwin"; };
+        mini = makeSystem { host = "mini"; system = "x86_64-darwin"; hasGUI = true; };
       };
 
       homeConfigurations = {
