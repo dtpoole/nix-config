@@ -12,6 +12,7 @@
       ./backups.nix
       ./monitoring.nix
       ./containers.nix
+      ./postgres.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
