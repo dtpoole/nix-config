@@ -19,7 +19,7 @@
   };
 
 
-  systemd.services."linkding" = {
+  systemd.services."${config.virtualisation.oci-containers.backend}-linkding" = {
     after = [ "postgresql.service" ];
     requires = [ "postgresql.service" ];
   };
@@ -28,7 +28,11 @@
     ensureDatabases = [ "linkding" ];
     ensureUsers = [{
       name = "linkding";
-      ensurePermissions = { "DATABASE \"linkding\"" = "ALL PRIVILEGES"; };
+      ensurePermissions = {
+        "DATABASE linkding" = "ALL";
+        "SCHEMA public" = "ALL";
+        "ALL TABLES IN SCHEMA public" = "ALL";
+      };
     }];
   };
 
@@ -47,7 +51,7 @@
         "LD_DB_HOST" = "/run/postgresql/";
         "LD_SERVER_PORT" = "9090";
       };
-      ports = [ "9091:9090" ];
+      ports = [ "9090:9090" ];
       volumes = [
         "linkding:/etc/linkding/data"
         "/run/postgresql/:/run/postgresql/"
@@ -56,13 +60,13 @@
 
   };
 
-  services.nginx.virtualHosts."links2.poole.foo" = {
+  services.nginx.virtualHosts."links.poole.foo" = {
     locations."/" = {
-      proxyPass = "http://127.0.0.1:9091";
+      proxyPass = "http://127.0.0.1:9090";
       proxyWebsockets = true;
     };
     addSSL = true;
-    useACMEHost = "links2.poole.foo";
+    useACMEHost = "links.poole.foo";
   };
 
 
