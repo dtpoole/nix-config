@@ -16,6 +16,7 @@
       paths = [
         "/home"
         "/var/log"
+        "/var/backup"
       ];
       pruneOpts = [
         "--keep-daily 7"
