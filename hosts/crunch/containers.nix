@@ -32,7 +32,7 @@
     }];
   };
 
-  age.secrets.linkding_password.file = "../../secrets/crunch_linkding_password.age";
+  age.secrets.linkding_password.file = ../../secrets/crunch_linkding_password.age;
 
   virtualisation.oci-containers.containers = {
     "linkding" = {
