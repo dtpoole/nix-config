@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
 
@@ -19,6 +19,7 @@
       };
       "git.poole.foo" = { };
       "links.poole.foo" = { };
+      "tools.poole.foo" = { };
     };
   };
 

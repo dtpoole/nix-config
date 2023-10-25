@@ -11,6 +11,7 @@
       ./acme.nix
       ./backups.nix
       ./monitoring.nix
+      ./containers.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
