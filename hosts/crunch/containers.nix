@@ -32,14 +32,14 @@
     }];
   };
 
-  age.secrets.crunch_linkding_password.file = "../../secrets/crunch_linkding_password.age ";
+  age.secrets.linkding_password.file = "../../secrets/crunch_linkding_password.age";
 
   virtualisation.oci-containers.containers = {
     "linkding" = {
       autoStart = true;
       image = "sissbruecker/linkding:latest";
       extraOptions = [ "--pull=always" ];
-      environmentFiles = [ config.age.secrets.crunch_linkding_password.path ];
+      environmentFiles = [ config.age.secrets.linkding_password.path ];
       environment = {
         "LD_DB_ENGINE" = "postgres";
         "LD_DB_DATABASE" = "linkding";
