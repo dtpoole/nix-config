@@ -30,7 +30,7 @@
     configuration = {
       server.http_listen_port = 4060;
       auth_enabled = false;
-      reporting_enabled = false;
+      analytics.reporting_enabled = false;
 
       ingester = {
         lifecycler = {
