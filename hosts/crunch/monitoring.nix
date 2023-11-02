@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, ... }: {
 
 
   services.prometheus = {
@@ -30,6 +30,7 @@
     configuration = {
       server.http_listen_port = 4060;
       auth_enabled = false;
+      reporting_enabled = false;
 
       ingester = {
         lifecycler = {
