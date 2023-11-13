@@ -4,19 +4,9 @@
   virtualisation.oci-containers.containers."it-tools" = {
     autoStart = true;
     image = "corentinth/it-tools:2023.11.2-7d94e11";
-    #extraOptions = [ "--pull=always" ];
+    extraOptions = [ "--pull=always" ];
     ports = [ "8070:80" ];
   };
-
-  services.nginx.virtualHosts."tools.poole.foo" = {
-    locations."/" = {
-      proxyPass = "http://127.0.0.1:8070";
-      proxyWebsockets = true;
-    };
-    addSSL = true;
-    useACMEHost = "tools.poole.foo";
-  };
-
 
   systemd.services."${config.virtualisation.oci-containers.backend}-linkding" = {
     after = [ "postgresql.service" ];
@@ -41,7 +31,7 @@
     "linkding" = {
       autoStart = true;
       image = "sissbruecker/linkding:1.22.3";
-      # extraOptions = [ "--pull=always" ];
+      extraOptions = [ "--pull=always" ];
       environmentFiles = [ config.age.secrets.linkding_password.path ];
       environment = {
         "LD_DB_ENGINE" = "postgres";
@@ -58,15 +48,5 @@
     };
 
   };
-
-  services.nginx.virtualHosts."links.poole.foo" = {
-    locations."/" = {
-      proxyPass = "http://127.0.0.1:9090";
-      proxyWebsockets = true;
-    };
-    addSSL = true;
-    useACMEHost = "links.poole.foo";
-  };
-
 
 }
