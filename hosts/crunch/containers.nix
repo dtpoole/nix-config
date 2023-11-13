@@ -41,8 +41,8 @@
   virtualisation.oci-containers.containers = {
     "linkding" = {
       autoStart = true;
-      image = "sissbruecker/linkding:latest";
-      extraOptions = [ "--pull=always" ];
+      image = "sissbruecker/linkding:1.22.3";
+      # extraOptions = [ "--pull=always" ];
       environmentFiles = [ config.age.secrets.linkding_password.path ];
       environment = {
         "LD_DB_ENGINE" = "postgres";
