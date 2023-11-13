@@ -1,11 +1,10 @@
 { config, ... }:
 {
 
-
   virtualisation.oci-containers.containers."it-tools" = {
     autoStart = true;
-    image = "corentinth/it-tools:latest";
-    extraOptions = [ "--pull=always" ];
+    image = "corentinth/it-tools:2023.11.2-7d94e11";
+    #extraOptions = [ "--pull=always" ];
     ports = [ "8070:80" ];
   };
 
