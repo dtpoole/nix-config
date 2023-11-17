@@ -81,6 +81,7 @@
         slug = makeSystem { host = "slug"; system = "x86_64-linux"; hasGUI = true; };
         crunch = makeSystem { host = "crunch"; };
         orion = makeSystem { host = "orion"; };
+        fuzzmo = makeSystem { host = "fuzzmo"; };
       };
 
       darwinConfigurations = {
