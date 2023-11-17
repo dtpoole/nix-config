@@ -81,7 +81,7 @@
         name = "agkozak-zsh-prompt";
         src = pkgs.fetchgit {
           url = "https://github.com/agkozak/agkozak-zsh-prompt";
-          sha256 = "08f5q9z7mc2hshnx35nh4gqgdkvjv41704hn69vz0p190fkzx3i0";
+          sha256 = "0qz67nzc5zm8rbdggh09qq29nv7blcc2mza5nvnq950z8vs0hda0";
         };
         file = "agkozak-zsh-prompt.plugin.zsh";
       }
