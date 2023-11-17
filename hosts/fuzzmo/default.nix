@@ -3,9 +3,7 @@
 {
   imports = [
     (modulesPath + "/virtualisation/lxc-container.nix")
-    ../../modulez/zram.nix
     ../../modulez/sshd.nix
-    ../../modulez/tailscale.nix
     ../../modulez/postgres.nix
   ];
 
@@ -24,5 +22,8 @@
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
+  networking.enableIPv6 = false;
+  networking.nameservers = [ "10.10.10.1" ];
 
 }
