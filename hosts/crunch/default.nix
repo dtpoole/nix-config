@@ -8,11 +8,11 @@
       ../../modulez/sshd.nix
       ../../modulez/tailscale.nix
       ../../modulez/healthchecks-ping.nix
+      ../../modulez/postgres.nix
       ./acme.nix
       ./backups.nix
       ./monitoring.nix
       ./containers.nix
-      ./postgres.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
