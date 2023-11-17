@@ -3,6 +3,10 @@
 {
   imports = [
     (modulesPath + "/virtualisation/lxc-container.nix")
+    ../../modulez/zram.nix
+    ../../modulez/sshd.nix
+    ../../modulez/tailscale.nix
+    ../../modulez/postgres.nix
   ];
 
   # Supress systemd units that don't work because of LXC
