@@ -128,10 +128,13 @@ in
     enableZshIntegration = true;
     settings = {
       username = {
-        format = "[$user]($style)@";
+        style_user = "bold green";
+        format = "[$user]($style)";
       };
       hostname = {
-        ssh_symbol = "";
+        ssh_symbol = "@";
+        style = "bold green";
+        format = "[$ssh_symbol$hostname]($style)";
       };
       shlvl = {
         disabled = false;
