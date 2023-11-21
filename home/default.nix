@@ -134,7 +134,7 @@ in
       hostname = {
         ssh_symbol = "@";
         style = "bold green";
-        format = "[$ssh_symbol$hostname]($style)";
+        format = "[$ssh_symbol$hostname]($style) ";
       };
       shlvl = {
         disabled = false;
