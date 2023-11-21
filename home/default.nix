@@ -127,6 +127,9 @@ in
     enable = true;
     enableZshIntegration = true;
     settings = {
+      container = {
+        disabled = true;
+      };
       username = {
         style_user = "bold green";
         format = "[$user]($style)";
