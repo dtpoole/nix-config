@@ -33,7 +33,7 @@ in
     enable = true;
     settings = {
       color_theme = "nord";
-      theme_background = true;
+      theme_background = false;
     };
   };
 
@@ -100,6 +100,10 @@ in
         hostname = "north.poole.foo";
         port = 5829;
       };
+      "media" = {
+        hostname = "10.10.10.37";
+        user = "media";
+      };
     };
   };
 
@@ -117,6 +121,18 @@ in
       bind-key C-a last-window
       bind-key S command-prompt -p ssh: "new-window -n %1 'ssh %1'"
     '';
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      shlvl = {
+        disabled = false;
+        format = "$shlvl ▼ ";
+        threshold = 4;
+      };
+    };
   };
 
   xdg.configFile."nix/nix.conf".text = ''

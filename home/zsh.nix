@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+
   programs.zsh = {
     enable = true;
     autocd = true;
@@ -76,16 +77,6 @@
       hostname -s | ${pkgs.figlet}/bin/figlet -f small
     '';
 
-    plugins = with pkgs; [
-      {
-        name = "agkozak-zsh-prompt";
-        src = pkgs.fetchgit {
-          url = "https://github.com/agkozak/agkozak-zsh-prompt";
-          sha256 = "0qz67nzc5zm8rbdggh09qq29nv7blcc2mza5nvnq950z8vs0hda0";
-        };
-        file = "agkozak-zsh-prompt.plugin.zsh";
-      }
-    ];
   };
 
   xdg.configFile."zsh/functions/ssh".text = ''
