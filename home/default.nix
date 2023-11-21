@@ -93,8 +93,8 @@ in
       "crunch" = {
         hostname = "10.10.10.150";
       };
-      "orion" = {
-        hostname = "10.10.10.75";
+      "supernaut" = {
+        hostname = "10.10.10.120";
       };
       "north" = {
         hostname = "north.poole.foo";
