@@ -127,6 +127,12 @@ in
     enable = true;
     enableZshIntegration = true;
     settings = {
+      username = {
+        format = "[$user]($style)@";
+      };
+      hostname = {
+        ssh_symbol = "";
+      };
       shlvl = {
         disabled = false;
         format = "$shlvl ▼ ";
