@@ -5,6 +5,7 @@
     (modulesPath + "/virtualisation/lxc-container.nix")
     ../../modulez/sshd.nix
     ../../modulez/postgres.nix
+    ./gitea.nix
   ];
 
   # Supress systemd units that don't work because of LXC
