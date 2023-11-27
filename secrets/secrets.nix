@@ -3,6 +3,7 @@ let
     mini = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL6M0/XCWHHLcCWzwvao+COZ5hDb9/gQp7Yp6jZRcCdu";
     crunch = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAG0mzjqkPiIaqwvnPbmnxWI3rXkS8141yP5eBUk8rhE";
     slug = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYeKyjR9GlfevtfOIqox7zAwla5y1cONc3lIkXcLD+g";
+    supernaut = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILjBbotEML8QUblJNj3YorpWcKy4B8UkD07yEQBm2Bf/";
   };
   users = {
     dave_mini = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDL8vV4xFbHiAkqYOSgwT2hdTVtnXqH5yC2mZEsQUnuJ";
@@ -14,7 +15,7 @@ in
 {
   "user_password.age".publicKeys = allUsers ++ allSystems;
   "crunch_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.crunch ];
-  "acme_cloudflare_credentials.age".publicKeys = allUsers ++ [ systems.crunch ];
+  "acme_cloudflare_credentials.age".publicKeys = allUsers ++ [ systems.crunch systems.supernaut ];
   "restic_repository.age".publicKeys = allUsers ++ allSystems;
   "restic_repository_password.age".publicKeys = allUsers ++ allSystems;
   "crunch_hc_backup_uuid.age".publicKeys = allUsers ++ [ systems.crunch ];
