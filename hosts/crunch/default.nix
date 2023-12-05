@@ -80,6 +80,6 @@
 
   # set user password
   age.secrets.user_password.file = ../../secrets/user_password.age;
-  users.users.${username}.passwordFile = config.age.secrets.user_password.path;
+  users.users.${username}.hashedPasswordFile = config.age.secrets.user_password.path;
 
 }
