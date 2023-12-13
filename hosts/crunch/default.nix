@@ -17,7 +17,7 @@
       ./monitoring.nix
       ./containers.nix
 
-      inputs.agenix.nixosModules.default
+      # inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager = {
