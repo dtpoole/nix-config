@@ -40,7 +40,14 @@
     serviceConfig.Restart = "always"; # restart when session is closed
   };
 
-
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+    ];
+    config = {
+      allowUnfree = true;
+    };
+  };
 
   networking.enableIPv6 = false;
   networking.nameservers = [ "10.10.10.1" ];
