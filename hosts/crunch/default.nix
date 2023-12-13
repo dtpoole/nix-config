@@ -49,6 +49,15 @@
   #   "-a exit,always -F arch=b64 -S execve"
   # ];
 
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+    ];
+    config = {
+      allowUnfree = true;
+    };
+  };
+
   virtualisation.docker.enable = true;
 
   services.nginx = {
