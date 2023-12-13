@@ -1,11 +1,11 @@
-{ pkgs, username, ... }:
+{ pkgs, ... }:
 
 {
   programs.zsh.enable = true;
 
-  users.users.${username} = {
+  users.users.dave = {
     isNormalUser = true;
-    home = "/home/${username}";
+    home = "/home/dave";
     extraGroups = [ "docker" "wheel" ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
