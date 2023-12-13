@@ -10,7 +10,7 @@
     ../../modulez/user.nix
     ../../modulez/sshd.nix
     ../../modulez/postgres.nix
-    ./gitea.nix
+    # ./gitea.nix
 
     inputs.agenix.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
