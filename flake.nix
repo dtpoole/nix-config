@@ -20,7 +20,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-darwin, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-darwin, agenix, ... }@inputs:
     let
       inherit (self) outputs;
       # inherit (nixpkgs.lib.strings) hasSuffix;
@@ -87,7 +87,7 @@
         };
 
         crunch = lib.nixosSystem {
-          modules = [ ./hosts/crunch ];
+          modules = [ ./hosts/crunch agenix.nixosModules.default ];
           specialArgs = { inherit inputs outputs; };
         };
 
