@@ -1,11 +1,12 @@
-{ pkgs, username, ... }:
+{ pkgs, ... }:
 let
   inherit (pkgs.stdenv) isDarwin;
+  username = "dave";
 in
 {
   home.stateVersion = "23.05";
 
-  home.username = username;
+  home.username = "${username}";
   home.homeDirectory =
     if isDarwin
     then "/Users/${username}"
@@ -162,6 +163,7 @@ in
     du-dust
     fd
     figlet
+    figurine
     file
     gnumake
     jq
