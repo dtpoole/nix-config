@@ -1,8 +1,6 @@
-{ pkgs, host, ... }:
+{ pkgs, ... }:
 
 {
-
-  networking.hostName = "${host}";
 
   boot.loader.systemd-boot.configurationLimit = 5;
 

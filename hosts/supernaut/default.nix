@@ -2,6 +2,8 @@
 
 {
 
+  networking.hostName = "supernaut";
+
   nixpkgs.hostPlatform = "x86_64-linux";
 
   imports = [

@@ -1,6 +1,9 @@
 { config, inputs, outputs, ... }:
 
 {
+
+  networking.hostName = "crunch";
+
   imports =
     [
       ./hardware-configuration.nix
