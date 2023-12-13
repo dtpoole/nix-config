@@ -6,6 +6,7 @@
   users.users.dave = {
     isNormalUser = true;
     home = "/home/dave";
+    group = "users";
     extraGroups = [ "docker" "wheel" ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
