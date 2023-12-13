@@ -4,7 +4,7 @@ let
   username = "dave";
 in
 {
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 
   home.username = "${username}";
   home.homeDirectory =
@@ -15,8 +15,6 @@ in
   imports = [
     ./zsh.nix
     ./fzf.nix
-    ./neovim
-    ./kitty.nix
   ];
 
   programs.home-manager.enable = true;
