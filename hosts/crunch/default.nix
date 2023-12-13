@@ -1,4 +1,4 @@
-{ config, username, ... }:
+{ config, inputs, outputs, ... }:
 
 {
   imports =
@@ -13,6 +13,18 @@
       ./backups.nix
       ./monitoring.nix
       ./containers.nix
+
+      inputs.agenix.nixosModules.default
+      inputs.home-manager.nixosModules.home-manager
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.dave = import ../../home/dave;
+          extraSpecialArgs = { inherit outputs; };
+        };
+      }
+
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -80,6 +92,6 @@
 
   # set user password
   age.secrets.user_password.file = ../../secrets/user_password.age;
-  users.users.${username}.hashedPasswordFile = config.age.secrets.user_password.path;
+  users.users.dave.hashedPasswordFile = config.age.secrets.user_password.path;
 
 }

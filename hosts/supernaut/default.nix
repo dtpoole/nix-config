@@ -1,11 +1,24 @@
-{ lib, modulesPath, ... }:
+{ inputs, outputs, ... }:
 
 {
   imports = [
     (modulesPath + "/virtualisation/lxc-container.nix")
+    ../../modulez/common.nix
+    ../../modulez/user.nix
     ../../modulez/sshd.nix
     ../../modulez/postgres.nix
     ./gitea.nix
+
+    inputs.agenix.nixosModules.default
+    inputs.home-manager.nixosModules.home-manager
+    {
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        users.dave = import ../../home/dave;
+        extraSpecialArgs = { inherit outputs; };
+      };
+    }
   ];
 
   # Supress systemd units that don't work because of LXC
@@ -26,5 +39,10 @@
 
   networking.enableIPv6 = false;
   networking.nameservers = [ "10.10.10.1" ];
+
+  networking.firewall = {
+    enable = false;
+    allowedTCPPorts = [ 80 443 ];
+  };
 
 }

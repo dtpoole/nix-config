@@ -1,10 +1,4 @@
 { pkgs, inputs, outputs, ... }:
-
-let
-  hasGUI = true;
-  username = "dave";
-  host = "mini";
-in
 {
 
   nixpkgs.hostPlatform = "x86_64-darwin";
@@ -17,8 +11,8 @@ in
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
-          users.dave = import ../../home;
-          extraSpecialArgs = { inherit outputs username host hasGUI; };
+          users.dave = import ../../home/dave/mini.nix;
+          extraSpecialArgs = { inherit outputs; };
         };
       }
     ];
