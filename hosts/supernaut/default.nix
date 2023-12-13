@@ -1,6 +1,9 @@
-{ inputs, outputs, ... }:
+{ inputs, outputs, lib, ... }:
 
 {
+
+  nixpkgs.hostPlatform = "x86_64-linux";
+
   imports = [
     (modulesPath + "/virtualisation/lxc-container.nix")
     ../../modulez/common.nix
@@ -35,7 +38,7 @@
     serviceConfig.Restart = "always"; # restart when session is closed
   };
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
 
   networking.enableIPv6 = false;
   networking.nameservers = [ "10.10.10.1" ];
