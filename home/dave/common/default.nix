@@ -1,16 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
-  inherit (pkgs.stdenv) isDarwin;
   username = "dave";
+  homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
 in
 {
   home.stateVersion = "23.11";
 
   home.username = "${username}";
-  home.homeDirectory =
-    if isDarwin
-    then "/Users/${username}"
-    else "/home/${username}";
+  home.homeDirectory = lib.mkDefault "${homeDirectory}";
 
   imports = [
     ./zsh.nix
