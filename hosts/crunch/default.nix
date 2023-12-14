@@ -1,4 +1,4 @@
-{ config, inputs, outputs, ... }:
+{ config, pkgs, inputs, outputs, ... }:
 
 {
 
@@ -7,6 +7,8 @@
   imports =
     [
       ./hardware-configuration.nix
+      ../../modulez/common.nix
+      ../../modulez/user.nix
       ../../modulez/zram.nix
       ../../modulez/sshd.nix
       ../../modulez/tailscale.nix
@@ -16,6 +18,8 @@
       ./backups.nix
       ./monitoring.nix
       ./containers.nix
+
+      { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}; }; }
 
       # inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
