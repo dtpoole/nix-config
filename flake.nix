@@ -20,10 +20,9 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-darwin, agenix, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-darwin, ... }@inputs:
     let
       inherit (self) outputs;
-      # inherit (nixpkgs.lib.strings) hasSuffix;
 
       lib = nix-darwin.lib // nixpkgs.lib // home-manager.lib;
       systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
@@ -38,36 +37,6 @@
         config.allowUnfree = true;
       });
 
-      # username = "dave";
-
-      # makeSystem = { host, system ? "x86_64-linux", hasGUI ? false }:
-
-      #   let
-      #     isDarwin = if hasSuffix "darwin" system then true else false;
-      #     isLinux = if hasSuffix "linux" system then true else false;
-      #     systemFunc = if isDarwin then nix-darwin.lib.darwinSystem else nixpkgs.lib.nixosSystem;
-      #     home-manager = if isDarwin then inputs.home-manager.darwinModules else inputs.home-manager.nixosModules;
-      #   in
-      #   systemFunc rec {
-      #     specialArgs = { inherit inputs outputs system username agenix host; };
-      #     modules = [
-      #       ./hosts/${host}
-      #       (if isLinux then ./modulez/common.nix else { })
-      #       (if isLinux then ./modulez/user.nix else { })
-
-      #       { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system}; }; }
-      #       (if isDarwin then agenix.darwinModules.default else agenix.nixosModules.default)
-
-      #       home-manager.home-manager
-      #       {
-      #         home-manager.useGlobalPkgs = true;
-      #         home-manager.useUserPackages = true;
-      #         home-manager.users.${username} = import ./home;
-      #         home-manager.extraSpecialArgs = { inherit username hasGUI; };
-      #       }
-      #     ];
-      #   };
-
     in
     {
       overlays = import ./overlays { inherit inputs outputs; };
@@ -77,17 +46,13 @@
       unstablePkgs = forAllSystems (system: import ./pkgs nixpkgs-unstable.legacyPackages.${system});
 
       nixosConfigurations = {
-        # slug = makeSystem { host = "slug"; system = "x86_64-linux"; hasGUI = true; };
-        # crunch = makeSystem { host = "crunch"; };
-        # supernaut = makeSystem { host = "supernaut"; };
-
         slug = lib.nixosSystem {
           modules = [ ./hosts/slug ];
           specialArgs = { inherit inputs outputs; };
         };
 
         crunch = lib.nixosSystem {
-          modules = [ ./hosts/crunch agenix.nixosModules.default ];
+          modules = [ ./hosts/crunch ];
           specialArgs = { inherit inputs outputs; };
         };
 
@@ -95,7 +60,6 @@
           modules = [ ./hosts/supernaut ];
           specialArgs = { inherit inputs outputs; };
         };
-
       };
 
       darwinConfigurations = {
