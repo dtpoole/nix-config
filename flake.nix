@@ -27,7 +27,6 @@
       lib = nix-darwin.lib // nixpkgs.lib // home-manager.lib;
       systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
       forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
 
       pkgsFor = lib.genAttrs systems (system: import nixpkgs {
         inherit system;
@@ -42,8 +41,8 @@
       overlays = import ./overlays { inherit inputs outputs; };
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
 
-      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-      unstablePkgs = forAllSystems (system: import ./pkgs nixpkgs-unstable.legacyPackages.${system});
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+      unstablePkgs = forEachSystem (system: import ./pkgs nixpkgs-unstable.legacyPackages.${system});
 
       nixosConfigurations = {
         slug = lib.nixosSystem {
