@@ -15,6 +15,7 @@
           extraSpecialArgs = { inherit outputs; };
         };
       }
+      # { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}; }; }
     ];
 
 
