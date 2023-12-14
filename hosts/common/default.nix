@@ -1,8 +1,6 @@
-{ pkgs, host, ... }:
+{ pkgs, ... }:
 
 {
-
-  networking.hostName = "${host}";
 
   boot.loader.systemd-boot.configurationLimit = 5;
 
@@ -46,9 +44,6 @@
     zsh
   ];
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 
 }

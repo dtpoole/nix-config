@@ -1,4 +1,4 @@
-{ host, username, ... }:
+{ host, ... }:
 
 {
   services.samba-wsdd.enable = true; # make shares visible for windows 10 clients
@@ -15,11 +15,11 @@
       workgroup = WORKGROUP
       server string = ${host}
       netbios name = ${host}
-      security = user 
+      security = user
       #use sendfile = yes
       #max protocol = smb2
       # note: localhost is the ipv6 localhost ::1
-      hosts allow = 192.168.0. 127.0.0.1 localhost
+      hosts allow = 10.10.10. 127.0.0.1 localhost
       hosts deny = 0.0.0.0/0
       guest account = nobody
       map to guest = bad user

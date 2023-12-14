@@ -1,9 +1,14 @@
-{ config, username, ... }:
+{ config, pkgs, inputs, outputs, ... }:
 
 {
+
+  networking.hostName = "crunch";
+
   imports =
     [
       ./hardware-configuration.nix
+      ../../modulez/common.nix
+      ../../modulez/user.nix
       ../../modulez/zram.nix
       ../../modulez/sshd.nix
       ../../modulez/tailscale.nix
@@ -13,6 +18,20 @@
       ./backups.nix
       ./monitoring.nix
       ./containers.nix
+
+      { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}; }; }
+
+      # inputs.agenix.nixosModules.default
+      inputs.home-manager.nixosModules.home-manager
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.dave = import ../../home/dave;
+          extraSpecialArgs = { inherit outputs; };
+        };
+      }
+
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -33,6 +52,15 @@
   # security.audit.rules = [
   #   "-a exit,always -F arch=b64 -S execve"
   # ];
+
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+    ];
+    config = {
+      allowUnfree = true;
+    };
+  };
 
   virtualisation.docker.enable = true;
 
@@ -80,6 +108,6 @@
 
   # set user password
   age.secrets.user_password.file = ../../secrets/user_password.age;
-  users.users.${username}.hashedPasswordFile = config.age.secrets.user_password.path;
+  users.users.dave.hashedPasswordFile = config.age.secrets.user_password.path;
 
 }

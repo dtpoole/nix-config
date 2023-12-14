@@ -1,21 +1,17 @@
-{ pkgs, username, ... }:
+{ pkgs, lib, ... }:
 let
-  inherit (pkgs.stdenv) isDarwin;
+  username = "dave";
+  homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
 in
 {
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 
-  home.username = username;
-  home.homeDirectory =
-    if isDarwin
-    then "/Users/${username}"
-    else "/home/${username}";
+  home.username = "${username}";
+  home.homeDirectory = lib.mkDefault "${homeDirectory}";
 
   imports = [
     ./zsh.nix
     ./fzf.nix
-    ./neovim
-    ./kitty.nix
   ];
 
   programs.home-manager.enable = true;
@@ -162,6 +158,7 @@ in
     du-dust
     fd
     figlet
+    figurine
     file
     gnumake
     jq

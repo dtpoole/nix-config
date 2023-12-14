@@ -3,14 +3,16 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-23.11";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-23.11-darwin";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-darwin = {
       url = "github:LnL7/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
     agenix = {
       url = "github:ryantm/agenix";
@@ -18,78 +20,66 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nix-darwin, agenix, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-darwin, ... }@inputs:
     let
+      inherit (self) outputs;
 
-      username = "dave";
+      lib = nix-darwin.lib // nixpkgs.lib // home-manager.lib;
+      systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
 
-      inherit (nixpkgs.lib.strings) hasSuffix;
-
-      makeSystem = { host, system ? "x86_64-linux", hasGUI ? false }:
-
-        let
-          isDarwin = if hasSuffix "darwin" system then true else false;
-          isLinux = if hasSuffix "linux" system then true else false;
-          systemFunc = if isDarwin then nix-darwin.lib.darwinSystem else nixpkgs.lib.nixosSystem;
-          home-manager = if isDarwin then inputs.home-manager.darwinModules else inputs.home-manager.nixosModules;
-        in
-        systemFunc rec {
-          specialArgs = { inherit inputs system username agenix host; };
-          modules = [
-            ./hosts/${host}
-            (if isLinux then ./modulez/common.nix else { })
-            (if isLinux then ./modulez/user.nix else { })
-
-            { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system}; }; }
-            (if isDarwin then agenix.darwinModules.default else agenix.nixosModules.default)
-
-            home-manager.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${username} = import ./home;
-              home-manager.extraSpecialArgs = { inherit username hasGUI; };
-            }
-          ];
-        };
-
-      makeHome = { system ? "x86_64-linux", hasGUI ? false }: home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          inherit system;
-        };
-        extraSpecialArgs = {
-          inherit username hasGUI;
-        };
-        modules = [
-          ./home
+      pkgsFor = lib.genAttrs systems (system: import nixpkgs {
+        inherit system;
+        overlays = [
+          outputs.overlays.additions
         ];
-      };
-
-      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
+        config.allowUnfree = true;
+      });
 
     in
     {
+      overlays = import ./overlays { inherit inputs outputs; };
+      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
 
-      devShells = forAllSystems (system:
-        let
-          pkgs = import nixpkgs { system = system; };
-        in
-        import ./shell.nix { inherit pkgs; }
-      );
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+      unstablePkgs = forEachSystem (system: import ./pkgs nixpkgs-unstable.legacyPackages.${system});
 
       nixosConfigurations = {
-        slug = makeSystem { host = "slug"; system = "x86_64-linux"; hasGUI = true; };
-        crunch = makeSystem { host = "crunch"; };
-        supernaut = makeSystem { host = "supernaut"; };
+        slug = lib.nixosSystem {
+          modules = [ ./hosts/slug ];
+          specialArgs = { inherit inputs outputs; };
+        };
+
+        crunch = lib.nixosSystem {
+          modules = [ ./hosts/crunch ];
+          specialArgs = { inherit inputs outputs; };
+        };
+
+        supernaut = lib.nixosSystem {
+          modules = [ ./hosts/supernaut ];
+          specialArgs = { inherit inputs outputs; };
+        };
       };
 
       darwinConfigurations = {
-        mini = makeSystem { host = "mini"; system = "x86_64-darwin"; hasGUI = true; };
+        mini = lib.darwinSystem {
+          modules = [ ./hosts/mini ];
+          specialArgs = { inherit inputs outputs; };
+        };
       };
 
       homeConfigurations = {
-        "${username}@north" = makeHome { };
-        "${username}@PF2N1Y5V" = makeHome { };
+        "dave@PF2N1Y5V" = lib.homeManagerConfiguration {
+          modules = [ ./home/dave ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+
+        "dave@north" = lib.homeManagerConfiguration {
+          modules = [ ./home/dave ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
       };
 
     };

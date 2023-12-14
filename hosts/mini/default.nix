@@ -1,19 +1,41 @@
-{ config, pkgs, unstablePkgs, system, username, agenix, ... }:
+{ pkgs, inputs, outputs, ... }:
 {
 
-  nixpkgs.hostPlatform = system;
+  nixpkgs.hostPlatform = "x86_64-darwin";
 
-  users.users.${username}.home = "/Users/${username}";
+  imports =
+    [
+      inputs.agenix.darwinModules.default
+      inputs.home-manager.darwinModules.home-manager
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.dave = import ../../home/dave/mini.nix;
+          extraSpecialArgs = { inherit outputs; };
+        };
+      }
+      # { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}; }; }
+    ];
+
+
+  users.users.dave.home = "/Users/dave";
+
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+    ];
+    config = {
+      allowUnfree = true;
+    };
+  };
 
   nix = {
-    #package = lib.mkDefault pkgs.unstable.nix;
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       warn-dirty = false;
     };
   };
-
-  nixpkgs.config.allowUnfree = true;
 
   # Make sure the nix daemon always runs
   services.nix-daemon.enable = true;
@@ -26,13 +48,13 @@
   programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
-    unstablePkgs.yt-dlp
+    yt-dlp
     ansible
     ansible-lint
     sshpass
     terraform
     rnix-lsp
-    agenix.packages.${system}.default
+    inputs.agenix.packages.${pkgs.system}.default
   ];
 
   # fonts.fonts = with pkgs; [
@@ -100,6 +122,7 @@
       "vmware-fusion"
       "xld"
       "font-fira-code"
+      "font-monaspace"
     ];
 
     masApps = {
@@ -114,14 +137,5 @@
       "StopTheMadness" = 1376402589;
     };
   };
-
-  # age.secrets.test.file = ../../secrets/test.age;
-
-  # environment.etc = {
-  #   testrc = {
-  #     copy = true; # symlink doesn't seem to work
-  #     source = config.age.secrets.test.path;
-  #   };
-  # };
 
 }

@@ -74,7 +74,7 @@
     '';
 
     loginExtra = ''
-      hostname -s | ${pkgs.figlet}/bin/figlet -f small
+      ${pkgs.figurine}/bin/figurine -v $HOST
     '';
 
   };
