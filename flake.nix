@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-23.11";
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-23.11-darwin";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
@@ -20,7 +19,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-darwin, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs:
     let
       inherit (self) outputs;
 
@@ -40,9 +39,7 @@
     {
       overlays = import ./overlays { inherit inputs outputs; };
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
-
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-      unstablePkgs = forEachSystem (system: import ./pkgs nixpkgs-unstable.legacyPackages.${system});
 
       nixosConfigurations = {
         slug = lib.nixosSystem {
