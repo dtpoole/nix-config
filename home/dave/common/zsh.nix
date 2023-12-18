@@ -74,7 +74,7 @@
     '';
 
     loginExtra = ''
-      ${pkgs.figurine}/bin/figurine -v $HOST
+      ${pkgs.figurine}/bin/figurine -v ''${HOST%%.*}
     '';
 
   };
