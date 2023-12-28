@@ -57,7 +57,6 @@
 
     initExtra = ''
       bindkey '^ ' autosuggest-accept
-      AGKOZAK_MULTILINE=0
       export LS_COLORS="$(${pkgs.vivid}/bin/vivid generate nord)"
 
       fpath+=( $ZDOTDIR/functions )
