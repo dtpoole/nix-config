@@ -110,6 +110,7 @@
       "calibre"
       "fission"
       "handbrake"
+      "kitty"
       "launchbar"
       "musicbrainz-picard"
       "netnewswire"
