@@ -92,13 +92,21 @@ in
       "supernaut" = {
         hostname = "10.10.10.120";
       };
+      "jellyfin" = {
+        hostname = "10.10.10.35";
+        user = "root";
+      };
+      "plex" = {
+        hostname = "10.10.10.36";
+        user = "root";
+      };
+      "slurp" = {
+        hostname = "10.10.10.37";
+        user = "media";
+      };
       "north" = {
         hostname = "north.poole.foo";
         port = 5829;
-      };
-      "media" = {
-        hostname = "10.10.10.37";
-        user = "media";
       };
     };
   };
