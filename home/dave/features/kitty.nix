@@ -8,7 +8,7 @@ in
     enable = true;
 
     settings = {
-      font_family = "Fira Code Light";
+      font_family = "Fira Code";
       font_size = if isDarwin then "13.0" else "12.0";
       bold_font = "Fira Code Retina";
 
