@@ -17,11 +17,7 @@
     ensureDatabases = [ "linkding" ];
     ensureUsers = [{
       name = "linkding";
-      ensurePermissions = {
-        "DATABASE linkding" = "ALL";
-        "SCHEMA public" = "ALL";
-        "ALL TABLES IN SCHEMA public" = "ALL";
-      };
+      ensureDBOwnership = true;
     }];
   };
 
