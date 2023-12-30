@@ -3,7 +3,7 @@
 
   virtualisation.oci-containers.containers."it-tools" = {
     autoStart = true;
-    image = "corentinth/it-tools:2023.11.2-7d94e11";
+    image = "corentinth/it-tools:2023.12.21-5ed3693";
     extraOptions = [ "--pull=always" ];
     ports = [ "8070:80" ];
   };
