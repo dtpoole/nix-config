@@ -165,7 +165,6 @@ in
     duf
     du-dust
     fd
-    figlet
     figurine
     file
     gnumake
