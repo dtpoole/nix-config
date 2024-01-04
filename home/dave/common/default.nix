@@ -168,7 +168,9 @@ in
     figurine
     file
     gnumake
+    hyperfine
     jq
+    just
     keychain
     mosh
     nixpkgs-fmt
@@ -178,7 +180,6 @@ in
     ripgrep
     shellcheck
     sqlite
-    tmux
     tree
     vivid
   ];
