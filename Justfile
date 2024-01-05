@@ -16,7 +16,7 @@ build target_host=host flags="":
 # Switch the NixOS configuration
 [linux]
 switch target_host=host:
-    nixos-rebuild switch --flake .#{{ target_host }} \
+    nixos-rebuild switch --use-remote-sudo --flake .#{{ target_host }} \
 
 # Build the NixOS config with the --show-trace flag set
 [linux]
