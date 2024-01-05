@@ -50,7 +50,7 @@ home-manager target_host=host:
 
 # Invoke a Nix shell
 shell:
-	nix develop
+    nix develop
 
 # Update flake inputs to latest revisions
 update:
