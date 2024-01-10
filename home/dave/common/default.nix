@@ -173,6 +173,7 @@ in
     just
     keychain
     mosh
+    neofetch
     nixpkgs-fmt
     nmap
     parallel
@@ -181,6 +182,7 @@ in
     shellcheck
     sqlite
     tree
+    unzip
     vivid
   ];
 
