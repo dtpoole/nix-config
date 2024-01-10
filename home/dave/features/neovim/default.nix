@@ -29,7 +29,6 @@
         plugin = nord-nvim;
         type = "lua";
         config = ''
-
           -- nord
           vim.g.nord_contrast = false
           vim.g.nord_borders = true
@@ -92,7 +91,8 @@
       vim-nix
       vim-fugitive
       vim-surround
-
+      vim-just
+      vim-vinegar
     ];
 
     extraLuaConfig = builtins.readFile ./init.lua;
