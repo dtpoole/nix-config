@@ -6,6 +6,7 @@ user := env('USER')
 host := `hostname -s`
 
 alias develop := shell
+alias hm := home-manager
 
 ### linux
 # Build the NixOS configuration without switching to it
@@ -16,7 +17,7 @@ build target_host=host flags="":
 # Switch the NixOS configuration
 [linux]
 switch target_host=host:
-    nixos-rebuild switch --use-remote-sudo --flake .#{{ target_host }} \
+    nixos-rebuild switch --use-remote-sudo --flake .#{{ target_host }}
 
 # Build the NixOS config with the --show-trace flag set
 [linux]
@@ -24,8 +25,7 @@ trace target_host=host: (build target_host "--show-trace")
 
 # Switch the home-manager configuration
 [linux]
-home-manager:
-    home-manager switch --flake .#{{ user }}@{{ host }}
+home-manager: _home-manager
 
 
 ### macos
@@ -45,7 +45,9 @@ trace target_host=host: (build target_host "--show-trace")
 
 # Switch the home-manager configuration
 [macos]
-home-manager target_host=host:
+home-manager: _home-manager
+
+_home-manager:
     home-manager switch --flake .#{{ user }}@{{ host }}
 
 # Invoke a Nix shell
