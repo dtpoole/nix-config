@@ -25,7 +25,7 @@
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
-          users.dave = import ../../home/dave/crunch.nix;
+          users.dave = import ../../home/dave;
           extraSpecialArgs = { inherit outputs; };
         };
       }
