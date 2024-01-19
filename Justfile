@@ -1,12 +1,13 @@
 #!/usr/bin/env just --justfile
 
-default: switch
-
 user := env('USER')
 host := `hostname -s`
 
 alias develop := shell
 alias hm := home-manager
+
+# Switch the NixOS/nix-darwin configuration
+default: switch
 
 ### linux
 # Build the NixOS configuration without switching to it
@@ -54,7 +55,7 @@ _home-manager:
 shell:
     nix develop
 
-# Update flake inputs to latest revisions
+# Update flake inputs to latest revisions and update pre-commit hooks
 update:
     nix flake update
     pre-commit autoupdate
