@@ -1,4 +1,8 @@
 { pkgs, inputs, outputs, ... }:
+
+let
+  unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
+in
 {
 
   nixpkgs.hostPlatform = "x86_64-darwin";
@@ -15,7 +19,6 @@
           extraSpecialArgs = { inherit outputs; };
         };
       }
-      # { _module.args = { unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}; }; }
     ];
 
 
@@ -48,7 +51,7 @@
   programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
-    yt-dlp
+    unstablePkgs.yt-dlp
     ansible
     ansible-lint
     sshpass
@@ -99,7 +102,7 @@
     enable = true;
 
     onActivation = {
-      upgrade = true;
+      #upgrade = true;
       autoUpdate = true;
     };
 
