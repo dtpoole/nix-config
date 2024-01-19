@@ -57,6 +57,7 @@ shell:
 # Update flake inputs to latest revisions
 update:
     nix flake update
+    pre-commit autoupdate
 
 # Format nix files in directory
 format:
