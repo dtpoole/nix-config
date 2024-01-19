@@ -1,9 +1,10 @@
-{
+{ pkgs, ... }: {
+
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    changeDirWidgetCommand = "fd --type d --hidden --follow --exclude .git";
-    defaultCommand = "fd --type f --hidden --follow --exclude .git";
+    changeDirWidgetCommand = "${pkgs.fd} --type d --hidden --follow --exclude .git";
+    defaultCommand = "${pkgs.fd} --type f --hidden --follow --exclude .git";
     defaultOptions = [ "--layout=reverse" "--info=inline" "--height=60%" "--multi" ];
 
     colors = {
