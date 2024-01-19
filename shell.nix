@@ -7,7 +7,7 @@
     nativeBuildInputs = with pkgs; [ nix home-manager git figurine just nixpkgs-fmt ];
 
     shellHook = ''
-      figurine nix
+      figurine -f 'JS Block Letters.flf' nix
       echo && just --list && echo
       PS1='[nix] \W \$ '
     '';
