@@ -1,10 +1,16 @@
+{ pkgs, inputs, ... }:
+
+let
+  unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
+in
 {
   services.tailscale = {
     enable = true;
+    package = unstablePkgs.tailscale;
   };
 
   networking.firewall = {
-    trustedInterfaces = [ "tailscale0" ]; # Tell the firewall to implicitly trust packets routed over Tailscale:
+    trustedInterfaces = [ "tailscale0" ]; # Tell the firewall to implicitly trust packets routed over Tailscale
     checkReversePath = "loose";
   };
 
