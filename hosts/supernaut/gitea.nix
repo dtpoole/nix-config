@@ -28,7 +28,13 @@
     };
 
     settings = {
-      server.DISABLE_ROUTER_LOG = true;
+      server = {
+        DOMAIN = "git.poole.foo";
+        HTTP_ADDR = "127.0.0.1";
+        ROOT_URL = "https://git.poole.foo/";
+        DISABLE_ROUTER_LOG = true;
+      };
+
       database.LOG_SQL = false;
       service.ENABLE_BASIC_AUTHENTICATION = false;
     };

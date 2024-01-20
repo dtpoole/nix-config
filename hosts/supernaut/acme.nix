@@ -14,9 +14,9 @@
     };
     acceptTerms = true;
     certs = {
-      "supernaut.poole.foo" = {
-        extraDomainNames = [ "*.supernaut.poole.foo" ];
-      };
+      # "supernaut.poole.foo" = {
+      #   extraDomainNames = [ "*.supernaut.poole.foo" ];
+      # };
       "git.poole.foo" = { };
     };
   };
