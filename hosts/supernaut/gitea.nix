@@ -34,9 +34,7 @@
         ROOT_URL = "https://git.poole.foo/";
         DISABLE_ROUTER_LOG = true;
       };
-
       database.LOG_SQL = false;
-      service.ENABLE_BASIC_AUTHENTICATION = false;
     };
 
     dump.interval = "daily";
