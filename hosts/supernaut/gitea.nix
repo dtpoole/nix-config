@@ -13,11 +13,7 @@
     ensureDatabases = [ "gitea" ];
     ensureUsers = [{
       name = "gitea";
-      ensurePermissions = {
-        "DATABASE gitea" = "ALL";
-        "SCHEMA public" = "ALL";
-        "ALL TABLES IN SCHEMA public" = "ALL";
-      };
+      ensureDBOwnership = true;
     }];
   };
 
