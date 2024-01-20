@@ -18,6 +18,7 @@
       ./backups.nix
       ./monitoring.nix
       ./containers.nix
+      ./nginx.nix
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
@@ -61,37 +62,6 @@
   };
 
   virtualisation.docker.enable = false;
-
-  services.nginx = {
-    enable = true;
-
-    # Use recommended settings
-    recommendedGzipSettings = true;
-    recommendedOptimisation = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-
-    virtualHosts = {
-      "links.poole.foo" = {
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:9090";
-          proxyWebsockets = true;
-        };
-        addSSL = true;
-        useACMEHost = "links.poole.foo";
-      };
-      "tools.poole.foo" = {
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8070";
-          proxyWebsockets = true;
-        };
-        addSSL = true;
-        useACMEHost = "tools.poole.foo";
-      };
-    };
-  };
-
-  users.users.nginx.extraGroups = [ "acme" ];
 
   age.secrets.hc_ping.file = ../../secrets/crunch_hc_ping_uuid.age;
   age.secrets.hc_backup.file = ../../secrets/crunch_hc_backup_uuid.age;
