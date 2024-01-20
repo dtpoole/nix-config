@@ -14,6 +14,7 @@
     ../common/postgres.nix
     ../common/healthchecks-ping.nix
     ../common/restic-backups.nix
+    ../common/tailscale.nix
     ./gitea.nix
     ./acme.nix
     ./nginx.nix
