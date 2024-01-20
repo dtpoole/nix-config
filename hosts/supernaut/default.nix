@@ -8,11 +8,13 @@
 
   imports = [
     (modulesPath + "/virtualisation/lxc-container.nix")
-    ../common/common.nix
+    ../common
     ../common/user.nix
     ../common/sshd.nix
     ../common/postgres.nix
     ./gitea.nix
+    ./acme.nix
+    ./nginx.nix
 
     inputs.agenix.nixosModules.default
     inputs.home-manager.nixosModules.home-manager

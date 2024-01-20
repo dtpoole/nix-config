@@ -1,13 +1,13 @@
 {
 
-  users.users.git = {
-    useDefaultShell = true;
-    home = "/var/lib/gitea";
-    group = "gitea";
-    isSystemUser = true;
-  };
+  # users.users.gitea = {
+  #   useDefaultShell = true;
+  #   home = "/var/lib/gitea";
+  #   group = "gitea";
+  #   isSystemUser = true;
+  # };
 
-  user.extraGroups = [ "gitea" ];
+  #user.extraGroups = [ "gitea" ];
 
   services.postgresql = {
     ensureDatabases = [ "gitea" ];
@@ -27,10 +27,6 @@
       socket = "/run/postgresql/";
     };
 
-    # We're assuming SSL-only connectivity
-    # cookieSecure = true;
-    # Only log what's important, but Info is necessary for fail2ban to work
-    log.level = "Info";
     settings = {
       server.DISABLE_ROUTER_LOG = true;
       database.LOG_SQL = false;
