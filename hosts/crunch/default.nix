@@ -10,12 +10,12 @@
       ../common
       ../common/user.nix
       ../common/zram.nix
+      ../common/restic-backups.nix
       ../common/sshd.nix
       ../common/tailscale.nix
       ../common/healthchecks-ping.nix
       ../common/postgres.nix
       ./acme.nix
-      ./backups.nix
       ./monitoring.nix
       ./containers.nix
       ./nginx.nix
