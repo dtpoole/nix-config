@@ -60,7 +60,7 @@
     };
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker.enable = false;
 
   services.nginx = {
     enable = true;
