@@ -12,6 +12,7 @@
     ../common/user.nix
     ../common/sshd.nix
     ../common/postgres.nix
+    ../common/healthchecks-ping.nix
     ./gitea.nix
     ./acme.nix
     ./nginx.nix
@@ -58,5 +59,7 @@
     enable = false;
     allowedTCPPorts = [ 80 443 ];
   };
+
+  age.secrets.hc_ping.file = ../../secrets/supernaut_hc_ping_uuid.age;
 
 }
