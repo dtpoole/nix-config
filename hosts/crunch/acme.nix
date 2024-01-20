@@ -17,7 +17,6 @@
       "crunch.poole.foo" = {
         extraDomainNames = [ "*.crunch.poole.foo" ];
       };
-      "git.poole.foo" = { };
       "links.poole.foo" = { };
       "tools.poole.foo" = { };
     };

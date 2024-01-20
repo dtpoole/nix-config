@@ -72,14 +72,6 @@
     recommendedTlsSettings = true;
 
     virtualHosts = {
-      "git.poole.foo" = {
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:3030";
-          proxyWebsockets = true;
-        };
-        addSSL = true;
-        useACMEHost = "git.poole.foo";
-      };
       "links.poole.foo" = {
         locations."/" = {
           proxyPass = "http://127.0.0.1:9090";
