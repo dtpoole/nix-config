@@ -17,6 +17,7 @@
         };
         addSSL = true;
         useACMEHost = "git.poole.foo";
+        extraConfig = "client_max_body_size 512M;";
       };
     };
   };
