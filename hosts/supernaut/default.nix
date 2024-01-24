@@ -58,8 +58,8 @@
   networking.nameservers = [ "10.10.10.1" ];
 
   networking.firewall = {
-    enable = false;
-    allowedTCPPorts = [ 80 443 ];
+    enable = true;
+    allowedTCPPorts = [ 22 80 443 ];
   };
 
   age.secrets.hc_ping.file = ../../secrets/supernaut_hc_ping_uuid.age;
