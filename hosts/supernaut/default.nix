@@ -13,6 +13,7 @@
     ../common/sshd.nix
     ../common/postgres.nix
     ../common/healthchecks-ping.nix
+    ../common/netdata.nix
     ../common/restic-backups.nix
     ../common/tailscale.nix
     ./gitea.nix
@@ -59,7 +60,7 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22 80 443 ];
+    allowedTCPPorts = [ 22 80 443 19999 ];
   };
 
   age.secrets.hc_ping.file = ../../secrets/supernaut_hc_ping_uuid.age;
