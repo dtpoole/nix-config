@@ -20,6 +20,14 @@
         addSSL = true;
         useACMEHost = "git.poole.foo";
       };
+      "netdata.supernaut.poole.foo" = {
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:19999";
+          proxyWebsockets = true;
+        };
+        addSSL = true;
+        useACMEHost = "supernaut.poole.foo";
+      };
     };
   };
 
