@@ -14,6 +14,7 @@
       ../common/sshd.nix
       ../common/tailscale.nix
       ../common/healthchecks-ping.nix
+      ../common/netdata.nix
       ../common/postgres.nix
       ./acme.nix
       ./monitoring.nix

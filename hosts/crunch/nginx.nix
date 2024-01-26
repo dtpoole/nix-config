@@ -26,6 +26,14 @@
         addSSL = true;
         useACMEHost = "tools.poole.foo";
       };
+      "netdata.crunch.poole.foo" = {
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:19999";
+          proxyWebsockets = true;
+        };
+        addSSL = true;
+        useACMEHost = "crunch.poole.foo";
+      };
     };
   };
 
