@@ -41,7 +41,7 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 80 443 ];
+    allowedTCPPorts = [ 22 80 443 ];
   };
 
   networking.enableIPv6 = false;
@@ -65,9 +65,5 @@
 
   age.secrets.hc_ping.file = ../../secrets/crunch_hc_ping_uuid.age;
   age.secrets.hc_backup.file = ../../secrets/crunch_hc_backup_uuid.age;
-
-  # set user password
-  age.secrets.user_password.file = ../../secrets/user_password.age;
-  users.users.dave.hashedPasswordFile = config.age.secrets.user_password.path;
 
 }
