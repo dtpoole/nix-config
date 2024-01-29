@@ -108,6 +108,10 @@ in
         hostname = "north.poole.foo";
         port = 5829;
       };
+      "soma" = {
+        hostname = "soma.poole.foo";
+        port = 5829;
+      };
     };
   };
 
