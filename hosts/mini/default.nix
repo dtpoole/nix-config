@@ -106,6 +106,10 @@ in
       autoUpdate = true;
     };
 
+    brews = [
+      "libdvdcss"
+    ];
+
     casks = [
       "1password"
       "balenaetcher"
@@ -115,6 +119,7 @@ in
       "handbrake"
       "kitty"
       "launchbar"
+      "makemkv"
       "musicbrainz-picard"
       "netnewswire"
       "obsidian"
