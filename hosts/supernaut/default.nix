@@ -66,4 +66,6 @@
   age.secrets.hc_ping.file = ../../secrets/supernaut_hc_ping_uuid.age;
   age.secrets.hc_backup.file = ../../secrets/supernaut_hc_backup_uuid.age;
 
+  programs.mosh.enable = true;
+
 }
