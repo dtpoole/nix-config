@@ -14,17 +14,31 @@
     requires = [ "postgresql.service" ];
   };
 
+
+  systemd.services.create-firefly-pod = with config.virtualisation.oci-containers; {
+    serviceConfig.Type = "oneshot";
+    wantedBy = [ "${backend}-firefly.service" ];
+    script = ''
+      ${pkgs.podman}/bin/podman pod exists firefly || \
+        ${pkgs.podman}/bin/podman pod create -n firefly'
+    '';
+  };
+
   virtualisation.oci-containers.containers = {
     "firefly" = {
       autoStart = true;
       image = "fireflyiii/core:latest";
-      extraOptions = [ "--pull=always" ];
+      extraOptions = [ 
+        "--pull=always"
+        "--pod=firefly"
+      ];
       environment = {
         "TZ" = "America/New_York";
         "DB_CONNECTION" = "pgsql";
         "DB_DATABASE" = "firefly";
         "DB_USERNAME" = "firefly";
         "DB_HOST" = "/run/postgresql/";
+        "APP_KEY" = "$(cat ${config.age.secrets.firefly_app_key.path})";
       };
       ports = [ "8080:8080" ];
       volumes = [
@@ -34,6 +48,5 @@
     };
 
   };
-
 
 }
