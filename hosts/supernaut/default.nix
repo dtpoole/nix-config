@@ -19,6 +19,7 @@
     ./gitea.nix
     ./acme.nix
     ./nginx.nix
+    ./firefly.nix
 
     inputs.agenix.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
@@ -59,7 +60,7 @@
   networking.nameservers = [ "10.10.10.1" ];
 
   networking.firewall = {
-    enable = true;
+    enable = false;
     allowedTCPPorts = [ 22 80 443 ];
   };
 
