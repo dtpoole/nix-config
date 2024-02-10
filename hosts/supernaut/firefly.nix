@@ -20,7 +20,7 @@
     wantedBy = [ "${backend}-firefly.service" ];
     script = ''
       ${pkgs.podman}/bin/podman pod exists firefly || \
-        ${pkgs.podman}/bin/podman pod create -n firefly'
+        ${pkgs.podman}/bin/podman pod create -n firefly
     '';
   };
 
@@ -54,6 +54,7 @@
         extraOptions = [
           "--pull=always"
           "--pod=firefly"
+          "--requires=firefly"
         ];
         environment = {
           "TZ" = "America/New_York";
