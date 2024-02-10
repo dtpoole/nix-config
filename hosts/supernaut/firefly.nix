@@ -50,7 +50,7 @@
       };
       "firefly-importer" = {
         autoStart = true;
-        image = "fireflyiii/importer:latest";
+        image = "fireflyiii/data-importer:latest";
         extraOptions = [
           "--pull=always"
           "--pod=firefly"
