@@ -20,6 +20,7 @@
     ./acme.nix
     ./nginx.nix
     ./firefly.nix
+    ./vaultwarden.nix
 
     inputs.agenix.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
@@ -67,6 +68,7 @@
   age.secrets.hc_ping.file = ../../secrets/supernaut_hc_ping_uuid.age;
   age.secrets.hc_backup.file = ../../secrets/supernaut_hc_backup_uuid.age;
   age.secrets.firefly_app_key.file = ../../secrets/supernaut_firefly_app_key.age;
+  age.secrets.vaultwarden_admin_token.file = ../../secrets/supernaut_vaultwarden_admin_token.age;
 
   programs.mosh.enable = true;
 
