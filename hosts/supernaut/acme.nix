@@ -18,6 +18,7 @@
         extraDomainNames = [ "*.supernaut.poole.foo" ];
       };
       "git.poole.foo" = { };
+      "bitwarden.poole.fun" = { };
     };
   };
 
