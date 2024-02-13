@@ -18,7 +18,6 @@
       proxyPass = "http://127.0.0.1:${toString config.services.vaultwarden.config.ROCKET_PORT}";
       proxyWebsockets = true;
     };
-    useACMEHost = "bitwarden.poole.fun";
   };
 
 }
