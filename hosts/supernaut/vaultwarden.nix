@@ -11,12 +11,14 @@
     };
   };
 
-  services.nginx.virtualHosts."bitwarden.poole.fun" = {
-    enableACME = true;
-    forceSSL = true;
-    locations."/" = {
-      proxyPass = "http://127.0.0.1:${toString config.services.vaultwarden.config.ROCKET_PORT}";
-      proxyWebsockets = true;
+  services.nginx.virtualHosts = {
+    "bitwarden.poole.fun" = {
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:${toString config.services.vaultwarden.config.ROCKET_PORT}";
+        proxyWebsockets = true;
+      };
+      forceSSL = true;
+      useACMEHost = "bitwarden.poole.fun";
     };
   };
 

@@ -6,7 +6,7 @@
 
   security.acme = {
     defaults = {
-      email = "acme@poole.foo";
+      email = "acme@poole.fun";
       dnsProvider = "cloudflare";
       dnsResolver = "1.1.1.1:53";
       dnsPropagationCheck = false;

@@ -1,14 +1,4 @@
 {
-
-  # users.users.gitea = {
-  #   useDefaultShell = true;
-  #   home = "/var/lib/gitea";
-  #   group = "gitea";
-  #   isSystemUser = true;
-  # };
-
-  #user.extraGroups = [ "gitea" ];
-
   services.postgresql = {
     ensureDatabases = [ "gitea" ];
     ensureUsers = [{
@@ -20,7 +10,6 @@
   services.gitea = {
     enable = true;
     lfs.enable = true;
-
     database = {
       user = "gitea";
       type = "postgres";
@@ -36,8 +25,20 @@
       };
       database.LOG_SQL = false;
     };
-
     dump.interval = "daily";
   };
 
+  services.nginx = {
+    clientMaxBodySize = "512M"; # Gitea recommended
+    virtualHosts = {
+      "git.poole.foo" = {
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:3000";
+          proxyWebsockets = true;
+        };
+        forceSSL = true;
+        useACMEHost = "git.poole.foo";
+      };
+    };
+  };
 }
