@@ -9,6 +9,7 @@
       ROCKET_PORT = 8222;
       ADMIN_TOKEN = "$(cat ${config.age.secrets.vaultwarden_admin_token.path})";
     };
+    backupDir = "/var/backup/vaultwarden";
   };
 
   services.nginx.virtualHosts = {
