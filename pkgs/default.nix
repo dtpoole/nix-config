@@ -1,3 +1,3 @@
 { pkgs, ... }: {
-  figurine = pkgs.callPackage ./figurine { };
+  # figurine = pkgs.callPackage ./figurine { };
 }
