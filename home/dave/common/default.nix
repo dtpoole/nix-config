@@ -68,6 +68,15 @@ in
         theme = "Nord";
       };
     };
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
+    ignores = [
+      "*~"
+      ".DS_Store"
+      ".vscode"
+      "Thumbs.db"
+    ];
   };
 
   programs.ssh = {
