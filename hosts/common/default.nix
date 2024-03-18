@@ -18,9 +18,6 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
     gc = {
       automatic = true;
       dates = "weekly";
@@ -28,6 +25,8 @@
     };
     settings = {
       auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+      warn-dirty = false;
     };
   };
 
