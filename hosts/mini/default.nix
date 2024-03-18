@@ -55,7 +55,6 @@ in
     ansible
     ansible-lint
     sshpass
-    terraform
     rnix-lsp
     inputs.agenix.packages.${pkgs.system}.default
   ];
@@ -144,6 +143,9 @@ in
       "Numbers" = 409203825;
       "Pages" = 409201541;
       "StopTheMadness" = 1376402589;
+      "Bitwarden" = 1352778147;
+      "Infuse • Video Player" = 1136220934;
+      "The Unarchiver" = 425424353;
     };
   };
 
