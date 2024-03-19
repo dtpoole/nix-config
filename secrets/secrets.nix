@@ -4,6 +4,7 @@ let
     crunch = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAG0mzjqkPiIaqwvnPbmnxWI3rXkS8141yP5eBUk8rhE";
     slug = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYeKyjR9GlfevtfOIqox7zAwla5y1cONc3lIkXcLD+g";
     supernaut = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILjBbotEML8QUblJNj3YorpWcKy4B8UkD07yEQBm2Bf/";
+    vm1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMe0y88ln1b5palqJLalarm+KeQ9Y18ErYcXoGhmnopo";
   };
   users = {
     dave_mini = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDL8vV4xFbHiAkqYOSgwT2hdTVtnXqH5yC2mZEsQUnuJ";
