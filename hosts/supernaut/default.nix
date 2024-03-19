@@ -9,8 +9,6 @@
   imports = [
     (modulesPath + "/virtualisation/lxc-container.nix")
     ../common
-    ../common/user.nix
-    ../common/sshd.nix
     ../common/postgres.nix
     ../common/healthchecks-ping.nix
     ../common/netdata.nix
@@ -19,7 +17,6 @@
     ./gitea.nix
     ./acme.nix
     ./nginx.nix
-    ./firefly.nix
     ./vaultwarden.nix
 
     inputs.agenix.nixosModules.default
@@ -67,7 +64,6 @@
 
   age.secrets.hc_ping.file = ../../secrets/supernaut_hc_ping_uuid.age;
   age.secrets.hc_backup.file = ../../secrets/supernaut_hc_backup_uuid.age;
-  age.secrets.firefly_app_key.file = ../../secrets/supernaut_firefly_app_key.age;
   age.secrets.vaultwarden_admin_token.file = ../../secrets/supernaut_vaultwarden_admin_token.age;
 
   programs.mosh.enable = true;

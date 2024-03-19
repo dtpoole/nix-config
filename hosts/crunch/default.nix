@@ -8,10 +8,8 @@
     [
       ./hardware-configuration.nix
       ../common
-      ../common/user.nix
       ../common/zram.nix
       ../common/restic-backups.nix
-      ../common/sshd.nix
       ../common/tailscale.nix
       ../common/healthchecks-ping.nix
       ../common/netdata.nix
