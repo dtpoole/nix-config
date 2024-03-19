@@ -53,7 +53,7 @@ _home-manager:
 
 # Invoke a Nix shell
 shell:
-    nix develop
+    nix --experimental-features 'nix-command flakes' develop
 
 # Update flake inputs to latest revisions and update pre-commit hooks
 update:
