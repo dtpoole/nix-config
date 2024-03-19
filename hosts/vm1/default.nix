@@ -11,7 +11,17 @@
       ../common
       ../common/user.nix
       ../common/desktop.nix
-      #../../modulez/zram.nix
+
+      inputs.agenix.nixosModules.default
+      inputs.home-manager.nixosModules.home-manager
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.dave = import ../../home/dave;
+          extraSpecialArgs = { inherit outputs; };
+        };
+      }
     ];
 
   # Bootloader.
