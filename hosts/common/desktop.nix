@@ -1,26 +1,27 @@
 { pkgs, ... }:
 {
-  fonts.enableDefaultFonts = true;
-  fonts.fonts = with pkgs; [
-    corefonts
-    fira-code
-    fira-code-symbols
-    gelasio
-    jetbrains-mono
-    nerdfonts
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    powerline-fonts
-    source-code-pro
-    ttf_bitstream_vera
-    ubuntu_font_family
-  ];
 
+  fonts = {
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      corefonts
+      fira-code
+      fira-code-symbols
+      gelasio
+      jetbrains-mono
+      nerdfonts
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      powerline-fonts
+      source-code-pro
+      ttf_bitstream_vera
+      ubuntu_font_family
+    ];
+  };
 
   environment.systemPackages = with pkgs; [
     librewolf
-    xscreensaver
     nordic
     thunderbird
     vlc
