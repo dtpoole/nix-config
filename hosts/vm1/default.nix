@@ -12,6 +12,7 @@
       ../common
       ../common/user.nix
       ../common/desktop.nix
+      ../common/sshd.nix
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
