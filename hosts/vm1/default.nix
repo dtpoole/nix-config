@@ -10,9 +10,7 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../common
-      ../common/user.nix
       ../common/desktop.nix
-      ../common/sshd.nix
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
@@ -20,7 +18,7 @@
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
-          users.dave = import ../../home/dave;
+          users.dave = import ../../home/dave/vm1.nix;
           extraSpecialArgs = { inherit outputs; };
         };
       }
