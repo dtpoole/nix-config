@@ -15,7 +15,7 @@ in
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
-          users.dave = import ../../home/dave/mini.nix;
+          users.dave = import ../../home/dave/desktop.nix;
           extraSpecialArgs = { inherit outputs; };
         };
       }
