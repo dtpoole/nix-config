@@ -32,4 +32,6 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  services.qemuGuest.enable = true;
+
 }
