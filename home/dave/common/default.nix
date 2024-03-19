@@ -168,6 +168,7 @@ in
   xdg.configFile."nix/nix.conf".text = ''
     experimental-features = nix-command flakes
     max-jobs = auto
+    warn-dirty = false
   '';
 
   home.packages = with pkgs; [
