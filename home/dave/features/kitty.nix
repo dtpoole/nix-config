@@ -9,7 +9,7 @@ in
 
     settings = {
       font_family = "Fira Code";
-      font_size = if isDarwin then "13.0" else "12.0";
+      font_size = if isDarwin then "13.0" else "10.0";
       bold_font = "Fira Code Retina";
 
       # Window layout
