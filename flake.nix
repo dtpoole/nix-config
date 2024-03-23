@@ -14,10 +14,7 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs:
@@ -60,6 +57,11 @@
 
         vm1 = lib.nixosSystem {
           modules = [ ./hosts/vm1 ];
+          specialArgs = { inherit inputs outputs; };
+        };
+
+        bombs = lib.nixosSystem {
+          modules = [ ./hosts/bombs ];
           specialArgs = { inherit inputs outputs; };
         };
       };
