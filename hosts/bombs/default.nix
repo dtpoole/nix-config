@@ -27,18 +27,19 @@
 
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Supress systemd units that don't work because of LXC
+  systemd.suppressedSystemUnits = [
+    "dev-mqueue.mount"
+    "sys-kernel-debug.mount"
+    "sys-fs-fuse-connections.mount"
+  ];
 
-  services.qemuGuest.enable = true;
-
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [ 22 80 443 ];
+  # start tty0 on serial console
+  systemd.services."getty@tty1" = {
+    enable = lib.mkForce true;
+    wantedBy = [ "getty.target" ]; # to start at boot
+    serviceConfig.Restart = "always"; # restart when session is closed
   };
-
-  networking.enableIPv6 = false;
 
   nixpkgs = {
     overlays = [
@@ -49,7 +50,13 @@
     };
   };
 
-  virtualisation.docker.enable = false;
+  networking.enableIPv6 = false;
+  networking.nameservers = [ "10.10.10.1" ];
+
+  networking.firewall = {
+    enable = false;
+    allowedTCPPorts = [ 22 80 443 ];
+  };
 
   programs.mosh.enable = true;
 
