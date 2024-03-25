@@ -21,8 +21,8 @@ in
   "restic_repository.age".publicKeys = allUsers ++ allSystems;
   "restic_repository_password.age".publicKeys = allUsers ++ allSystems;
   "crunch_hc_backup_uuid.age".publicKeys = allUsers ++ [ systems.crunch ];
-  "crunch_linkding_password.age".publicKeys = allUsers ++ [ systems.crunch ];
   "supernaut_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "supernaut_hc_backup_uuid.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "supernaut_vaultwarden_admin_token.age".publicKeys = allUsers ++ [ systems.supernaut ];
+  "linkding_password.age".publicKeys = allUsers ++ [ systems.bombs ];
 }
