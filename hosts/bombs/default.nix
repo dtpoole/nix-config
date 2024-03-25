@@ -62,4 +62,11 @@
 
   programs.mosh.enable = true;
 
+  virtualisation.oci-containers.containers."it-tools" = {
+    autoStart = true;
+    image = "corentinth/it-tools:2023.12.21-5ed3693";
+    extraOptions = [ "--pull=always" ];
+    ports = [ "8070:80" ];
+  };
+
 }
