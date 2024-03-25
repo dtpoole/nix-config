@@ -14,6 +14,7 @@
       ../common/tailscale.nix
       ../common/netdata.nix
       ../common/postgres.nix
+      ../common/restic-backups.nix
       ./linkding.nix
 
       inputs.agenix.nixosModules.default
