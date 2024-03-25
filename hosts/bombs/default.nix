@@ -13,6 +13,8 @@
       ../common
       ../common/tailscale.nix
       ../common/netdata.nix
+      ../common/postgres.nix
+      ./linkding.nix
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
