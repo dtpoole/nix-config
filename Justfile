@@ -60,6 +60,10 @@ update:
     nix flake update
     pre-commit autoupdate
 
+# rekey agenix secrets
+rekey:
+    cd ./secrets && agenix --rekey
+
 # Format nix files in directory
 format:
     nixpkgs-fmt .
