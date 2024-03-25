@@ -25,4 +25,5 @@ in
   "supernaut_hc_backup_uuid.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "supernaut_vaultwarden_admin_token.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "linkding_password.age".publicKeys = allUsers ++ [ systems.bombs ];
+  "bombs_hc_backup_uuid.age".publicKeys = allUsers ++ [ systems.bombs ];
 }
