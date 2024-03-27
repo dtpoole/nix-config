@@ -2,27 +2,17 @@
 
   programs.zsh = {
     enable = true;
-    autocd = true;
-
-    completionInit = ''
-      setopt extendedglob
-      autoload -Uz compinit
-      if [[ -n $ZDOTDIR/.zcompdump(#qN.mh+24) ]]; then
-        compinit -u
-        touch $ZDOTDIR/.zcompdump
-      else
-        compinit -C
-      fi
-    '';
 
     dotDir = ".config/zsh";
-    enableAutosuggestions = true;
-    enableCompletion = true;
 
-    localVariables = {
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-    };
+    enableCompletion = true;
+    enableAutosuggestions = true;
+    syntaxHighlighting.enable = true;
+
+    envExtra = ''
+      setopt no_global_rcs
+      skip_global_compinit=1
+    '';
 
     shellAliases = {
       ln = "ln -v";
@@ -50,30 +40,39 @@
       save = 100000;
       share = true;
     };
-
-    envExtra = ''
-      skip_global_compinit=1
+    
+    initExtraFirst = ''
+      #zmodload zsh/zprof
     '';
 
     initExtra = ''
       bindkey '^ ' autosuggest-accept
-      export LS_COLORS="$(${pkgs.vivid}/bin/vivid generate nord)"
+      if [[ -z "$LS_COLORS" ]]; then
+        export LS_COLORS="$(${pkgs.vivid}/bin/vivid generate nord)"
+      fi
 
       fpath+=( $ZDOTDIR/functions )
       autoload -Uz ssh
 
-      # Nix
-      if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-      elif [ -e $HOME/.nix-profile/etc/profile.d/nix-daemon.sh ]; then
-        . $HOME/.nix-profile/etc/profile.d/nix-daemon.sh
+      ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+    '';
+
+    completionInit = ''
+      autoload -Uz compinit
+      if [[ -n $ZDOTDIR/.zcompdump(#qN.mh+24) ]]; then
+        compinit -u
+        touch $ZDOTDIR/.zcompdump
+      else
+        compinit -C
       fi
 
-      path+=(/usr/local/bin /usr/local/sbin)
+      zstyle ':completion:*' menu select
     '';
 
     loginExtra = ''
-      ${pkgs.figurine}/bin/figurine -f Rectangles.flf ''${HOST%%.*}
+      if [[ -v "$SSH_CLIENT" ]]; then
+        ${pkgs.figurine}/bin/figurine -f Rectangles.flf ''${HOST%%.*}
+      fi
     '';
 
   };

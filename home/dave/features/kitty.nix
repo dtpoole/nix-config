@@ -31,6 +31,8 @@ in
       macos_titlebar_color = "background";
       macos_thicken_font = "0.75";
 
+      shell_integration = "disabled";
+
     };
 
     theme = "Nord";
