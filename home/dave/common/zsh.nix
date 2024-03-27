@@ -70,7 +70,7 @@
     '';
 
     loginExtra = ''
-      if [[ -v "$SSH_CLIENT" ]]; then
+      if [[ -n "$SSH_CLIENT" ]]; then
         ${pkgs.figurine}/bin/figurine -f Rectangles.flf ''${HOST%%.*}
       fi
     '';
