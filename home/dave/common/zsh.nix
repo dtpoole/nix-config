@@ -51,6 +51,13 @@
         export LS_COLORS="$(${pkgs.vivid}/bin/vivid generate nord)"
       fi
 
+      # Nix
+      if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+      fi
+
+      path+=(/usr/local/bin /usr/local/sbin)
+
       fpath+=( $ZDOTDIR/functions )
       autoload -Uz ssh
 
