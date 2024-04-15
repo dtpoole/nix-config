@@ -56,6 +56,7 @@ in
     ansible-lint
     sshpass
     rnix-lsp
+    terraform
     inputs.agenix.packages.${pkgs.system}.default
   ];
 
@@ -147,6 +148,11 @@ in
       "Infuse • Video Player" = 1136220934;
       "The Unarchiver" = 425424353;
     };
+
+    # taps = [
+    #   "hashicorp/tap"
+    # ];
+
   };
 
 }
