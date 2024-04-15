@@ -49,8 +49,8 @@
   ];
 
   # allows vscode remote-ssh to work
-  programs.nix-ld.enable = true; 
-  
+  programs.nix-ld.enable = true;
+
   services.journald.extraConfig = "SystemMaxUse=100M";
 
   system.stateVersion = "23.11";
