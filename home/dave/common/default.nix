@@ -95,11 +95,11 @@ in
       "slug" = {
         hostname = "10.10.10.60";
       };
-      "crunch" = {
-        hostname = "10.10.10.150";
-      };
       "supernaut" = {
         hostname = "10.10.10.120";
+      };
+      "bombs" = {
+        hostname = "10.10.10.125";
       };
       "jellyfin" = {
         hostname = "10.10.10.35";
@@ -113,6 +113,10 @@ in
         hostname = "10.10.10.37";
         user = "media";
       };
+      "caddy" = {
+        hostname = "10.10.10.39";
+        user = "root";
+      };
       "north" = {
         hostname = "north.poole.foo";
         port = 5829;
@@ -120,6 +124,9 @@ in
       "soma" = {
         hostname = "soma.poole.foo";
         port = 5829;
+      };
+      "daze" = {
+        hostname = "daze.poole.foo";
       };
     };
   };
