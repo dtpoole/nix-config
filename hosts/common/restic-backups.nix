@@ -15,6 +15,7 @@
       passwordFile = config.age.secrets.restic_repository_password.path;
       paths = [
         "/home"
+        "/var/lib"
         "/var/log"
         "/var/backup"
       ];
