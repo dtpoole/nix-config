@@ -19,7 +19,7 @@
   virtualisation.oci-containers.containers = {
     "linkding" = {
       autoStart = true;
-      image = "sissbruecker/linkding:1.25.0";
+      image = "sissbruecker/linkding:1.30.0";
       extraOptions = [ "--pull=always" ];
       environmentFiles = [ config.age.secrets.linkding_password.path ];
       environment = {
