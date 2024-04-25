@@ -15,8 +15,8 @@
     ../common/restic-backups.nix
     ../common/tailscale.nix
     ./gitea.nix
-    ./acme.nix
-    ./nginx.nix
+    # ./acme.nix
+    # ./nginx.nix
     ./vaultwarden.nix
 
     inputs.agenix.nixosModules.default
@@ -54,7 +54,7 @@
     };
   };
 
-  networking.enableIPv6 = false;
+  networking.enableIPv6 = true;
   networking.nameservers = [ "10.10.10.1" ];
 
   networking.firewall = {

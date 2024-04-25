@@ -12,15 +12,4 @@
     backupDir = "/var/backup/vaultwarden";
   };
 
-  services.nginx.virtualHosts = {
-    "vault.poole.fun" = {
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:${toString config.services.vaultwarden.config.ROCKET_PORT}";
-        proxyWebsockets = true;
-      };
-      forceSSL = true;
-      useACMEHost = "vault.poole.fun";
-    };
-  };
-
 }
