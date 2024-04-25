@@ -70,6 +70,6 @@
     ports = [ "8070:80" ];
   };
 
-    age.secrets.hc_backup.file = ../../secrets/bombs_hc_backup_uuid.age;
+  age.secrets.hc_backup.file = ../../secrets/bombs_hc_backup_uuid.age;
 
 }
