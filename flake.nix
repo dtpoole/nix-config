@@ -97,6 +97,18 @@
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
+
+        "dave@ram" = lib.homeManagerConfiguration {
+          modules = [ ./home/dave ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+
+        "dave@sapphire" = lib.homeManagerConfiguration {
+          modules = [ ./home/dave ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
       };
 
     };
