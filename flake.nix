@@ -64,6 +64,11 @@
           modules = [ ./hosts/bombs ];
           specialArgs = { inherit inputs outputs; };
         };
+
+        hope = lib.nixosSystem {
+          modules = [ ./hosts/hope ];
+          specialArgs = { inherit inputs outputs; };
+        };
       };
 
       darwinConfigurations = {
