@@ -6,6 +6,7 @@ let
     supernaut = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICngfzwaBuOLv8QUeK7vvTbffdSQlLoOVEzyo7kHM9d0";
     vm1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMe0y88ln1b5palqJLalarm+KeQ9Y18ErYcXoGhmnopo";
     bombs = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFcNrOGJNj5PrQgBmOvA3hef15/ZKmKrik5keay2mg46";
+    hope = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN9h+cgPBruVyOiuBz0sblAghDg9g9B1ecGUhbWP+FkZ";
   };
   users = {
     dave_mini = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDL8vV4xFbHiAkqYOSgwT2hdTVtnXqH5yC2mZEsQUnuJ";
