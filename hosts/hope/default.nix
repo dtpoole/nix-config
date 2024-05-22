@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../common
+      ../common/tailscale.nix
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
