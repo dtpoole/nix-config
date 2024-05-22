@@ -11,6 +11,7 @@
       ../common
       ../common/tailscale.nix
       ../common/healthchecks-ping.nix
+      ../common/zram.nix
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
