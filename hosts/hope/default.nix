@@ -40,7 +40,10 @@
       }];
     };
     defaultGateway = "38.175.197.1";
-    defaultGateway6 = "2606:a8c0:100::1";
+    defaultGateway6 = {
+      address = "2606:a8c0:100::1";
+      interface = "enp3s0"; 
+    };
     nameservers = [ "9.9.9.9" "1.1.1.1" ];
   };
 
