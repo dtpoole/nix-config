@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ../common
       ../common/tailscale.nix
+      ../common/healthchecks-ping.nix
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
@@ -23,26 +24,20 @@
       }
     ];
 
-
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
 
- 
-  system.stateVersion = "23.11"; # Did you read the comment?
-
-
-    networking = {
-      dhcpcd.enable = false;
-      interfaces.enp3s0.ipv4.addresses = [{
-        address = "38.175.197.14";
-        prefixLength = 24;
-      }];
+  networking = {
+    dhcpcd.enable = false;
+    interfaces.enp3s0.ipv4.addresses = [{
+      address = "38.175.197.14";
+      prefixLength = 24;
+    }];
      
-      defaultGateway = "38.175.197.1";
-      nameservers = [ "9.9.9.9" "1.1.1.1" ];
-    };
+    defaultGateway = "38.175.197.1";
+    nameservers = [ "9.9.9.9" "1.1.1.1" ];
+  };
 
-  users.users."root".openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDL8vV4xFbHiAkqYOSgwT2hdTVtnXqH5yC2mZEsQUnuJ"
-  ];
+  age.secrets.hc_ping.file = ../../secrets/hope_hc_ping_uuid.age;
+
 }

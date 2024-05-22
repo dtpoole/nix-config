@@ -28,4 +28,5 @@ in
   "linkding_password.age".publicKeys = allUsers ++ [ systems.bombs ];
   "bombs_hc_backup_uuid.age".publicKeys = allUsers ++ [ systems.bombs ];
   "tailscale_auth_key.age".publicKeys = allUsers ++ allSystems;
+  "hope_hc_ping.age".publicKeys = allUsers ++ allSystems;
 }
