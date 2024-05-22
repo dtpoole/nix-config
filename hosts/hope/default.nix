@@ -1,4 +1,4 @@
-{ config, inputs, outputs, ... }:
+{ inputs, outputs, ... }:
 
 {
 
@@ -46,6 +46,10 @@
     };
     nameservers = [ "9.9.9.9" "1.1.1.1" ];
   };
+
+  # turn on firewall. only allow ssh from tailscale interface
+  networking.firewall.enable = true;
+  services.openssh.openFirewall = false;
 
   age.secrets.hc_ping.file = ../../secrets/hope_hc_ping_uuid.age;
 
