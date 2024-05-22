@@ -125,9 +125,7 @@ in
         hostname = "soma.poole.foo";
         port = 5829;
       };
-      "daze" = {
-        hostname = "daze.poole.foo";
-      };
+
     };
   };
 
@@ -196,6 +194,7 @@ in
     keychain
     mosh
     neofetch
+    nil
     nixpkgs-fmt
     nmap
     parallel
