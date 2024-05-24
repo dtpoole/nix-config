@@ -23,11 +23,12 @@
         "--keep-monthly 3"
       ];
       repository = "/var/backup/restic";
-        timerConfig = {
+      timerConfig = {
         OnCalendar = "0/6:00";
         Persistent = true;
         RandomizedDelaySec = "15m";
       };
+      initialize = true;
     };
   };
 }
