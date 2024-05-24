@@ -4,7 +4,7 @@
   age.secrets.restic_repository_password.file = ../../secrets/restic_repository_password.age;
 
   services.restic.backups = {
-    remote = {
+    local = {
       exclude = [
         "/var/cache"
         "/home/*/.cache"
