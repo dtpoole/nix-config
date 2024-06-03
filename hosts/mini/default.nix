@@ -55,7 +55,6 @@ in
     ansible
     ansible-lint
     sshpass
-    rnix-lsp
     terraform
     inputs.agenix.packages.${pkgs.system}.default
   ];
@@ -117,6 +116,7 @@ in
       "calibre"
       "fission"
       "handbrake"
+      "adoptopenjdk"
       "kitty"
       "launchbar"
       "makemkv"
@@ -125,6 +125,7 @@ in
       "obsidian"
       "omnidisksweeper"
       "plexamp"
+      "steam"
       "thunderbird"
       "visual-studio-code"
       "vlc"

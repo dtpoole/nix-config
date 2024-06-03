@@ -4,7 +4,7 @@ let
   homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
 in
 {
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
 
   home.username = "${username}";
   home.homeDirectory = lib.mkDefault "${homeDirectory}";
