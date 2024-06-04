@@ -8,9 +8,9 @@ in
     enable = true;
 
     settings = {
-      font_family = "Fira Code";
+
+      font_family = "JetBrains Mono";
       font_size = if isDarwin then "12.0" else "10.0";
-      # bold_font = "Fira Code Retina";
 
       # Window layout
       # hide_window_decorations = "titlebar-only";
@@ -29,7 +29,7 @@ in
       visual_bell_duration = "0.5";
 
       macos_titlebar_color = "background";
-      macos_thicken_font = "0.75";
+      # macos_thicken_font = "0.75";
 
       shell_integration = "disabled";
 
