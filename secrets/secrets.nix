@@ -1,10 +1,8 @@
 let
   systems = {
     mini = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL6M0/XCWHHLcCWzwvao+COZ5hDb9/gQp7Yp6jZRcCdu";
-    crunch = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAG0mzjqkPiIaqwvnPbmnxWI3rXkS8141yP5eBUk8rhE";
     slug = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYeKyjR9GlfevtfOIqox7zAwla5y1cONc3lIkXcLD+g";
     supernaut = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICngfzwaBuOLv8QUeK7vvTbffdSQlLoOVEzyo7kHM9d0";
-    vm1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMe0y88ln1b5palqJLalarm+KeQ9Y18ErYcXoGhmnopo";
     bombs = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFcNrOGJNj5PrQgBmOvA3hef15/ZKmKrik5keay2mg46";
     hope = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN9h+cgPBruVyOiuBz0sblAghDg9g9B1ecGUhbWP+FkZ";
   };
@@ -17,15 +15,13 @@ let
 in
 {
   "user_password.age".publicKeys = allUsers ++ allSystems;
-  "crunch_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.crunch ];
-  "acme_cloudflare_credentials.age".publicKeys = allUsers ++ [ systems.crunch systems.supernaut ];
+  "acme_cloudflare_credentials.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "restic_repository.age".publicKeys = allUsers ++ allSystems;
   "restic_repository_password.age".publicKeys = allUsers ++ allSystems;
-  "crunch_hc_backup_uuid.age".publicKeys = allUsers ++ [ systems.crunch ];
   "supernaut_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "supernaut_hc_backup_uuid.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "supernaut_vaultwarden_admin_token.age".publicKeys = allUsers ++ [ systems.supernaut ];
-  "linkding_password.age".publicKeys = allUsers ++ [ systems.bombs ];
+  "linkding_password.age".publicKeys = allUsers ++ [ systems.bombs systems.hope ];
   "bombs_hc_backup_uuid.age".publicKeys = allUsers ++ [ systems.bombs ];
   "tailscale_auth_key.age".publicKeys = allUsers ++ allSystems;
   "hope_hc_ping_uuid.age".publicKeys = allUsers ++ allSystems;
