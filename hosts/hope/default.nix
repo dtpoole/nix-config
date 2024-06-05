@@ -15,6 +15,7 @@
       ../common/restic-backups-local.nix
       ../common/postgres.nix
       ./it-tools.nix
+      ./linkding.nix
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
