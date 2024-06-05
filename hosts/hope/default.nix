@@ -16,6 +16,8 @@
       ../common/postgres.nix
       ./it-tools.nix
       ./linkding.nix
+      ./acme.nix
+      ./nginx.nix
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
