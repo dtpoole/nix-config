@@ -55,11 +55,6 @@
           specialArgs = { inherit inputs outputs; };
         };
 
-        vm1 = lib.nixosSystem {
-          modules = [ ./hosts/vm1 ];
-          specialArgs = { inherit inputs outputs; };
-        };
-
         bombs = lib.nixosSystem {
           modules = [ ./hosts/bombs ];
           specialArgs = { inherit inputs outputs; };
