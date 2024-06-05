@@ -14,6 +14,7 @@
       ../common/zram.nix
       ../common/restic-backups-local.nix
       ../common/postgres.nix
+      ./it-tools.nix
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
