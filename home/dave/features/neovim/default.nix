@@ -59,6 +59,7 @@
             bash
             dockerfile
             json
+            lua
             make
             markdown
             nix
