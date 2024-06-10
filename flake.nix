@@ -45,18 +45,8 @@
           specialArgs = { inherit inputs outputs; };
         };
 
-        crunch = lib.nixosSystem {
-          modules = [ ./hosts/crunch ];
-          specialArgs = { inherit inputs outputs; };
-        };
-
         supernaut = lib.nixosSystem {
           modules = [ ./hosts/supernaut ];
-          specialArgs = { inherit inputs outputs; };
-        };
-
-        bombs = lib.nixosSystem {
-          modules = [ ./hosts/bombs ];
           specialArgs = { inherit inputs outputs; };
         };
 

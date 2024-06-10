@@ -98,9 +98,6 @@ in
       "supernaut" = {
         hostname = "10.10.10.120";
       };
-      "bombs" = {
-        hostname = "10.10.10.125";
-      };
       "jellyfin" = {
         hostname = "10.10.10.35";
         user = "root";

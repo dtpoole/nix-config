@@ -3,7 +3,6 @@ let
     mini = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL6M0/XCWHHLcCWzwvao+COZ5hDb9/gQp7Yp6jZRcCdu";
     slug = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYeKyjR9GlfevtfOIqox7zAwla5y1cONc3lIkXcLD+g";
     supernaut = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICngfzwaBuOLv8QUeK7vvTbffdSQlLoOVEzyo7kHM9d0";
-    bombs = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFcNrOGJNj5PrQgBmOvA3hef15/ZKmKrik5keay2mg46";
     hope = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN9h+cgPBruVyOiuBz0sblAghDg9g9B1ecGUhbWP+FkZ";
   };
   users = {
@@ -21,8 +20,7 @@ in
   "supernaut_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "supernaut_hc_backup_uuid.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "supernaut_vaultwarden_admin_token.age".publicKeys = allUsers ++ [ systems.supernaut ];
-  "linkding_password.age".publicKeys = allUsers ++ [ systems.bombs systems.hope ];
-  "bombs_hc_backup_uuid.age".publicKeys = allUsers ++ [ systems.bombs ];
+  "linkding_password.age".publicKeys = allUsers ++ [ systems.hope ];
   "tailscale_auth_key.age".publicKeys = allUsers ++ allSystems;
   "hope_hc_ping_uuid.age".publicKeys = allUsers ++ allSystems;
 }
