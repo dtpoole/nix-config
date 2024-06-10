@@ -1,6 +1,6 @@
 { config, ... }: {
 
-# WIP
+  # WIP
 
   services.prometheus = {
     port = 4050;

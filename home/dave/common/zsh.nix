@@ -40,7 +40,7 @@
       save = 100000;
       share = true;
     };
-    
+
     initExtraFirst = ''
       #zmodload zsh/zprof
     '';

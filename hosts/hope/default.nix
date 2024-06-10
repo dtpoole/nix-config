@@ -6,7 +6,8 @@
   nixpkgs.hostPlatform = "x86_64-linux";
 
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../common
       ../common/tailscale.nix
@@ -49,7 +50,7 @@
     defaultGateway = "38.175.197.1";
     defaultGateway6 = {
       address = "2606:a8c0:100::1";
-      interface = "enp3s0"; 
+      interface = "enp3s0";
     };
     nameservers = [ "9.9.9.9" "1.1.1.1" ];
   };
