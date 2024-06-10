@@ -133,6 +133,7 @@ in
       nord
     ];
     extraConfig = ''
+      setw -g mouse on
       set -g prefix C-a
       unbind C-b
 
