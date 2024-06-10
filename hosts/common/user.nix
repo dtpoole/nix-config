@@ -8,6 +8,7 @@
     isNormalUser = true;
     home = "/home/dave";
     group = "users";
+    description = "David Poole";
     extraGroups = [ "docker" "wheel" ];
     hashedPasswordFile = config.age.secrets.user_password.path;
     shell = pkgs.zsh;
