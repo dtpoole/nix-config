@@ -54,6 +54,11 @@
           modules = [ ./hosts/hope ];
           specialArgs = { inherit inputs outputs; };
         };
+
+        sparkles = lib.nixosSystem {
+          modules = [ ./hosts/sparkles ];
+          specialArgs = { inherit inputs outputs; };
+        };
       };
 
       darwinConfigurations = {
