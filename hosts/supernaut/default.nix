@@ -14,7 +14,7 @@
     ../common/netdata.nix
     ../common/restic-backups.nix
     ../common/tailscale.nix
-    ./gitea.nix
+    # ./gitea.nix
     # ./acme.nix
     # ./nginx.nix
     ./vaultwarden.nix
