@@ -14,6 +14,9 @@
     };
     acceptTerms = true;
     certs = {
+      "sparkles.poole.foo" = {
+        extraDomainNames = [ "*.sparkles.poole.foo" ];
+      };
       "git.poole.foo" = { };
     };
   };

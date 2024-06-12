@@ -15,6 +15,7 @@
       ../common/zram.nix
       ../common/restic-backups-local.nix
       ../common/postgres.nix
+      ../common/netdata.nix
       ./gitea.nix
       ./acme.nix
       ./nginx.nix
