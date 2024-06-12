@@ -10,6 +10,7 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../common
+      ../common/healthchecks-ping.nix
       ../common/tailscale.nix
       ../common/zram.nix
 
@@ -51,5 +52,7 @@
   # turn on firewall. only allow ssh from tailscale interface
   networking.firewall.enable = true;
   services.openssh.openFirewall = false;
+
+  age.secrets.hc_ping.file = ../../secrets/sparkles_hc_ping_uuid.age;
 
 }
