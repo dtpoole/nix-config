@@ -9,6 +9,7 @@
         "/var/cache"
         "/home/*/.cache"
         "/var/backup/restic"
+        "/home/*/.vscode-server"
       ];
       passwordFile = config.age.secrets.restic_repository_password.path;
       paths = [
