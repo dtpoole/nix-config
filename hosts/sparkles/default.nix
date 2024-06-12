@@ -13,6 +13,8 @@
       ../common/healthchecks-ping.nix
       ../common/tailscale.nix
       ../common/zram.nix
+      ../common/postgres.nix
+      ./gitea.nix
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
