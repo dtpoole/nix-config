@@ -16,6 +16,8 @@
       ../common/restic-backups-local.nix
       ../common/postgres.nix
       ./gitea.nix
+      ./acme.nix
+      ./nginx.nix
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
