@@ -1,7 +1,8 @@
 let
   host = "git.poole.foo";
-in {
-  
+in
+{
+
   services.postgresql = {
     ensureDatabases = [ "gitea" ];
     ensureUsers = [{
