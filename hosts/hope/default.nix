@@ -15,7 +15,6 @@
       ../common/zram.nix
       ../common/restic-backups-local.nix
       ../common/postgres.nix
-      ./it-tools.nix
       ./linkding.nix
       ./acme.nix
       ./nginx.nix

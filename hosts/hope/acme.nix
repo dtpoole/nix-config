@@ -15,7 +15,6 @@
     acceptTerms = true;
     certs = {
       "links.poole.foo" = { };
-      "tools.poole.foo" = { };
     };
   };
 

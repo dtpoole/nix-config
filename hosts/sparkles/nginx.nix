@@ -26,6 +26,14 @@
         forceSSL = true;
         useACMEHost = "sparkles.poole.foo";
       };
+      "tools.poole.foo" = {
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:8070";
+          proxyWebsockets = true;
+        };
+        addSSL = true;
+        useACMEHost = "tools.poole.foo";
+      };
     };
   };
 

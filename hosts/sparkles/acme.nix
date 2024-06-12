@@ -18,6 +18,7 @@
         extraDomainNames = [ "*.sparkles.poole.foo" ];
       };
       "git.poole.foo" = { };
+      "tools.poole.foo" = { };
     };
   };
 
