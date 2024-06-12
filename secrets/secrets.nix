@@ -4,6 +4,7 @@ let
     slug = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYeKyjR9GlfevtfOIqox7zAwla5y1cONc3lIkXcLD+g";
     supernaut = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICngfzwaBuOLv8QUeK7vvTbffdSQlLoOVEzyo7kHM9d0";
     hope = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN9h+cgPBruVyOiuBz0sblAghDg9g9B1ecGUhbWP+FkZ";
+    sparkles = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIItEj1cbmZqIyGZgLfwIb3jmr7byFfTWrMf4FevPsxzn";
   };
   users = {
     dave_mini = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDL8vV4xFbHiAkqYOSgwT2hdTVtnXqH5yC2mZEsQUnuJ";
@@ -14,7 +15,7 @@ let
 in
 {
   "user_password.age".publicKeys = allUsers ++ allSystems;
-  "acme_cloudflare_credentials.age".publicKeys = allUsers ++ [ systems.supernaut systems.hope ];
+  "acme_cloudflare_credentials.age".publicKeys = allUsers ++ [ systems.supernaut systems.sparkles systems.hope ];
   "restic_repository.age".publicKeys = allUsers ++ allSystems;
   "restic_repository_password.age".publicKeys = allUsers ++ allSystems;
   "supernaut_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.supernaut ];
@@ -22,5 +23,6 @@ in
   "supernaut_vaultwarden_admin_token.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "linkding_password.age".publicKeys = allUsers ++ [ systems.hope ];
   "tailscale_auth_key.age".publicKeys = allUsers ++ allSystems;
-  "hope_hc_ping_uuid.age".publicKeys = allUsers ++ allSystems;
+  "hope_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.hope ];
+  "sparkles_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.sparkles ];
 }
