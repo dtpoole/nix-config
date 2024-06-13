@@ -14,10 +14,9 @@
       ../common/healthchecks-ping.nix
       ../common/zram.nix
       ../common/restic-backups-local.nix
-      ../common/postgres.nix
-      ./linkding.nix
-      ./acme.nix
-      ./nginx.nix
+      # ../common/postgres.nix
+      # ./acme.nix
+      # ./nginx.nix
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager

@@ -20,6 +20,7 @@
       ./acme.nix
       ./nginx.nix
       ./it-tools.nix
+      ./linkding.nix
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager

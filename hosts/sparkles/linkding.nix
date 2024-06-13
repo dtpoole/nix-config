@@ -29,7 +29,7 @@
         "LD_DB_HOST" = "/run/postgresql/";
         "LD_SERVER_PORT" = "9090";
       };
-      ports = [ "9090:9090" ];
+      ports = [ "127.0.0.1:9090:9090" ];
       volumes = [
         "linkding:/etc/linkding/data"
         "/run/postgresql/:/run/postgresql/"

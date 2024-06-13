@@ -21,7 +21,7 @@ in
   "supernaut_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "supernaut_hc_backup_uuid.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "supernaut_vaultwarden_admin_token.age".publicKeys = allUsers ++ [ systems.supernaut ];
-  "linkding_password.age".publicKeys = allUsers ++ [ systems.hope ];
+  "linkding_password.age".publicKeys = allUsers ++ [ systems.sparkles ];
   "tailscale_auth_key.age".publicKeys = allUsers ++ allSystems;
   "hope_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.hope ];
   "sparkles_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.sparkles ];
