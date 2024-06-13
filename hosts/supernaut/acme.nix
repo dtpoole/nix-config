@@ -17,7 +17,6 @@
       "supernaut.poole.foo" = {
         extraDomainNames = [ "*.supernaut.poole.foo" ];
       };
-      "git.poole.foo" = { };
       "vault.poole.fun" = { };
     };
   };
