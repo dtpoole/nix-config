@@ -17,14 +17,16 @@ in
       window_padding_width = "3";
 
       cursor_blink_interval = "0";
-      # Tab bar
+
       tab_bar_edge = "top";
       tab_bar_style = "powerline";
-      tab_title_template = "{index} {title}";
+      tab_powerline_style = "round";
+      tab_activity_symbol =  "◆";
+      tab_title_template = "{fmt.fg.white}{bell_symbol}{activity_symbol} {fmt.fg.tab}{title}";
+
       active_tab_font_style = "bold";
       inactive_tab_font_style = "normal";
-      # tab_activity_symbol = "*";
-
+      
       enable_audio_bell = "no";
       visual_bell_duration = "0.5";
 
