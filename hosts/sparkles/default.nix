@@ -14,7 +14,7 @@
       ../common/tailscale.nix
       ../common/zram.nix
       #../common/restic-backups-local.nix
-      ../common/restic-backups-cloud.nix
+      ./restic-backups-cloud.nix
       ../common/postgres.nix
       ../common/netdata.nix
       ./gitea.nix
