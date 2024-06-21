@@ -17,6 +17,9 @@ in
   "user_password.age".publicKeys = allUsers ++ allSystems;
   "acme_cloudflare_credentials.age".publicKeys = allUsers ++ [ systems.supernaut systems.sparkles systems.hope ];
   "restic_repository.age".publicKeys = allUsers ++ allSystems;
+  "restic_cloud_repository.age".publicKeys = allUsers ++ [ systems.sparkles systems.hope ];
+  "restic_cloud_environment.age".publicKeys = allUsers ++ [ systems.sparkles systems.hope ];
+  "restic_cloud_password.age".publicKeys = allUsers ++ [ systems.sparkles systems.hope ];
   "restic_repository_password.age".publicKeys = allUsers ++ allSystems;
   "supernaut_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "supernaut_hc_backup_uuid.age".publicKeys = allUsers ++ [ systems.supernaut ];
