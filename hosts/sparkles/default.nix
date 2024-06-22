@@ -64,6 +64,7 @@
 
   # restic
   age.secrets.restic_hc_uuid.file = ../../secrets/sparkles_hc_restic_uuid.age;
+  age.secrets.restic_repository.file = ../../secrets/restic_cloud_repository.age;
   age.secrets.restic_password.file = ../../secrets/restic_cloud_password.age;
   age.secrets.restic_environment.file = ../../secrets/restic_cloud_environment.age;
 

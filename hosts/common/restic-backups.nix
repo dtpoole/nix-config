@@ -26,9 +26,10 @@
 
       environmentFile = config.age.secrets.restic_environment.path;
       passwordFile = config.age.secrets.restic_password.path;
+      repositoryFile = config.age.secrets.restic_repository.path;
 
       timerConfig = {
-        OnCalendar = "0/6:00";
+        OnCalendar = "0/4:00";
         Persistent = true;
         RandomizedDelaySec = "15m";
       };
