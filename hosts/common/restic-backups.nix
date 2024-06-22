@@ -1,18 +1,17 @@
 { config, pkgs, ... }:
 {
-  age.secrets.restic_repository.file = ../../secrets/restic_repository.age;
-  age.secrets.restic_repository_password.file = ../../secrets/restic_repository_password.age;
 
   services.restic.backups = {
-    remote = {
+    backup = {
       backupCleanupCommand = ''
-        ${pkgs.runitor}/bin/runitor -uuid $(cat ${config.age.secrets.hc_backup.path}) -- echo backup success.
+        ${pkgs.runitor}/bin/runitor -uuid $(cat ${config.age.secrets.restic_hc_uuid.path}) -- echo backup success.
       '';
       exclude = [
         "/var/cache"
         "/home/*/.cache"
+        "/var/backup/restic"
+        "/home/*/.vscode-server"
       ];
-      passwordFile = config.age.secrets.restic_repository_password.path;
       paths = [
         "/home"
         "/var/lib"
@@ -22,9 +21,12 @@
       pruneOpts = [
         "--keep-daily 7"
         "--keep-weekly 5"
-        "--keep-monthly 3"
+        "--keep-monthly 1"
       ];
-      repositoryFile = config.age.secrets.restic_repository.path;
+
+      environmentFile = config.age.secrets.restic_environment.path;
+      passwordFile = config.age.secrets.restic_password.path;
+
       timerConfig = {
         OnCalendar = "0/6:00";
         Persistent = true;

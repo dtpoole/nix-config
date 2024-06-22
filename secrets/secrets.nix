@@ -28,4 +28,5 @@ in
   "tailscale_auth_key.age".publicKeys = allUsers ++ allSystems;
   "hope_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.hope ];
   "sparkles_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.sparkles ];
+  "sparkles_hc_restic_uuid.age".publicKeys = allUsers ++ [ systems.sparkles ];
 }
