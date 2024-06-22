@@ -62,6 +62,8 @@
   networking.firewall.enable = true;
   services.openssh.openFirewall = false;
 
+  age.secrets.hc_ping.file = ../../secrets/sparkles_hc_ping_uuid.age;
+
   # restic
   age.secrets.restic_hc_uuid.file = ../../secrets/sparkles_hc_restic_uuid.age;
   age.secrets.restic_repository.file = ../../secrets/restic_cloud_repository.age;
