@@ -13,8 +13,8 @@
       ../common/healthchecks-ping.nix
       ../common/tailscale.nix
       ../common/zram.nix
-      #../common/restic-backups-local.nix
-      ./restic-backups-cloud.nix
+      ../common/restic-backups.nix
+      #./restic-backups-cloud.nix
       ../common/postgres.nix
       ../common/netdata.nix
       ./gitea.nix
@@ -62,10 +62,9 @@
   networking.firewall.enable = true;
   services.openssh.openFirewall = false;
 
-  age.secrets.hc_ping.file = ../../secrets/sparkles_hc_ping_uuid.age;
-
-  age.secrets.restic_repository.file = ../../secrets/restic_cloud_repository.age;
-  age.secrets.restic_repository_password.file = ../../secrets/restic_cloud_password.age;
+  # restic
+  age.secrets.restic_hc_uuid.file = ../../secrets/sparkles_hc_restic_uuid.age;
+  age.secrets.restic_password.file = ../../secrets/restic_cloud_password.age;
   age.secrets.restic_environment.file = ../../secrets/restic_cloud_environment.age;
 
 }
