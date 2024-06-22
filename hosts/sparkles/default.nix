@@ -13,8 +13,7 @@
       ../common/healthchecks-ping.nix
       ../common/tailscale.nix
       ../common/zram.nix
-      ../common/restic-backups.nix
-      #./restic-backups-cloud.nix
+      ../common/restic.nix
       ../common/postgres.nix
       ../common/netdata.nix
       ./gitea.nix
