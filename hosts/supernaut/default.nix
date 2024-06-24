@@ -12,7 +12,7 @@
     ../common/postgres.nix
     ../common/healthchecks-ping.nix
     ../common/netdata.nix
-    ../common/restic-backups.nix
+    ../common/restic.nix
     ../common/tailscale.nix
     # ./gitea.nix
     # ./acme.nix
@@ -62,9 +62,16 @@
     allowedTCPPorts = [ 22 80 443 ];
   };
 
-  age.secrets.hc_ping.file = ../../secrets/supernaut_hc_ping_uuid.age;
-  age.secrets.hc_backup.file = ../../secrets/supernaut_hc_backup_uuid.age;
-  age.secrets.vaultwarden_admin_token.file = ../../secrets/supernaut_vaultwarden_admin_token.age;
+  age.secrets = {
+    hc_ping.file = ../../secrets/supernaut_hc_ping_uuid.age;
+    hc_backup.file = ../../secrets/supernaut_hc_backup_uuid.age;
+    vaultwarden_admin_token.file = ../../secrets/supernaut_vaultwarden_admin_token.age;
+
+    "restic/env".file = ../secrets/restic/local/env.age;
+    "restic/repo".file = ../secrets/restic/local/repo.age;
+    "restic/password".file = ../secrets/restic/local/password.age;
+    "restic/hc_uuid".file = ../../secrets/supernaut_hc_restic_uuid.age;
+  };
 
   programs.mosh.enable = true;
 

@@ -16,17 +16,21 @@ in
 {
   "user_password.age".publicKeys = allUsers ++ allSystems;
   "acme_cloudflare_credentials.age".publicKeys = allUsers ++ [ systems.supernaut systems.sparkles systems.hope ];
-  "restic_repository.age".publicKeys = allUsers ++ allSystems;
-  "restic_cloud_repository.age".publicKeys = allUsers ++ [ systems.sparkles systems.hope ];
-  "restic_cloud_environment.age".publicKeys = allUsers ++ [ systems.sparkles systems.hope ];
-  "restic_cloud_password.age".publicKeys = allUsers ++ [ systems.sparkles systems.hope ];
-  "restic_repository_password.age".publicKeys = allUsers ++ allSystems;
   "supernaut_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.supernaut ];
-  "supernaut_hc_backup_uuid.age".publicKeys = allUsers ++ [ systems.supernaut ];
+  "supernaut_hc_restic_uuid".publicKeys = allUsers ++ [ systems.supernaut ];
   "supernaut_vaultwarden_admin_token.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "linkding_password.age".publicKeys = allUsers ++ [ systems.sparkles ];
   "tailscale_auth_key.age".publicKeys = allUsers ++ allSystems;
   "hope_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.hope ];
   "sparkles_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.sparkles ];
   "sparkles_hc_restic_uuid.age".publicKeys = allUsers ++ [ systems.sparkles ];
+
+  "restic/cloud/env.age".publicKeys = allUsers ++ [ systems.sparkles systems.hope ];
+  "restic/cloud/repo.age".publicKeys = allUsers ++ [ systems.sparkles systems.hope ];
+  "restic/cloud/password.age".publicKeys = allUsers ++ [ systems.sparkles systems.hope ];
+
+  "restic/local/env.age".publicKeys = allUsers ++ [ systems.supernaut ];
+  "restic/local/repo.age".publicKeys = allUsers ++ [ systems.supernaut ];
+  "restic/local/password.age".publicKeys = allUsers ++ [ systems.supernaut ];
+
 }

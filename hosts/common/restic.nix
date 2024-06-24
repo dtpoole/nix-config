@@ -4,7 +4,7 @@
   services.restic.backups = {
     daily = {
       backupCleanupCommand = ''
-        ${pkgs.runitor}/bin/runitor -no-start-ping -uuid $(cat ${config.age.secrets.restic_hc_uuid.path}) -- echo backup success.
+        ${pkgs.runitor}/bin/runitor -no-start-ping -uuid $(cat ${config.age.secrets."restic/hc_uuid".path}) -- echo backup success.
       '';
       exclude = [
         "/var/cache"
@@ -24,9 +24,9 @@
         "--keep-monthly 1"
       ];
 
-      environmentFile = config.age.secrets.restic_environment.path;
-      passwordFile = config.age.secrets.restic_password.path;
-      repositoryFile = config.age.secrets.restic_repository.path;
+      environmentFile = config.age.secrets."restic/env".path;
+      passwordFile = config.age.secrets."restic/password".path;
+      repositoryFile = config.age.secrets."restic/repo".path;
 
       timerConfig = {
         OnCalendar = "02:30";
