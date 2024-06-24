@@ -3,8 +3,11 @@
 
   services.restic.backups = {
     backup = {
+      backupPrepareCommand = ''
+        ${pkgs.runitor}/bin/runitor -uuid $(cat ${config.age.secrets.restic_hc_uuid.path}) -- echo backup start.
+      '';
       backupCleanupCommand = ''
-        ${pkgs.runitor}/bin/runitor -uuid $(cat ${config.age.secrets.restic_hc_uuid.path}) -- echo backup success.
+        ${pkgs.runitor}/bin/runitor -no-start-ping -uuid $(cat ${config.age.secrets.restic_hc_uuid.path}) -- echo backup success.
       '';
       exclude = [
         "/var/cache"
