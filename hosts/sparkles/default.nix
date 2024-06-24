@@ -64,9 +64,9 @@
   age.secrets = {
     hc_ping.file = ../../secrets/sparkles_hc_ping_uuid.age;
 
-    "restic/env".file = ../secrets/restic/cloud/env.age;
-    "restic/repo".file = ../secrets/restic/cloud/repo.age;
-    "restic/password".file = ../secrets/restic/cloud/password.age;
+    "restic/env".file = ../../secrets/restic/cloud/env.age;
+    "restic/repo".file = ../../secrets/restic/cloud/repo.age;
+    "restic/password".file = ../../secrets/restic/cloud/password.age;
     "restic/hc_uuid".file = ../../secrets/sparkles_hc_restic_uuid.age;
   };
 }
