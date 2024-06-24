@@ -2,10 +2,7 @@
 {
 
   services.restic.backups = {
-    backup = {
-      backupPrepareCommand = ''
-        ${pkgs.runitor}/bin/runitor -uuid $(cat ${config.age.secrets.restic_hc_uuid.path}) -- echo backup start.
-      '';
+    daily = {
       backupCleanupCommand = ''
         ${pkgs.runitor}/bin/runitor -no-start-ping -uuid $(cat ${config.age.secrets.restic_hc_uuid.path}) -- echo backup success.
       '';
@@ -32,9 +29,9 @@
       repositoryFile = config.age.secrets.restic_repository.path;
 
       timerConfig = {
-        OnCalendar = "daily";
+        OnCalendar = "02:30";
         Persistent = true;
-        RandomizedDelaySec = "30m";
+        RandomizedDelaySec = "10m";
       };
     };
   };
