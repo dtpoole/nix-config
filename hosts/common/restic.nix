@@ -29,9 +29,9 @@
       repositoryFile = config.age.secrets.restic_repository.path;
 
       timerConfig = {
-        OnCalendar = "0/4:00";
+        OnCalendar = "daily";
         Persistent = true;
-        RandomizedDelaySec = "15m";
+        RandomizedDelaySec = "30m";
       };
     };
   };
