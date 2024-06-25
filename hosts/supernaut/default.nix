@@ -64,7 +64,6 @@
 
   age.secrets = {
     hc_ping.file = ../../secrets/supernaut_hc_ping_uuid.age;
-    hc_backup.file = ../../secrets/supernaut_hc_backup_uuid.age;
     vaultwarden_admin_token.file = ../../secrets/supernaut_vaultwarden_admin_token.age;
 
     "restic/repo".file = ../../secrets/restic/local/repo.age;
@@ -73,11 +72,5 @@
   };
 
   programs.mosh.enable = true;
-
-  # restic overrides
-  services.restic.backups.daily = {
-    # backupCleanupCommand = lib.mkForce null;
-    environmentFile = lib.mkForce null;
-  };
 
 }
