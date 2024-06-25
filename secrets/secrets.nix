@@ -29,7 +29,6 @@ in
   "restic/cloud/repo.age".publicKeys = allUsers ++ [ systems.sparkles systems.hope ];
   "restic/cloud/password.age".publicKeys = allUsers ++ [ systems.sparkles systems.hope ];
 
-  "restic/local/env.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "restic/local/repo.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "restic/local/password.age".publicKeys = allUsers ++ [ systems.supernaut ];
 

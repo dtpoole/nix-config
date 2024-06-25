@@ -3,10 +3,11 @@
 
   services.restic.backups = {
     daily = {
-      backupCleanupCommand = if config.age.secrets ? "restic/hc_uuid" then ''
-        ${pkgs.runitor}/bin/runitor -no-start-ping -uuid $(cat ${config.age.secrets."restic/hc_uuid".path}) -- echo backup success.
-      '' else null;
-      
+      backupCleanupCommand =
+        if config.age.secrets ? "restic/hc_uuid" then ''
+          ${pkgs.runitor}/bin/runitor -no-start-ping -uuid $(cat ${config.age.secrets."restic/hc_uuid".path}) -- echo backup success.
+        '' else null;
+
       exclude = [
         "/var/cache"
         "/home/*/.cache"

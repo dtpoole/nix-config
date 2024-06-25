@@ -14,9 +14,6 @@
     ../common/netdata.nix
     ../common/restic.nix
     ../common/tailscale.nix
-    # ./gitea.nix
-    # ./acme.nix
-    # ./nginx.nix
     ./vaultwarden.nix
 
     inputs.agenix.nixosModules.default

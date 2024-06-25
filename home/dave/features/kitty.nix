@@ -21,12 +21,12 @@ in
       tab_bar_edge = "top";
       tab_bar_style = "powerline";
       tab_powerline_style = "round";
-      tab_activity_symbol =  "◆";
+      tab_activity_symbol = "◆";
       tab_title_template = "{fmt.fg.white}{bell_symbol}{activity_symbol} {fmt.fg.tab}{title}";
 
       active_tab_font_style = "bold";
       inactive_tab_font_style = "normal";
-      
+
       enable_audio_bell = "no";
       visual_bell_duration = "0.5";
 

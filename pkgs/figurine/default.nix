@@ -6,7 +6,7 @@ let
 in
 
 pkgs.buildGoModule {
-  name = name;
+  inherit name;
   src = pkgs.fetchFromGitHub {
     owner = "arsham";
     repo = name;
@@ -15,6 +15,14 @@ pkgs.buildGoModule {
   };
 
   vendorHash = "sha256-mLdAaYkQH2RHcZft27rDW1AoFCWKiUZhh2F0DpqZELw=";
+
+  ldflags = [
+    "-s"
+    "-w"
+    "-X main.version=${version}"
+    #  "-X main.currentSha=${src.rev}"
+  ];
+
 
   meta = with lib; {
     homepage = "https://github.com/arsham/figurine";
