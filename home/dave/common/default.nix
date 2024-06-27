@@ -199,10 +199,10 @@ in
     pre-commit
     ripgrep
     shellcheck
+    statix
     sqlite
     tree
     unzip
-    vivid
   ];
 
 }
