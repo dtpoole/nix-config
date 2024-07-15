@@ -16,11 +16,11 @@
 
     shellAliases = {
       ln = "ln -v";
-      ls = "ls --color=auto";
-      l = "ls";
-      la = "ls -lAh";
-      ll = "ls -lh";
-      lt = "ls -lt";
+      ls = "eza";
+      l = "eza";
+      la = "eza -la";
+      ll = "eza -l";
+      lt = "exa -snew -rl";
       grep = "grep --color=auto";
       cls = "clear";
       h = "history -E";
