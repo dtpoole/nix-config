@@ -182,16 +182,16 @@ in
     dua
     duf
     du-dust
+    eza
     fd
     figurine
     file
+    gitui
     gnumake
-    hyperfine
     jq
     just
     keychain
     mosh
-    neofetch
     nil
     nixpkgs-fmt
     nmap
