@@ -13,6 +13,7 @@
       ../common/tailscale.nix
       ../common/healthchecks-ping.nix
       ../common/zram.nix
+      ../../nixosModules
       # ../common/postgres.nix
       # ./acme.nix
       # ./nginx.nix
@@ -69,5 +70,7 @@
     dates = "02:00";
     randomizedDelaySec = "45min";
   };
+
+  netdata.enable = true;
 
 }

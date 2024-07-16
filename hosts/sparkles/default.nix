@@ -15,7 +15,7 @@
       ../common/zram.nix
       ../common/restic.nix
       ../common/postgres.nix
-      ../common/netdata.nix
+      ../../nixosModules
       ./gitea.nix
       ./acme.nix
       ./nginx.nix
@@ -69,4 +69,6 @@
     "restic/password".file = ../../secrets/restic/cloud/password.age;
     "restic/hc_uuid".file = ../../secrets/sparkles_hc_restic_uuid.age;
   };
+
+  netdata.enable = true;
 }
