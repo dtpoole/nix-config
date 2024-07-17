@@ -8,8 +8,7 @@
   imports =
     [
       ./hardware-configuration.nix
-      ../common
-      ../common/desktop.nix
+      ../../nixosModules
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
@@ -37,5 +36,7 @@
   services.xrdp.enable = true;
 
   hardware.cpu.intel.updateMicrocode = true;
+
+  desktop.enable = true;
 
 }
