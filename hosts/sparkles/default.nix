@@ -7,14 +7,7 @@
 
   imports =
     [
-      # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../common
-      ../common/healthchecks-ping.nix
-      ../common/tailscale.nix
-      ../common/zram.nix
-      ../common/restic.nix
-      ../common/postgres.nix
       ../../nixosModules
       ./gitea.nix
       ./acme.nix
@@ -70,5 +63,11 @@
     "restic/hc_uuid".file = ../../secrets/sparkles_hc_restic_uuid.age;
   };
 
+  healthchecks-ping.enable = true;
   netdata.enable = true;
+  postgres.enable = true;
+  restic.enable = true;
+  tailscale.enable = true;
+  zram.enable = true;
+
 }
