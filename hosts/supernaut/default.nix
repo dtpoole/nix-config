@@ -3,17 +3,12 @@
 {
 
   networking.hostName = "supernaut";
-
   nixpkgs.hostPlatform = "x86_64-linux";
 
   imports = [
     (modulesPath + "/virtualisation/lxc-container.nix")
-    ../common
-    ../common/postgres.nix
-    ../common/healthchecks-ping.nix
-    ../common/netdata.nix
-    ../common/restic.nix
-    ../common/tailscale.nix
+
+    ../../nixosModules
     ./vaultwarden.nix
 
     inputs.agenix.nixosModules.default
@@ -69,5 +64,10 @@
   };
 
   programs.mosh.enable = true;
+
+  healthchecks-ping.enable = true;
+  netdata.enable = true;
+  restic.enable = true;
+  tailscale.enable = true;
 
 }
