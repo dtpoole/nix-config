@@ -7,16 +7,8 @@
 
   imports =
     [
-      # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../common
-      ../common/tailscale.nix
-      ../common/healthchecks-ping.nix
-      ../common/zram.nix
       ../../nixosModules
-      # ../common/postgres.nix
-      # ./acme.nix
-      # ./nginx.nix
 
       inputs.agenix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
@@ -72,5 +64,8 @@
   };
 
   netdata.enable = true;
+  tailscale.enable = true;
+  zram.enable = true;
+  healthchecks-ping.enable = true;
 
 }
