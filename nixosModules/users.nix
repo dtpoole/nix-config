@@ -6,7 +6,7 @@
 
   config = lib.mkIf config.users.enable {
 
-    age.secrets.user_password.file = ../../secrets/user_password.age;
+    age.secrets.user_password.file = ../secrets/user_password.age;
 
     users.users.dave = {
       isNormalUser = true;
