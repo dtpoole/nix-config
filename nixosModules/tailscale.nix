@@ -11,7 +11,7 @@ in
 
   config = lib.mkIf config.tailscale.enable {
 
-    age.secrets.tailscale_auth_key.file = ../../secrets/tailscale_auth_key.age;
+    age.secrets.tailscale_auth_key.file = ../secrets/tailscale_auth_key.age;
 
     services.tailscale = {
       enable = true;
