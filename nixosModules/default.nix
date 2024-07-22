@@ -1,6 +1,7 @@
 { pkgs, lib, ... }: {
   imports =
     [
+      ./desktop.nix
       ./healthchecks-ping.nix
       ./netdata.nix
       ./postgres.nix
