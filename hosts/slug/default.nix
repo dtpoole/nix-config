@@ -1,5 +1,3 @@
-{ inputs, outputs, ... }:
-
 {
 
   networking.hostName = "slug";
@@ -9,17 +7,6 @@
     [
       ./hardware-configuration.nix
       ../../nixosModules
-
-      inputs.agenix.nixosModules.default
-      inputs.home-manager.nixosModules.home-manager
-      {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          users.dave = import ../../home/dave;
-          extraSpecialArgs = { inherit outputs; };
-        };
-      }
     ];
 
   # Bootloader.

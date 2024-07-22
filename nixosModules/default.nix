@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, inputs, outputs, ... }: {
   imports =
     [
       ./desktop.nix
@@ -10,6 +10,17 @@
       ./tailscale.nix
       ./users.nix
       ./zram.nix
+
+      inputs.agenix.nixosModules.default
+      inputs.home-manager.nixosModules.home-manager
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.dave = import ../home/dave;
+          extraSpecialArgs = { inherit outputs; };
+        };
+      }
     ];
 
   sshd.enable = lib.mkDefault true;
@@ -29,7 +40,14 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+    ];
+    config = {
+      allowUnfree = true;
+    };
+  };
 
   nix = {
     gc = {

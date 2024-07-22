@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, modulesPath, ... }:
+{ lib, modulesPath, ... }:
 
 {
 
@@ -7,20 +7,8 @@
 
   imports = [
     (modulesPath + "/virtualisation/lxc-container.nix")
-
     ../../nixosModules
     ./vaultwarden.nix
-
-    inputs.agenix.nixosModules.default
-    inputs.home-manager.nixosModules.home-manager
-    {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        users.dave = import ../../home/dave;
-        extraSpecialArgs = { inherit outputs; };
-      };
-    }
   ];
 
   # Supress systemd units that don't work because of LXC
@@ -35,15 +23,6 @@
     enable = lib.mkForce true;
     wantedBy = [ "getty.target" ]; # to start at boot
     serviceConfig.Restart = "always"; # restart when session is closed
-  };
-
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-    ];
-    config = {
-      allowUnfree = true;
-    };
   };
 
   networking.enableIPv6 = true;

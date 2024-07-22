@@ -1,5 +1,3 @@
-{ inputs, outputs, ... }:
-
 {
 
   networking.hostName = "sparkles";
@@ -14,17 +12,6 @@
       ./nginx.nix
       ./it-tools.nix
       ./linkding.nix
-
-      inputs.agenix.nixosModules.default
-      inputs.home-manager.nixosModules.home-manager
-      {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          users.dave = import ../../home/dave;
-          extraSpecialArgs = { inherit outputs; };
-        };
-      }
     ];
 
   boot.loader.grub.enable = true;
