@@ -10,7 +10,7 @@ in
     settings = {
 
       font_family = "JetBrains Mono";
-      font_size = if isDarwin then "12.0" else "10.0";
+      font_size = if isDarwin then "13.0" else "10.0";
 
       # Window layout
       # hide_window_decorations = "titlebar-only";
