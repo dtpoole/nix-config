@@ -52,7 +52,6 @@
     randomizedDelaySec = "45min";
   };
 
-  netdata.enable = true;
   tailscale.enable = true;
   zram.enable = true;
   healthchecks-ping.enable = true;
