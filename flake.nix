@@ -14,7 +14,12 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
-    agenix.url = "github:ryantm/agenix";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.darwin.follows = "nixpkgs-darwin";
+      inputs.home-manager.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs:
