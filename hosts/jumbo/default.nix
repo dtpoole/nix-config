@@ -9,6 +9,7 @@
     [
       ./hardware-configuration.nix
       ../../nixosModules
+      ./containers.nix
     ];
 
   boot.tmp.cleanOnBoot = true;

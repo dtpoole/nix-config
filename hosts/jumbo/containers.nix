@@ -1,6 +1,8 @@
 { config, ... }:
 {
 
+  age.secrets.eplustv_env.file = ../../secrets/eplustv_env.age;
+
   virtualisation.oci-containers.containers = {
     "eplustv" = {
       autoStart = true;
