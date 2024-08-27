@@ -34,4 +34,6 @@ in
   "restic/local/repo.age".publicKeys = allUsers ++ [ systems.supernaut ];
   "restic/local/password.age".publicKeys = allUsers ++ [ systems.supernaut ];
 
+  "eplustv_env.age".publicKeys = allUsers ++ [ systems.jumbo ];
+
 }
