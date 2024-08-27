@@ -60,6 +60,11 @@
           specialArgs = { inherit inputs outputs; };
         };
 
+        jumbo = lib.nixosSystem {
+          modules = [ ./hosts/jumbo ];
+          specialArgs = { inherit inputs outputs; };
+        };
+
         sparkles = lib.nixosSystem {
           modules = [ ./hosts/sparkles ];
           specialArgs = { inherit inputs outputs; };

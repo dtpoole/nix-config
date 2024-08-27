@@ -5,6 +5,7 @@ let
     supernaut = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICngfzwaBuOLv8QUeK7vvTbffdSQlLoOVEzyo7kHM9d0";
     hope = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN9h+cgPBruVyOiuBz0sblAghDg9g9B1ecGUhbWP+FkZ";
     sparkles = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIItEj1cbmZqIyGZgLfwIb3jmr7byFfTWrMf4FevPsxzn";
+    jumbo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG+jRGsr5gDvuAZVInvp6IuLeV7lRD5u8GTbGNmDRa5j";
   };
   users = {
     dave_mini = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDL8vV4xFbHiAkqYOSgwT2hdTVtnXqH5yC2mZEsQUnuJ";
@@ -22,6 +23,7 @@ in
   "linkding_password.age".publicKeys = allUsers ++ [ systems.sparkles ];
   "tailscale_auth_key.age".publicKeys = allUsers ++ allSystems;
   "hope_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.hope ];
+  "jumbo_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.jumbo ];
   "sparkles_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.sparkles ];
   "sparkles_hc_restic_uuid.age".publicKeys = allUsers ++ [ systems.sparkles ];
 
