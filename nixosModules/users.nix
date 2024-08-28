@@ -12,8 +12,8 @@
       isNormalUser = true;
       home = "/home/dave";
       group = "users";
-      description = "David Poole";
-      extraGroups = [ "docker" "wheel" ];
+      description = lib.mkForce "David Poole";
+      extraGroups = [ "docker" "wheel" "networkmanager" ];
       hashedPasswordFile = config.age.secrets.user_password.path;
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [
