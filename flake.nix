@@ -69,6 +69,11 @@
           modules = [ ./hosts/sparkles ];
           specialArgs = { inherit inputs outputs; };
         };
+
+        vm1 = lib.nixosSystem {
+          modules = [ ./hosts/vm1 ];
+          specialArgs = { inherit inputs outputs; };
+        };
       };
 
       darwinConfigurations = {
