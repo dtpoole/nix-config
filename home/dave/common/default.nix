@@ -191,6 +191,7 @@ in
     jq
     just
     keychain
+    mc
     mosh
     nil
     nixpkgs-fmt
@@ -201,7 +202,6 @@ in
     shellcheck
     statix
     sqlite
-    tree
     unzip
   ];
 

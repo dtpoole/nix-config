@@ -20,7 +20,8 @@
       l = "eza";
       la = "eza -la";
       ll = "eza -l";
-      lt = "exa -snew -rl";
+      lt = "eza -snew -rl";
+      tree = "eza --tree";
       grep = "grep --color=auto";
       cls = "clear";
       h = "history -E";
@@ -56,7 +57,7 @@
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
       fi
 
-      path+=(/usr/local/bin /usr/local/sbin)
+      path+=($HOME/.cargo/bin /usr/local/bin /usr/local/sbin)
 
       fpath+=( $ZDOTDIR/functions )
       autoload -Uz ssh
