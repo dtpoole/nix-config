@@ -7,7 +7,7 @@
 
   imports = [
     (modulesPath + "/virtualisation/lxc-container.nix")
-    ../../nixosModules
+    ../../modules/nixos
     ./vaultwarden.nix
   ];
 

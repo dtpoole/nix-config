@@ -8,7 +8,7 @@
   imports =
     [
       ./hardware-configuration.nix
-      ../../nixosModules
+      ../../modules/nixos
       ./containers.nix
     ];
 

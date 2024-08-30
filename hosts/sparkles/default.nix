@@ -6,7 +6,7 @@
   imports =
     [
       ./hardware-configuration.nix
-      ../../nixosModules
+      ../../modules/nixos
       ./gitea.nix
       ./acme.nix
       ./nginx.nix
