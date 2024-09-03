@@ -40,18 +40,7 @@
 
   age.secrets.hc_ping.file = ../../secrets/hope_hc_ping_uuid.age;
 
-  system.autoUpgrade = {
-    enable = true;
-    flake = inputs.self.outPath;
-    flags = [
-      "--update-input"
-      "nixpkgs"
-      "-L" # print build logs
-    ];
-    dates = "02:00";
-    randomizedDelaySec = "45min";
-  };
-
+  autoupgrade.enable = true;
   tailscale.enable = true;
   zram.enable = true;
   healthchecks-ping.enable = true;

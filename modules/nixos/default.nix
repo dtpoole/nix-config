@@ -1,6 +1,7 @@
 { pkgs, lib, inputs, outputs, ... }: {
   imports =
     [
+      ./autoupgrade.nix
       ./desktop.nix
       ./healthchecks-ping.nix
       ./netdata.nix
