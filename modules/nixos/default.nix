@@ -42,9 +42,6 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-    ];
     config = {
       allowUnfree = true;
     };

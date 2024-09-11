@@ -25,9 +25,6 @@ in
   users.users.dave.home = "/Users/dave";
 
   nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-    ];
     config = {
       allowUnfree = true;
     };

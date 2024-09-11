@@ -14,11 +14,14 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
+
     agenix = {
       url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.darwin.follows = "nixpkgs-darwin";
-      inputs.home-manager.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        darwin.follows = "nixpkgs-darwin";
+        home-manager.follows = "home-manager";
+      };
     };
   };
 
@@ -26,23 +29,21 @@
     let
       inherit (self) outputs;
 
-      lib = nix-darwin.lib // nixpkgs.lib // home-manager.lib;
-      systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
-      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-
-      pkgsFor = lib.genAttrs systems (system: import nixpkgs {
-        inherit system;
-        overlays = [
-          outputs.overlays.additions
-        ];
-        config.allowUnfree = true;
+      lib = nixpkgs.lib.extend (final: prev: {
+        inherit (nix-darwin.lib) darwinSystem;
+        inherit (home-manager.lib) homeManagerConfiguration;
       });
+
+      systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      forEachSystem = lib.genAttrs systems;
+
+      pkgsFor = forEachSystem (system: nixpkgs.legacyPackages.${system});
 
     in
     {
-      overlays = import ./overlays { inherit inputs outputs; };
-      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
-      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+
+      devShells = forEachSystem (system: import ./shell.nix { pkgs = pkgsFor.${system}; });
+      formatter = forEachSystem (system: pkgsFor.${system}.nixpkgs-fmt);
 
       nixosConfigurations = {
         slug = lib.nixosSystem {
