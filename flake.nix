@@ -44,6 +44,17 @@
         specialArgs = { inherit inputs outputs; };
       };
 
+      mkDarwinConfiguration = hostname: nix-darwin.lib.darwinSystem {
+        modules = [ (import ./hosts/${hostname}) ];
+        specialArgs = { inherit inputs outputs; };
+      };
+
+      mkHomeConfiguration = username: host: home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgsFor.x86_64-linux;
+        modules = [ (import ./home/${username}) ];
+        extraSpecialArgs = { inherit inputs outputs; };
+      };
+
     in
     {
 
@@ -56,44 +67,13 @@
       );
 
       darwinConfigurations = {
-        mini = lib.darwinSystem {
-          modules = [ ./hosts/mini ];
-          specialArgs = { inherit inputs outputs; };
-        };
+        mini = mkDarwinConfiguration "mini";
       };
 
-      homeConfigurations = {
-        "dave@PF2N1Y5V" = lib.homeManagerConfiguration {
-          modules = [ ./home/dave ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-
-        "dave@north" = lib.homeManagerConfiguration {
-          modules = [ ./home/dave ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-
-        "dave@soma" = lib.homeManagerConfiguration {
-          modules = [ ./home/dave ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-
-        "dave@ram" = lib.homeManagerConfiguration {
-          modules = [ ./home/dave ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-
-        "dave@sapphire" = lib.homeManagerConfiguration {
-          modules = [ ./home/dave ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-
-      };
+      homeConfigurations = builtins.listToAttrs (map
+        (host: { name = "dave@${host}"; value = mkHomeConfiguration "dave" host; })
+        [ "PF2N1Y5V" "north" "soma" "ram" "sapphire" ]
+      );
 
     };
 }
