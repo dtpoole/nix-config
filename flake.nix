@@ -39,43 +39,21 @@
 
       pkgsFor = forEachSystem (system: nixpkgs.legacyPackages.${system});
 
+      mkNixosConfiguration = hostname: nixpkgs.lib.nixosSystem {
+        modules = [ (import ./hosts/${hostname}) ];
+        specialArgs = { inherit inputs outputs; };
+      };
+
     in
     {
 
       devShells = forEachSystem (system: import ./shell.nix { pkgs = pkgsFor.${system}; });
       formatter = forEachSystem (system: pkgsFor.${system}.nixpkgs-fmt);
 
-      nixosConfigurations = {
-        slug = lib.nixosSystem {
-          modules = [ ./hosts/slug ];
-          specialArgs = { inherit inputs outputs; };
-        };
-
-        supernaut = lib.nixosSystem {
-          modules = [ ./hosts/supernaut ];
-          specialArgs = { inherit inputs outputs; };
-        };
-
-        hope = lib.nixosSystem {
-          modules = [ ./hosts/hope ];
-          specialArgs = { inherit inputs outputs; };
-        };
-
-        jumbo = lib.nixosSystem {
-          modules = [ ./hosts/jumbo ];
-          specialArgs = { inherit inputs outputs; };
-        };
-
-        sparkles = lib.nixosSystem {
-          modules = [ ./hosts/sparkles ];
-          specialArgs = { inherit inputs outputs; };
-        };
-
-        vm1 = lib.nixosSystem {
-          modules = [ ./hosts/vm1 ];
-          specialArgs = { inherit inputs outputs; };
-        };
-      };
+      nixosConfigurations = builtins.listToAttrs (map
+        (hostname: { name = hostname; value = mkNixosConfiguration hostname; })
+        [ "slug" "supernaut" "hope" "jumbo" "sparkles" "vm1" ]
+      );
 
       darwinConfigurations = {
         mini = lib.darwinSystem {
