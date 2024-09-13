@@ -72,7 +72,7 @@
 
       homeConfigurations = builtins.listToAttrs (map
         (host: { name = "dave@${host}"; value = mkHomeConfiguration "dave" host; })
-        [ "PF2N1Y5V" "north" "soma" "ram" "sapphire" ]
+        [ "PF2N1Y5V" "soma" "ram" "sapphire" ]
       );
 
     };
