@@ -114,9 +114,9 @@ in
         hostname = "10.10.10.39";
         user = "root";
       };
-      "north" = {
-        hostname = "north.poole.foo";
-        port = 5829;
+      "minecraft" = {
+        hostname = "10.10.10.145";
+        user = "root";
       };
       "soma" = {
         hostname = "soma.poole.foo";
