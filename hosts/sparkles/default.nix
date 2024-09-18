@@ -12,6 +12,15 @@
       ./nginx.nix
       ./it-tools.nix
       ./linkding.nix
+      inputs.home-manager.nixosModules.home-manager
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.dave = import ../../modules/home-manager;
+          extraSpecialArgs = { inherit outputs; };
+        };
+      }
     ];
 
   boot.loader.grub.enable = true;
