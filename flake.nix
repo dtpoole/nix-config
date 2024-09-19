@@ -52,7 +52,7 @@
       mkHomeConfiguration = username: host: home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.x86_64-linux;
         modules = [ (import ./home/${username}) ];
-        extraSpecialArgs = { inherit inputs outputs; };
+        extraSpecialArgs = { inherit inputs outputs username; };
       };
 
     in

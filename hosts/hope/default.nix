@@ -1,5 +1,7 @@
 { inputs, ... }:
-
+let
+  username = "dave";
+in
 {
 
   networking.hostName = "hope";
@@ -9,6 +11,15 @@
     [
       ./hardware-configuration.nix
       ../../modules/nixos
+      inputs.home-manager.nixosModules.home-manager
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.${username} = import ../../modules/home-manager;
+          extraSpecialArgs = { inherit username; };
+        };
+      }
     ];
 
   boot.loader.grub.enable = true;

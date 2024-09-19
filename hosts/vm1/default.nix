@@ -2,14 +2,24 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-
+{ inputs, config, pkgs, ... }:
+let
+  username = "dave";
+in
 {
   imports =
-    [
-      # Include the results of the hardware scan.
+    [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../modules/nixos
+      ../../modules/nixosModules
+      inputs.home-manager.nixosModules.home-manager
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.${username} = import ../../modules/home-manager;
+          extraSpecialArgs = { inherit username; };
+        };
+      }
     ];
 
   # Bootloader.
@@ -88,7 +98,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
-      #  thunderbird
+    #  thunderbird
     ];
   };
 
@@ -96,13 +106,13 @@
   programs.firefox.enable = true;
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  #nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #  wget
     pciutils
     clinfo
     glxinfo
@@ -123,7 +133,7 @@
   # services.openssh.enable = true;
 
   services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "startplasma-x11";
+services.xrdp.defaultWindowManager = "startplasma-x11";
 
   services.sunshine = {
     enable = true;
@@ -133,8 +143,8 @@
 
   };
 
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true; # enable copy and paste between host and guest
+services.qemuGuest.enable = true;
+services.spice-vdagentd.enable = true;  # enable copy and paste between host and guest
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

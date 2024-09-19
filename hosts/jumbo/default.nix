@@ -1,5 +1,7 @@
 { inputs, ... }:
-
+let
+  username = "dave";
+in
 {
 
   networking.hostName = "jumbo";
@@ -10,6 +12,15 @@
       ./hardware-configuration.nix
       ../../modules/nixos
       ./containers.nix
+      inputs.home-manager.nixosModules.home-manager
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.dave = import ../../modules/home-manager;
+          extraSpecialArgs = { inherit username; };
+        };
+      }
     ];
 
   boot.tmp.cleanOnBoot = true;

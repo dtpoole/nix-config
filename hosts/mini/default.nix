@@ -2,6 +2,7 @@
 
 let
   unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
+  username = "dave";
 in
 {
 
@@ -15,14 +16,13 @@ in
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
-          users.dave = import ../../home/dave/desktop.nix;
-          extraSpecialArgs = { inherit outputs; };
+          users.${username} = import ../../modules/home-manager/desktop.nix;
+          extraSpecialArgs = { inherit username; };
         };
       }
     ];
 
-
-  users.users.dave.home = "/Users/dave";
+  users.users.${username}.home = "/Users/${username}";
 
   nixpkgs = {
     config = {

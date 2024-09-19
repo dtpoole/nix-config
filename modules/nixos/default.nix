@@ -13,15 +13,6 @@
       ./zram.nix
 
       inputs.agenix.nixosModules.default
-      inputs.home-manager.nixosModules.home-manager
-      {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          users.dave = import ../../home/dave;
-          extraSpecialArgs = { inherit outputs; };
-        };
-      }
     ];
 
   sshd.enable = lib.mkDefault true;
