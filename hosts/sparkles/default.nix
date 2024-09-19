@@ -1,3 +1,7 @@
+{ inputs, ... }:
+let
+  username = "dave";
+in
 {
 
   networking.hostName = "sparkles";
@@ -17,8 +21,8 @@
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
-          users.dave = import ../../modules/home-manager;
-          extraSpecialArgs = { inherit outputs; };
+          users.${username} = import ../../modules/home-manager;
+          extraSpecialArgs = { inherit username; };
         };
       }
     ];
