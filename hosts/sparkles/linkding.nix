@@ -1,4 +1,7 @@
 { config, ... }:
+let
+  version = "1.36.0-plus";
+in
 {
 
   systemd.services."${config.virtualisation.oci-containers.backend}-linkding" = {
@@ -19,7 +22,7 @@
   virtualisation.oci-containers.containers = {
     "linkding" = {
       autoStart = true;
-      image = "sissbruecker/linkding:1.34.0-plus";
+      image = "sissbruecker/linkding:${version}";
       extraOptions = [ "--pull=always" ];
       environmentFiles = [ config.age.secrets.linkding_password.path ];
       environment = {
