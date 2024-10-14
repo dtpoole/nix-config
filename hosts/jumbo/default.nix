@@ -17,7 +17,7 @@ in
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
-          users.dave = import ../../modules/home-manager;
+          users.${username} = import ../../modules/home-manager;
           extraSpecialArgs = { inherit username; };
         };
       }
@@ -53,7 +53,7 @@ in
 
   age.secrets.hc_ping.file = ../../secrets/jumbo_hc_ping_uuid.age;
 
-  autoupgrade.enable = true;
+  autoupgrade.enable = false;
   tailscale.enable = true;
   zram.enable = true;
   healthchecks-ping.enable = true;
