@@ -16,6 +16,7 @@ in
       ./nginx.nix
       ./it-tools.nix
       ./linkding.nix
+      ./searxng.nix
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager = {
@@ -54,6 +55,13 @@ in
   networking.firewall.enable = true;
   services.openssh.openFirewall = false;
 
+  virtualisation.podman.autoPrune = {
+    enable = true;
+    flags = [
+      "--all"
+    ];
+  };
+
   age.secrets = {
     hc_ping.file = ../../secrets/sparkles_hc_ping_uuid.age;
 
@@ -61,6 +69,8 @@ in
     "restic/repo".file = ../../secrets/restic/cloud/repo.age;
     "restic/password".file = ../../secrets/restic/cloud/password.age;
     "restic/hc_uuid".file = ../../secrets/sparkles_hc_restic_uuid.age;
+
+    searxng_secret.file = ./../secrets/searxng_secret.age;
   };
 
   healthchecks-ping.enable = true;
