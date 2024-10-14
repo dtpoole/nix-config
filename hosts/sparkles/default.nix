@@ -70,7 +70,7 @@ in
     "restic/password".file = ../../secrets/restic/cloud/password.age;
     "restic/hc_uuid".file = ../../secrets/sparkles_hc_restic_uuid.age;
 
-    searxng_secret.file = ./../secrets/searxng_secret.age;
+    searxng_secret.file = ../../secrets/searxng_secret.age;
   };
 
   healthchecks-ping.enable = true;
