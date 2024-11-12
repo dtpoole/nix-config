@@ -1,7 +1,4 @@
-{ config, ... }:
-
-{
-
+{config, ...}: {
   age.secrets.acme_credentials.file = ../../secrets/acme_cloudflare_credentials.age;
 
   security.acme = {
@@ -15,10 +12,9 @@
     acceptTerms = true;
     certs = {
       "supernaut.poole.foo" = {
-        extraDomainNames = [ "*.supernaut.poole.foo" ];
+        extraDomainNames = ["*.supernaut.poole.foo"];
       };
-      "vault.poole.fun" = { };
+      "vault.poole.fun" = {};
     };
   };
-
 }

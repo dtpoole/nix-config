@@ -1,9 +1,11 @@
-{ inputs, lib, modulesPath, ... }:
-let
-  username = "dave";
-in
 {
-
+  inputs,
+  lib,
+  modulesPath,
+  ...
+}: let
+  username = "dave";
+in {
   networking.hostName = "supernaut";
   nixpkgs.hostPlatform = "x86_64-linux";
 
@@ -17,7 +19,7 @@ in
         useGlobalPkgs = true;
         useUserPackages = true;
         users.${username} = import ../../modules/home-manager;
-        extraSpecialArgs = { inherit username; };
+        extraSpecialArgs = {inherit username;};
       };
     }
   ];
@@ -32,16 +34,16 @@ in
   # start tty0 on serial console
   systemd.services."getty@tty1" = {
     enable = lib.mkForce true;
-    wantedBy = [ "getty.target" ]; # to start at boot
+    wantedBy = ["getty.target"]; # to start at boot
     serviceConfig.Restart = "always"; # restart when session is closed
   };
 
   networking.enableIPv6 = true;
-  networking.nameservers = [ "10.10.10.1" ];
+  networking.nameservers = ["10.10.10.1"];
 
   networking.firewall = {
     enable = false;
-    allowedTCPPorts = [ 22 80 443 ];
+    allowedTCPPorts = [22 80 443];
   };
 
   age.secrets = {
@@ -59,5 +61,4 @@ in
   netdata.enable = true;
   restic.enable = true;
   tailscale.enable = true;
-
 }

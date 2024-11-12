@@ -1,26 +1,27 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ inputs, config, pkgs, ... }:
-let
-  username = "dave";
-in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../modules/nixosModules
-      inputs.home-manager.nixosModules.home-manager
-      {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          users.${username} = import ../../modules/home-manager;
-          extraSpecialArgs = { inherit username; };
-        };
-      }
-    ];
+  inputs,
+  pkgs,
+  ...
+}: let
+  username = "dave";
+in {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/nixosModules
+    inputs.home-manager.nixosModules.home-manager
+    {
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        users.${username} = import ../../modules/home-manager;
+        extraSpecialArgs = {inherit username;};
+      };
+    }
+  ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -95,10 +96,10 @@ in
   users.users.dave = {
     isNormalUser = true;
     description = "dave";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -111,8 +112,8 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
     pciutils
     clinfo
     glxinfo
@@ -133,18 +134,17 @@ in
   # services.openssh.enable = true;
 
   services.xrdp.enable = true;
-services.xrdp.defaultWindowManager = "startplasma-x11";
+  services.xrdp.defaultWindowManager = "startplasma-x11";
 
   services.sunshine = {
     enable = true;
     autoStart = true;
     capSysAdmin = true;
     openFirewall = true;
-
   };
 
-services.qemuGuest.enable = true;
-services.spice-vdagentd.enable = true;  # enable copy and paste between host and guest
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true; # enable copy and paste between host and guest
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -159,5 +159,4 @@ services.spice-vdagentd.enable = true;  # enable copy and paste between host and
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }

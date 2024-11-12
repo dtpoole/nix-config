@@ -1,14 +1,14 @@
 let
   host = "git.poole.foo";
-in
-{
-
+in {
   services.postgresql = {
-    ensureDatabases = [ "gitea" ];
-    ensureUsers = [{
-      name = "gitea";
-      ensureDBOwnership = true;
-    }];
+    ensureDatabases = ["gitea"];
+    ensureUsers = [
+      {
+        name = "gitea";
+        ensureDBOwnership = true;
+      }
+    ];
   };
 
   services.gitea = {
@@ -31,5 +31,4 @@ in
     };
     dump.interval = "daily";
   };
-
 }

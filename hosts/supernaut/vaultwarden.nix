@@ -1,6 +1,4 @@
-{ config, ... }:
-{
-
+{config, ...}: {
   services.vaultwarden = {
     enable = true;
     config = {
@@ -12,5 +10,4 @@
     };
     backupDir = "/var/backup/vaultwarden";
   };
-
 }

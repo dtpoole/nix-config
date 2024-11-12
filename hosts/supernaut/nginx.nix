@@ -1,6 +1,4 @@
-_:
-{
-
+_: {
   services.nginx = {
     enable = true;
 
@@ -22,6 +20,5 @@ _:
     };
   };
 
-  users.users.nginx.extraGroups = [ "acme" ];
-
+  users.users.nginx.extraGroups = ["acme"];
 }
