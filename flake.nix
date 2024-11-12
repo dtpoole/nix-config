@@ -25,55 +25,67 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs:
-    let
-      inherit (self) outputs;
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    nix-darwin,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
 
-      lib = nixpkgs.lib.extend (final: prev: {
-        inherit (nix-darwin.lib) darwinSystem;
-        inherit (home-manager.lib) homeManagerConfiguration;
-      });
+    lib = nixpkgs.lib.extend (final: prev: {
+      inherit (nix-darwin.lib) darwinSystem;
+      inherit (home-manager.lib) homeManagerConfiguration;
+    });
 
-      systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
-      forEachSystem = lib.genAttrs systems;
+    systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+    forEachSystem = lib.genAttrs systems;
 
-      pkgsFor = forEachSystem (system: nixpkgs.legacyPackages.${system});
+    pkgsFor = forEachSystem (system: nixpkgs.legacyPackages.${system});
 
-      mkNixosConfiguration = hostname: nixpkgs.lib.nixosSystem {
-        modules = [ (import ./hosts/${hostname}) ];
-        specialArgs = { inherit inputs outputs; };
+    mkNixosConfiguration = hostname:
+      nixpkgs.lib.nixosSystem {
+        modules = [(import ./hosts/${hostname})];
+        specialArgs = {inherit inputs outputs;};
       };
 
-      mkDarwinConfiguration = hostname: nix-darwin.lib.darwinSystem {
-        modules = [ (import ./hosts/${hostname}) ];
-        specialArgs = { inherit inputs outputs; };
+    mkDarwinConfiguration = hostname:
+      nix-darwin.lib.darwinSystem {
+        modules = [(import ./hosts/${hostname})];
+        specialArgs = {inherit inputs outputs;};
       };
 
-      mkHomeConfiguration = username: host: home-manager.lib.homeManagerConfiguration {
+    mkHomeConfiguration = username: host:
+      home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.x86_64-linux;
-        modules = [ (import ./home/${username}) ];
-        extraSpecialArgs = { inherit inputs outputs username; };
+        modules = [(import ./home/${username})];
+        extraSpecialArgs = {inherit inputs outputs username;};
       };
+  in {
+    devShells = forEachSystem (system: import ./shell.nix {pkgs = pkgsFor.${system};});
+    formatter = forEachSystem (system: pkgsFor.${system}.alejandra);
 
-    in
-    {
+    nixosConfigurations = builtins.listToAttrs (
+      map
+      (hostname: {
+        name = hostname;
+        value = mkNixosConfiguration hostname;
+      })
+      ["slug" "supernaut" "hope" "jumbo" "sparkles" "vm1"]
+    );
 
-      devShells = forEachSystem (system: import ./shell.nix { pkgs = pkgsFor.${system}; });
-      formatter = forEachSystem (system: pkgsFor.${system}.nixpkgs-fmt);
-
-      nixosConfigurations = builtins.listToAttrs (map
-        (hostname: { name = hostname; value = mkNixosConfiguration hostname; })
-        [ "slug" "supernaut" "hope" "jumbo" "sparkles" "vm1" ]
-      );
-
-      darwinConfigurations = {
-        mini = mkDarwinConfiguration "mini";
-      };
-
-      homeConfigurations = builtins.listToAttrs (map
-        (host: { name = "dave@${host}"; value = mkHomeConfiguration "dave" host; })
-        [ "PF2N1Y5V" "soma" "ram" "sapphire" ]
-      );
-
+    darwinConfigurations = {
+      mini = mkDarwinConfiguration "mini";
     };
+
+    homeConfigurations = builtins.listToAttrs (
+      map
+      (host: {
+        name = "dave@${host}";
+        value = mkHomeConfiguration "dave" host;
+      })
+      ["PF2N1Y5V" "soma" "ram" "sapphire"]
+    );
+  };
 }
