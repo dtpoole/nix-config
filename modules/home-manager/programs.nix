@@ -1,11 +1,14 @@
-{ pkgs, lib, config, ... }: {
-
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     programs.enable = lib.mkEnableOption "enables programs";
   };
 
   config = lib.mkIf config.programs.enable {
-
     programs.bat = {
       enable = true;
       config = {
@@ -25,7 +28,7 @@
 
     programs.direnv = {
       enable = true;
-      nix-direnv = { enable = true; };
+      nix-direnv = {enable = true;};
     };
 
     programs.htop = {
@@ -110,6 +113,5 @@
         };
       };
     };
-
   };
 }

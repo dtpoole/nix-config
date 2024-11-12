@@ -1,14 +1,18 @@
-{ config, pkgs, lib, username, ... }: {
-  imports =
-    [
-      ./fzf.nix
-      ./kitty.nix
-      ./neovim
-      ./packages.nix
-      ./programs.nix
-      ./ssh.nix
-      ./zsh.nix
-    ];
+{
+  pkgs,
+  lib,
+  username,
+  ...
+}: {
+  imports = [
+    ./fzf.nix
+    ./kitty.nix
+    ./neovim
+    ./packages.nix
+    ./programs.nix
+    ./ssh-config.nix
+    ./zsh.nix
+  ];
 
   home = {
     username = username;
@@ -32,5 +36,5 @@
   neovim.enable = lib.mkDefault true;
   packages.enable = lib.mkDefault true;
   programs.enable = lib.mkDefault true;
-
+  ssh-config.enable = lib.mkDefault true;
 }

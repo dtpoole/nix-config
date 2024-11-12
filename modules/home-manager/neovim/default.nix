@@ -1,5 +1,9 @@
-{ pkgs, lib, config, ... }: {
-
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     neovim.enable = lib.mkEnableOption "enables neovim";
   };
@@ -15,7 +19,6 @@
       defaultEditor = true;
 
       plugins = with pkgs.vimPlugins; [
-
         {
           plugin = ale;
           type = "lua";
@@ -60,21 +63,22 @@
 
         {
           plugin = nvim-treesitter.withPlugins (
-            plugins: with plugins; [
-              bash
-              dockerfile
-              json
-              lua
-              make
-              markdown
-              nix
-              python
-              sql
-              terraform
-              toml
-              vim
-              yaml
-            ]
+            plugins:
+              with plugins; [
+                bash
+                dockerfile
+                json
+                lua
+                make
+                markdown
+                nix
+                python
+                sql
+                terraform
+                toml
+                vim
+                yaml
+              ]
           );
           type = "lua";
           config = ''
@@ -102,7 +106,6 @@
       ];
 
       extraLuaConfig = builtins.readFile ./init.lua;
-
     };
   };
 }

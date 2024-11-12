@@ -1,11 +1,14 @@
-{ pkgs, lib, config, ... }: {
-
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     desktop.enable = lib.mkEnableOption "enables desktop module";
   };
 
   config = lib.mkIf config.desktop.enable {
-
     fonts = {
       enableDefaultPackages = true;
       packages = with pkgs; [
@@ -63,7 +66,5 @@
       # no need to redefine it in your config for now)
       #media-session.enable = true;
     };
-
   };
-
 }

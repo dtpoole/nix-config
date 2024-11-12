@@ -1,5 +1,8 @@
-{ lib, config, ... }: {
-
+{
+  lib,
+  config,
+  ...
+}: {
   options = {
     zram.enable = lib.mkEnableOption "enables zram";
   };
@@ -11,8 +14,6 @@
       memoryPercent = 75;
     };
 
-    boot.kernel.sysctl = { "vm.swappiness" = 25; };
-
+    boot.kernel.sysctl = {"vm.swappiness" = 25;};
   };
-
 }

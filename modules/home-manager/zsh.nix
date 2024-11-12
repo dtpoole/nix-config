@@ -1,11 +1,14 @@
-{ pkgs, lib, config, ... }: {
-
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     zsh.enable = lib.mkEnableOption "enables zsh";
   };
 
   config = lib.mkIf config.zsh.enable {
-
     programs.zsh = {
       enable = true;
 
@@ -88,7 +91,6 @@
             ${pkgs.figurine}/bin/figurine -f Rectangles.flf ''${HOST%%.*}
         fi
       '';
-
     };
 
     xdg.configFile."zsh/functions/ssh".text = ''
@@ -101,5 +103,4 @@
       }
     '';
   };
-
 }

@@ -1,16 +1,17 @@
-{ pkgs, lib, config, inputs, ... }:
-
-let
-  unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
-in
 {
-
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}: let
+  unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
+in {
   options = {
     tailscale.enable = lib.mkEnableOption "enables tailscale";
   };
 
   config = lib.mkIf config.tailscale.enable {
-
     age.secrets.tailscale_auth_key.file = ../../secrets/tailscale_auth_key.age;
 
     services.tailscale = {
@@ -21,11 +22,10 @@ in
 
     networking = {
       firewall = {
-        trustedInterfaces = [ "tailscale0" ]; # Tell the firewall to implicitly trust packets routed over Tailscale
+        trustedInterfaces = ["tailscale0"]; # Tell the firewall to implicitly trust packets routed over Tailscale
         checkReversePath = "loose";
       };
-      nameservers = [ "100.100.100.100" ];
+      nameservers = ["100.100.100.100"];
     };
   };
-
 }

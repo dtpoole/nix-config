@@ -1,5 +1,4 @@
-{ config, ... }: {
-
+{config, ...}: {
   # WIP
 
   services.prometheus = {
@@ -9,22 +8,25 @@
     exporters = {
       node = {
         port = 4051;
-        enabledCollectors = [ "systemd" ];
+        enabledCollectors = ["systemd"];
         enable = true;
       };
     };
 
     # ingest the published nodes
-    scrapeConfigs = [{
-      job_name = "nodes";
-      static_configs = [{
-        targets = [
-          "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
+    scrapeConfigs = [
+      {
+        job_name = "nodes";
+        static_configs = [
+          {
+            targets = [
+              "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
+            ];
+          }
         ];
-      }];
-    }];
+      }
+    ];
   };
-
 
   services.loki = {
     enable = true;
@@ -51,16 +53,18 @@
       };
 
       schema_config = {
-        configs = [{
-          from = "2022-06-06";
-          store = "boltdb-shipper";
-          object_store = "filesystem";
-          schema = "v11";
-          index = {
-            prefix = "index_";
-            period = "24h";
-          };
-        }];
+        configs = [
+          {
+            from = "2022-06-06";
+            store = "boltdb-shipper";
+            object_store = "filesystem";
+            schema = "v11";
+            index = {
+              prefix = "index_";
+              period = "24h";
+            };
+          }
+        ];
       };
 
       storage_config = {
@@ -102,7 +106,6 @@
     };
   };
 
-
   services.promtail = {
     enable = true;
     configuration = {
@@ -113,23 +116,29 @@
       positions = {
         filename = "/tmp/positions.yaml";
       };
-      clients = [{
-        url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
-      }];
-      scrape_configs = [{
-        job_name = "journal";
-        journal = {
-          max_age = "12h";
-          labels = {
-            job = "systemd-journal";
-            host = "crunch";
+      clients = [
+        {
+          url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
+        }
+      ];
+      scrape_configs = [
+        {
+          job_name = "journal";
+          journal = {
+            max_age = "12h";
+            labels = {
+              job = "systemd-journal";
+              host = "crunch";
+            };
           };
-        };
-        relabel_configs = [{
-          source_labels = [ "__journal__systemd_unit" ];
-          target_label = "unit";
-        }];
-      }];
+          relabel_configs = [
+            {
+              source_labels = ["__journal__systemd_unit"];
+              target_label = "unit";
+            }
+          ];
+        }
+      ];
     };
     # extraFlags
   };
@@ -173,5 +182,4 @@
     addSSL = true;
     useACMEHost = "crunch.poole.foo";
   };
-
 }

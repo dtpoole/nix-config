@@ -1,5 +1,9 @@
-{ pkgs, lib, config, ... }: {
-
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     postgres.enable = lib.mkEnableOption "enables postgres";
   };
@@ -25,5 +29,4 @@
       backupAll = true;
     };
   };
-
 }

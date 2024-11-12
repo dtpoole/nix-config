@@ -1,13 +1,16 @@
-{ pkgs, lib, config, ... }: {
-
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     healthchecks-ping.enable = lib.mkEnableOption "enables healthchecks ping";
   };
 
   config = lib.mkIf config.healthchecks-ping.enable {
-
     systemd.timers."healthchecks-ping" = {
-      wantedBy = [ "timers.target" ];
+      wantedBy = ["timers.target"];
       timerConfig = {
         OnBootSec = "5m";
         OnUnitActiveSec = "5m";
@@ -25,6 +28,5 @@
         User = "root";
       };
     };
-
   };
 }

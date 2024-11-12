@@ -1,5 +1,9 @@
-{ pkgs, lib, config, ... }: {
-
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     fzf.enable = lib.mkEnableOption "enables fzf";
   };
@@ -10,7 +14,7 @@
       enableZshIntegration = true;
       changeDirWidgetCommand = "${pkgs.fd} --type d --hidden --follow --exclude .git";
       defaultCommand = "${pkgs.fd} --type f --hidden --follow --exclude .git";
-      defaultOptions = [ "--layout=reverse" "--info=inline" "--height=60%" "--multi" ];
+      defaultOptions = ["--layout=reverse" "--info=inline" "--height=60%" "--multi"];
 
       colors = {
         fg = "#e5e9f0";

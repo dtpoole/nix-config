@@ -1,5 +1,8 @@
-{ lib, config, ... }: {
-
+{
+  lib,
+  config,
+  ...
+}: {
   options = {
     netdata.enable = lib.mkEnableOption "enables netdata";
   };
@@ -21,5 +24,4 @@
       };
     };
   };
-
 }

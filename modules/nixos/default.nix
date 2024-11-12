@@ -1,23 +1,27 @@
-{ pkgs, lib, inputs, outputs, ... }: {
-  imports =
-    [
-      ./autoupgrade.nix
-      ./desktop.nix
-      ./healthchecks-ping.nix
-      ./netdata.nix
-      ./postgres.nix
-      ./restic.nix
-      ./sshd.nix
-      ./tailscale.nix
-      ./users.nix
-      ./zram.nix
+{
+  pkgs,
+  lib,
+  inputs,
+  outputs,
+  ...
+}: {
+  imports = [
+    ./autoupgrade.nix
+    ./desktop.nix
+    ./healthchecks-ping.nix
+    ./netdata.nix
+    ./postgres.nix
+    ./restic.nix
+    ./sshd.nix
+    ./tailscale.nix
+    ./users.nix
+    ./zram.nix
 
-      inputs.agenix.nixosModules.default
-    ];
+    inputs.agenix.nixosModules.default
+  ];
 
   sshd.enable = lib.mkDefault true;
   users.enable = lib.mkDefault true;
-
 
   boot.loader.systemd-boot.configurationLimit = 5;
 
@@ -46,7 +50,7 @@
     };
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
       warn-dirty = false;
     };
   };

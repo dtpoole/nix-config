@@ -1,10 +1,13 @@
-{ pkgs, lib, config, ... }: {
-
+{
+  lib,
+  config,
+  ...
+}: {
   options = {
-    ssh.enable = lib.mkEnableOption "enables ssh";
+    ssh-config.enable = lib.mkEnableOption "enables ssh";
   };
 
-  config = lib.mkIf config.ssh.enable {
+  config = lib.mkIf config.ssh-config.enable {
     programs.ssh = {
       enable = true;
       extraConfig = ''
@@ -48,9 +51,7 @@
           hostname = "soma.poole.foo";
           port = 5829;
         };
-
       };
     };
   };
-
 }

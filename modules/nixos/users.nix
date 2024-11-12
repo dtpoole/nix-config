@@ -1,11 +1,14 @@
-{ pkgs, lib, config, ... }: {
-
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     users.enable = lib.mkEnableOption "enables users module";
   };
 
   config = lib.mkIf config.users.enable {
-
     age.secrets.user_password.file = ../../secrets/user_password.age;
 
     users.users.dave = {
@@ -13,7 +16,7 @@
       home = "/home/dave";
       group = "users";
       description = lib.mkForce "David Poole";
-      extraGroups = [ "docker" "wheel" "networkmanager" ];
+      extraGroups = ["docker" "wheel" "networkmanager"];
       hashedPasswordFile = config.age.secrets.user_password.path;
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [
@@ -24,7 +27,6 @@
     };
 
     programs.zsh.enable = true;
-    environment.shells = with pkgs; [ zsh ];
-
+    environment.shells = with pkgs; [zsh];
   };
 }

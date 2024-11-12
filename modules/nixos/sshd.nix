@@ -1,11 +1,13 @@
-{ lib, config, ... }: {
-
+{
+  lib,
+  config,
+  ...
+}: {
   options = {
     sshd.enable = lib.mkEnableOption "enables sshd";
   };
 
   config = lib.mkIf config.sshd.enable {
-
     services.openssh = {
       enable = true;
       allowSFTP = true;
@@ -21,7 +23,6 @@
         AllowStreamLocalForwarding no
         AuthenticationMethods publickey
       '';
-
     };
   };
 }

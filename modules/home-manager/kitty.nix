@@ -1,18 +1,23 @@
-{ pkgs, lib, config, ... }: {
-
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     kitty.enable = lib.mkEnableOption "enables kitty";
   };
 
   config = lib.mkIf config.kitty.enable {
-
     programs.kitty = {
       enable = true;
 
       settings = {
-
         font_family = "JetBrains Mono";
-        font_size = if pkgs.stdenv.isDarwin then "13.0" else "10.0";
+        font_size =
+          if pkgs.stdenv.isDarwin
+          then "13.0"
+          else "10.0";
 
         # Window layout
         # hide_window_decorations = "titlebar-only";
@@ -36,11 +41,9 @@
         # macos_thicken_font = "0.75";
 
         shell_integration = "disabled";
-
       };
 
       theme = "Nord";
     };
   };
-
 }

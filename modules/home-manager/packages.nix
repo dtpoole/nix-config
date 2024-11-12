@@ -1,11 +1,14 @@
-{ pkgs, lib, config, ... }: {
-
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     packages.enable = lib.mkEnableOption "enables packages";
   };
 
   config = lib.mkIf config.packages.enable {
-
     home.packages = with pkgs; [
       coreutils
       deadnix
@@ -27,6 +30,7 @@
       mosh
       nil
       nixpkgs-fmt
+      nixd
       nmap
       parallel
       pre-commit
@@ -36,7 +40,5 @@
       sqlite
       unzip
     ];
-
   };
-
 }
