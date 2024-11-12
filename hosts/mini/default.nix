@@ -1,26 +1,26 @@
-{ pkgs, inputs, outputs, ... }:
-
-let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
   username = "dave";
-in
-{
+in {
+  nixpkgs.hostPlatform = "aarch64-darwin";
+  system.stateVersion = 5;
 
-  nixpkgs.hostPlatform = "x86_64-darwin";
-
-  imports =
-    [
-      inputs.agenix.darwinModules.default
-      inputs.home-manager.darwinModules.home-manager
-      {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          users.${username} = import ../../modules/home-manager/desktop.nix;
-          extraSpecialArgs = { inherit username; };
-        };
-      }
-    ];
+  imports = [
+    inputs.agenix.darwinModules.default
+    inputs.home-manager.darwinModules.home-manager
+    {
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        users.${username} = import ../../modules/home-manager/desktop.nix;
+        extraSpecialArgs = {inherit username;};
+      };
+    }
+  ];
 
   users.users.${username}.home = "/Users/${username}";
 
@@ -32,7 +32,7 @@ in
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
       warn-dirty = false;
     };
   };
@@ -47,28 +47,44 @@ in
   # you'll need to enable this so nix-darwin creates a zshrc sourcing needed environment changes
   programs.zsh.enable = true;
 
-  environment.systemPackages = with pkgs; [
+  environment.shells = [pkgs.zsh];
+  environment.systemPackages = [
     unstablePkgs.yt-dlp
-    ansible
-    ansible-lint
-    sshpass
-    terraform
     inputs.agenix.packages.${pkgs.system}.default
+    pkgs.nixd
   ];
 
-  # fonts.fonts = with pkgs; [
-  #   cascadia-code
-  #   fira-code
-  #   fira-code-symbols
-  #   # gelasio
-  #   jetbrains-mono
-  #   #nerdfonts
-  #   meslo-lg
-  #   # powerline-fonts
-  #   source-code-pro
-  #   # ttf_bitstream_vera
-  #   # ubuntu_font_family
-  # ];
+  # for nixd
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+
+  system.defaults.finder = {
+    # show full path in finder title
+    _FXShowPosixPathInTitle = true;
+
+    # remove items from trash after 30 days
+    # FXRemoveOldTrashItems = true;
+
+    # show all file extensions
+    AppleShowAllExtensions = true;
+
+    # show hidden files
+    AppleShowAllFiles = true;
+
+    # disable warning when changing file extension
+    FXEnableExtensionChangeWarning = false;
+
+    # hide the quit button on finder
+    QuitMenuItem = true;
+
+    # show path bar
+    ShowPathbar = true;
+
+    # show status bar
+    ShowStatusBar = true;
+
+    # disable icons on the desktop
+    CreateDesktop = false;
+  };
 
   system.defaults.CustomUserPreferences = {
     "com.apple.desktopservices" = {
@@ -84,6 +100,18 @@ in
       orientation = "left";
       tilesize = 38;
     };
+
+    "com.apple.finder" = {
+      ShowExternalHardDrivesOnDesktop = true;
+      ShowHardDrivesOnDesktop = true;
+      ShowMountedServersOnDesktop = true;
+      ShowRemovableMediaOnDesktop = true;
+      _FXSortFoldersFirst = true;
+
+      # When performing a search, search the current folder by default
+      FXDefaultSearchScope = "SCcf";
+    };
+
     "com.apple.SoftwareUpdate" = {
       AutomaticCheckEnabled = true;
       # Check for software updates daily, not just once per week
@@ -98,61 +126,64 @@ in
     enable = true;
 
     onActivation = {
-      #upgrade = true;
+      # upgrade = true;
       autoUpdate = true;
+      # cleanup = "zap";
     };
 
     brews = [
+      "colima"
+      "docker"
       "libdvdcss"
+      "mas"
+      "terraform"
     ];
 
     casks = [
       "1password"
       "balenaetcher"
-      "bartender"
       "calibre"
       "fission"
+      "gzdoom"
       "handbrake"
-      "adoptopenjdk"
+      "ioquake3"
       "itsycal"
+      "jordanbaird-ice"
       "kitty"
       "launchbar"
+      "logi-options+"
+      "lunar"
       "makemkv"
       "musicbrainz-picard"
+      "mullvad-browser"
       "netnewswire"
       "obsidian"
       "omnidisksweeper"
       "plexamp"
       "steam"
-      "thunderbird"
       "transnomino"
       "visual-studio-code"
       "vlc"
       "vmware-fusion"
       "xld"
+      "zed"
       "font-fira-code"
       "font-monaspace"
     ];
 
     masApps = {
       "1Password for Safari" = 1569813296;
+      "Copilot: Track & Budget Money" = 1447330651;
       "Front and Center" = 1493996622;
-      "Microsoft Remote Desktop" = 1295203466;
       "PCalc" = 403504866;
       "Tailscale" = 1475387142;
       "Keynote" = 409183694;
       "Numbers" = 409203825;
       "Pages" = 409201541;
-      "StopTheMadness" = 1376402589;
-      "Bitwarden" = 1352778147;
+      "StopTheMadness Pro" = 6471380298;
       "Infuse • Video Player" = 1136220934;
       "The Unarchiver" = 425424353;
+      "Windows App" = 1295203466;
     };
-
-    # taps = [
-    #   "hashicorp/tap"
-    # ];
-
   };
-
 }
