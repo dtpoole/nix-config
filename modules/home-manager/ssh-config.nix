@@ -19,9 +19,6 @@
           user = "tank";
         };
         "mini" = {
-          hostname = "10.10.10.50";
-        };
-        "slug" = {
           hostname = "10.10.10.60";
         };
         "supernaut" = {
