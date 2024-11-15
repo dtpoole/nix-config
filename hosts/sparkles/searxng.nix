@@ -9,8 +9,8 @@
     settings = {
       server = {
         port = 8888;
-        bind_address = "127.0.0.1"; # Only listen on localhost
-        secret_key = config.age.secrets.searxng_secret.path; # Replace with a secure random string
+        bind_address = "127.0.0.1";
+        secret_key = config.age.secrets.searxng_secret.path;
       };
       ui = {
         default_theme = "simple";
