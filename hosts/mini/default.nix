@@ -124,12 +124,13 @@ in {
 
   homebrew = {
     enable = true;
-
     onActivation = {
-      # upgrade = true;
+      cleanup = "zap";
       autoUpdate = true;
-      # cleanup = "zap";
+      upgrade = true;
     };
+    
+    global.autoUpdate = true;
 
     brews = [
       "colima"
@@ -169,6 +170,7 @@ in {
       "zed"
       "font-fira-code"
       "font-monaspace"
+      "font-jetbrains-mono"
     ];
 
     masApps = {
