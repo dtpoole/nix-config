@@ -129,7 +129,7 @@ in {
       autoUpdate = true;
       upgrade = true;
     };
-    
+
     global.autoUpdate = true;
 
     brews = [
@@ -145,6 +145,7 @@ in {
       "balenaetcher"
       "calibre"
       "fission"
+      "google-chrome"
       "gzdoom"
       "handbrake"
       "ioquake3"
