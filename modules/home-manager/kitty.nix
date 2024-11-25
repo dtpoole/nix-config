@@ -43,7 +43,7 @@
         shell_integration = "disabled";
       };
 
-      theme = "Nord";
+      themeFile = "Nord";
     };
   };
 }
