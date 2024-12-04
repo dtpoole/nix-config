@@ -56,7 +56,7 @@
         specialArgs = {inherit inputs outputs;};
       };
 
-    mkHomeConfiguration = username: host:
+    mkHomeConfiguration = username:
       home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.x86_64-linux;
         modules = [(import ./home/${username})];
@@ -83,7 +83,7 @@
       map
       (host: {
         name = "dave@${host}";
-        value = mkHomeConfiguration "dave" host;
+        value = mkHomeConfiguration "dave";
       })
       ["PF2N1Y5V" "soma" "ram" "sapphire"]
     );
