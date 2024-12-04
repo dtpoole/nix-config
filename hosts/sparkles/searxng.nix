@@ -28,8 +28,8 @@
     recommendedTlsSettings = true;
 
     virtualHosts."search.poole.foo" = {
-      forceSSL = true;
-      enableACME = true;
+      addSSL = true;
+      useACMEHost = "search.poole.foo";
       locations."/" = {
         proxyPass = "http://127.0.0.1:8888";
         proxyWebsockets = true;
