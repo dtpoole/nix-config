@@ -59,8 +59,6 @@ opt.visualbell = true
 opt.splitright = true
 opt.splitbelow = true
 
-opt.pastetoggle = '<F2>'
-
 opt.nrformats = ''
 
 opt.listchars = {eol = '↲', tab = '▸ ', trail = '·'}
