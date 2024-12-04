@@ -17,6 +17,7 @@
       "git.poole.foo" = {};
       "tools.poole.foo" = {};
       "links.poole.foo" = {};
+      "search.poole.foo" = {};
     };
   };
 }
