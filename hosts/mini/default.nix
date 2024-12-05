@@ -61,17 +61,23 @@ in {
     # show full path in finder title
     _FXShowPosixPathInTitle = true;
 
-    # remove items from trash after 30 days
-    # FXRemoveOldTrashItems = true;
-
     # show all file extensions
     AppleShowAllExtensions = true;
 
     # show hidden files
-    AppleShowAllFiles = true;
+    AppleShowAllFiles = false;
 
     # disable warning when changing file extension
     FXEnableExtensionChangeWarning = false;
+
+    # default finder view
+    FXPreferredViewStyle = "Nlsv";
+
+    # remove items in the trash after 30 days
+    FXRemoveOldTrashItems = true;
+
+    # default folder shown in Finder windows
+    NewWindowTarget = "Home";
 
     # hide the quit button on finder
     QuitMenuItem = true;
@@ -84,6 +90,15 @@ in {
 
     # disable icons on the desktop
     CreateDesktop = false;
+
+    ShowExternalHardDrivesOnDesktop = true;
+    ShowHardDrivesOnDesktop = true;
+    ShowMountedServersOnDesktop = true;
+    ShowRemovableMediaOnDesktop = true;
+    _FXSortFoldersFirst = true;
+
+    # When performing a search, search the current folder by default
+    FXDefaultSearchScope = "SCcf";
   };
 
   system.defaults.CustomUserPreferences = {
@@ -100,18 +115,6 @@ in {
       orientation = "left";
       tilesize = 38;
     };
-
-    "com.apple.finder" = {
-      ShowExternalHardDrivesOnDesktop = true;
-      ShowHardDrivesOnDesktop = true;
-      ShowMountedServersOnDesktop = true;
-      ShowRemovableMediaOnDesktop = true;
-      _FXSortFoldersFirst = true;
-
-      # When performing a search, search the current folder by default
-      FXDefaultSearchScope = "SCcf";
-    };
-
     "com.apple.SoftwareUpdate" = {
       AutomaticCheckEnabled = true;
       # Check for software updates daily, not just once per week
@@ -162,6 +165,7 @@ in {
       "obsidian"
       "omnidisksweeper"
       "plexamp"
+      "rocket"
       "steam"
       "transnomino"
       "visual-studio-code"
