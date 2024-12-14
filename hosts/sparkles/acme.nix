@@ -18,6 +18,7 @@
       "tools.poole.foo" = {};
       "links.poole.foo" = {};
       "search.poole.foo" = {};
+      "feeds.poole.foo" = {};
     };
   };
 }

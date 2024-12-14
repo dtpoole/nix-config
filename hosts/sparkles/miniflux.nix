@@ -14,8 +14,11 @@
   services.miniflux = {
     enable = true;
     adminCredentialsFile = config.age.secrets.miniflux_admin.path;
+    createDatabaseLocally = false;
     config = {
       DATABASE_URL = "postgres://miniflux:@/miniflux?host=/run/postgresql";
+      BASE_URL = "https://feeds.poole.foo";
+      LISTEN_ADDR = "127.0.0.1:8080";
     };
   };
 

@@ -41,6 +41,14 @@
         addSSL = true;
         useACMEHost = "links.poole.foo";
       };
+      "feeds.poole.foo" = {
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:8080";
+          proxyWebsockets = true;
+        };
+        addSSL = true;
+        useACMEHost = "feeds.poole.foo";
+      };
     };
   };
 
