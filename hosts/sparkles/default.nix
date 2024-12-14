@@ -13,6 +13,7 @@ in {
     ./it-tools.nix
     ./linkding.nix
     ./searxng.nix
+    ./miniflux.nix
     inputs.home-manager.nixosModules.home-manager
     {
       home-manager = {

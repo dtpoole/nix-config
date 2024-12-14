@@ -14,28 +14,27 @@ let
   };
   allUsers = builtins.attrValues users;
   allSystems = builtins.attrValues systems;
-in
-{
+in {
   "user_password.age".publicKeys = allUsers ++ allSystems;
-  "acme_cloudflare_credentials.age".publicKeys = allUsers ++ [ systems.supernaut systems.sparkles systems.hope ];
-  "supernaut_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.supernaut ];
-  "supernaut_hc_restic_uuid".publicKeys = allUsers ++ [ systems.supernaut ];
-  "supernaut_vaultwarden_admin_token.age".publicKeys = allUsers ++ [ systems.supernaut ];
-  "linkding_password.age".publicKeys = allUsers ++ [ systems.sparkles ];
+  "acme_cloudflare_credentials.age".publicKeys = allUsers ++ [systems.supernaut systems.sparkles systems.hope];
+  "supernaut_hc_ping_uuid.age".publicKeys = allUsers ++ [systems.supernaut];
+  "supernaut_hc_restic_uuid".publicKeys = allUsers ++ [systems.supernaut];
+  "supernaut_vaultwarden_admin_token.age".publicKeys = allUsers ++ [systems.supernaut];
+  "linkding_password.age".publicKeys = allUsers ++ [systems.sparkles];
   "tailscale_auth_key.age".publicKeys = allUsers ++ allSystems;
-  "hope_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.hope ];
-  "jumbo_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.jumbo ];
-  "sparkles_hc_ping_uuid.age".publicKeys = allUsers ++ [ systems.sparkles ];
-  "sparkles_hc_restic_uuid.age".publicKeys = allUsers ++ [ systems.sparkles ];
+  "hope_hc_ping_uuid.age".publicKeys = allUsers ++ [systems.hope];
+  "jumbo_hc_ping_uuid.age".publicKeys = allUsers ++ [systems.jumbo];
+  "sparkles_hc_ping_uuid.age".publicKeys = allUsers ++ [systems.sparkles];
+  "sparkles_hc_restic_uuid.age".publicKeys = allUsers ++ [systems.sparkles];
 
-  "restic/cloud/env.age".publicKeys = allUsers ++ [ systems.sparkles systems.hope ];
-  "restic/cloud/repo.age".publicKeys = allUsers ++ [ systems.sparkles systems.hope ];
-  "restic/cloud/password.age".publicKeys = allUsers ++ [ systems.sparkles systems.hope ];
+  "restic/cloud/env.age".publicKeys = allUsers ++ [systems.sparkles systems.hope];
+  "restic/cloud/repo.age".publicKeys = allUsers ++ [systems.sparkles systems.hope];
+  "restic/cloud/password.age".publicKeys = allUsers ++ [systems.sparkles systems.hope];
 
-  "restic/local/repo.age".publicKeys = allUsers ++ [ systems.supernaut ];
-  "restic/local/password.age".publicKeys = allUsers ++ [ systems.supernaut ];
+  "restic/local/repo.age".publicKeys = allUsers ++ [systems.supernaut];
+  "restic/local/password.age".publicKeys = allUsers ++ [systems.supernaut];
 
-  "eplustv_env.age".publicKeys = allUsers ++ [ systems.jumbo ];
-  "searxng_secret.age".publicKeys = allUsers ++ [ systems.sparkles ];
-
+  "eplustv_env.age".publicKeys = allUsers ++ [systems.jumbo];
+  "searxng_secret.age".publicKeys = allUsers ++ [systems.sparkles];
+  "miniflux_admin.age".publicKeys = allUsers ++ [systems.sparkles];
 }
