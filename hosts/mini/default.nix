@@ -145,6 +145,7 @@ in {
 
     casks = [
       "1password"
+      "acorn"
       "balenaetcher"
       "calibre"
       "fission"
