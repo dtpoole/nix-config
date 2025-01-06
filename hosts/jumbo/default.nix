@@ -28,8 +28,8 @@ in {
     interfaces.enp3s0 = {
       ipv4.addresses = [
         {
-          address = "38.175.200.14";
-          prefixLength = 24;
+          address = "104.36.87.94";
+          prefixLength = 22;
         }
       ];
       ipv6.addresses = [
@@ -39,7 +39,7 @@ in {
         }
       ];
     };
-    defaultGateway = "38.175.200.1";
+    defaultGateway = "104.36.84.1";
     defaultGateway6 = {
       address = "2606:a8c0:3::1";
       interface = "enp3s0";
