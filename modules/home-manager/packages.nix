@@ -26,6 +26,7 @@
       jq
       just
       keychain
+      lazygit
       mc
       mosh
       nil
