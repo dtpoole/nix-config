@@ -74,6 +74,8 @@ in {
     searxng_secret.file = ../../secrets/searxng_secret.age;
   };
 
+  services.beszel-agent.enable = true;
+  
   healthchecks-ping.enable = true;
   netdata.enable = true;
   postgres.enable = true;
