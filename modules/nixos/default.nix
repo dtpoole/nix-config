@@ -7,6 +7,7 @@
 }: {
   imports = [
     ./autoupgrade.nix
+    ./beszel.nix
     ./desktop.nix
     ./healthchecks-ping.nix
     ./netdata.nix
