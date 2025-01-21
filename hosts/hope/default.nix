@@ -51,6 +51,8 @@ in {
 
   age.secrets.hc_ping.file = ../../secrets/hope_hc_ping_uuid.age;
 
+  services.beszel-agent.enable = true;
+
   autoupgrade.enable = true;
   tailscale.enable = true;
   zram.enable = true;

@@ -53,6 +53,8 @@ in {
 
   age.secrets.hc_ping.file = ../../secrets/jumbo_hc_ping_uuid.age;
 
+  services.beszel-agent.enable = true;
+
   autoupgrade.enable = false;
   tailscale.enable = true;
   zram.enable = true;
