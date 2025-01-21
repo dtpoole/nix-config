@@ -21,9 +21,6 @@
         "mini" = {
           hostname = "10.10.10.60";
         };
-        "supernaut" = {
-          hostname = "10.10.10.120";
-        };
         "jellyfin" = {
           hostname = "10.10.10.35";
           user = "root";
@@ -44,9 +41,9 @@
           hostname = "10.10.10.145";
           user = "root";
         };
-        "soma" = {
-          hostname = "soma.poole.foo";
-          port = 5829;
+        "minecraft-java" = {
+          hostname = "10.10.10.146";
+          user = "root";
         };
       };
     };
