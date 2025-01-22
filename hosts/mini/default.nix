@@ -52,6 +52,9 @@ in {
     unstablePkgs.yt-dlp
     inputs.agenix.packages.${pkgs.system}.default
     pkgs.nixd
+    pkgs.nh
+    pkgs.nix-output-monitor
+    pkgs.nvd
   ];
 
   # for nixd
@@ -138,9 +141,9 @@ in {
     brews = [
       "colima"
       "docker"
+      "flac"
       "libdvdcss"
       "mas"
-      "terraform"
     ];
 
     casks = [
@@ -167,6 +170,7 @@ in {
       "obsidian"
       "omnidisksweeper"
       "plexamp"
+      "retroarch-metal"
       "rocket"
       "transnomino"
       "visual-studio-code"
