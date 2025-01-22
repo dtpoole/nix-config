@@ -53,6 +53,9 @@
       auto-optimise-store = true;
       experimental-features = ["nix-command" "flakes"];
       warn-dirty = false;
+
+      min-free = 1 * 1024 * 1024 * 1024;
+      max-free = 25 * 1024 * 1024 * 1024;
     };
   };
 
@@ -64,8 +67,11 @@
     curl
     wget
     git
-    gnumake
-    vim
+    just
+    nh
+    nix-output-monitor
+    nvd
+    neovim
     zsh
   ];
 
