@@ -75,7 +75,7 @@ in {
   };
 
   services.beszel-agent.enable = true;
-  
+
   healthchecks-ping.enable = true;
   netdata.enable = true;
   postgres.enable = true;
