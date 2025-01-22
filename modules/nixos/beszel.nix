@@ -1,9 +1,11 @@
-# modules/beszel-agent.nix
-{ config, lib, inputs, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  inputs,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.services.beszel-agent;
   unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
 in {
@@ -60,20 +62,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # users.users.${cfg.user} = {
-    #   isSystemUser = true;
-    #   group = builtins.head cfg.groups;
-    #   extraGroups = builtins.tail cfg.groups;
-    #   description = "Beszel Agent service user";
-    # };
-
-    # #users.groups.${cfg.group} = {};
-    # users.groups = builtins.listToAttrs (map (g: { name = g; value = {}; }) cfg.groups);
-
     systemd.services.beszel-agent = {
       description = "Beszel Agent Service";
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
+      after = ["network.target"];
+      wantedBy = ["multi-user.target"];
 
       serviceConfig = {
         Environment = [
