@@ -62,7 +62,7 @@ update:
 
 # rekey agenix secrets
 rekey:
-    cd ./secrets && agenix --rekey
+    cd ./secrets && nix run github:ryantm/agenix -- --rekey
 
 # format nix files in directory
 format:
@@ -74,11 +74,9 @@ pre-commit:
 
 # run nix linters
 lint:
-    @statix check .
+    @statix check -i .direnv
     @deadnix .
 
 # clean up
-cleanup generations="5d":
-    nix-env --delete-generations {{ generations }}
-    nix-store --gc
-    @rm -rf ./result
+cleanup:
+    @nh clean all

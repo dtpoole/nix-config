@@ -1,13 +1,17 @@
-# Shell for bootstrapping flake-enabled nix and home-manager
-# You can enter it through 'nix develop' or (legacy) 'nix-shell'
 {pkgs}: {
   default = pkgs.mkShell {
-    # Enable experimental features without having to specify the argument
-    NIX_CONFIG = "experimental-features = nix-command flakes";
-    nativeBuildInputs = with pkgs; [nix home-manager git figurine just alejandra statix];
+    nativeBuildInputs = with pkgs; [
+      alejandra
+      deadnix
+      git
+      home-manager
+      just
+      nh
+      statix
+    ];
 
     shellHook = ''
-      figurine -f 'JS Block Letters.flf' nix
+      ${pkgs.figurine}/bin/figurine -f 'JS Block Letters.flf' nix
       echo && just --list && echo
       PS1='[nix] \W \$ '
     '';
