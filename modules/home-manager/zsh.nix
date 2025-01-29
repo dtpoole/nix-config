@@ -66,7 +66,7 @@
             . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
         fi
 
-        path+=($HOME/.cargo/bin /usr/local/bin /usr/local/sbin)
+        path+=($HOME/.cargo/bin /usr/local/bin /usr/local/sbin /opt/homebrew/bin)
 
         fpath+=( $ZDOTDIR/functions )
         autoload -Uz ssh
