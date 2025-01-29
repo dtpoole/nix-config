@@ -7,6 +7,8 @@
       home-manager
       just
       nh
+      nix-output-monitor
+      nvd
       statix
     ];
 
