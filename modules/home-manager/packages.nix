@@ -11,7 +11,6 @@
   config = lib.mkIf config.packages.enable {
     home.packages = with pkgs; [
       coreutils
-      deadnix
       dig
       direnv
       dua
@@ -22,24 +21,16 @@
       figurine
       file
       gitui
-      gnumake
       jq
-      just
-      keychain
-      lazygit
       mc
-      mosh
-      nil
-      nixpkgs-fmt
-      nixd
       nmap
       parallel
       pre-commit
       ripgrep
       shellcheck
-      statix
       sqlite
       unzip
+      unixtools.column
     ];
   };
 }
