@@ -67,10 +67,6 @@
     curl
     wget
     git
-    just
-    nh
-    nix-output-monitor
-    nvd
     neovim
     zsh
   ];
