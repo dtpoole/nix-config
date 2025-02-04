@@ -6,13 +6,3 @@ repos:
     hooks:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
--   repo: https://github.com/nix-community/nixpkgs-fmt
-    rev: v1.3.0
-    hooks:
-    -   id: nixpkgs-fmt
--   repo: https://github.com/astro/deadnix
-    rev: v1.2.1
-    hooks:
-    -   id: deadnix
-        #args: [--edit] # Uncomment to automatically modify files
-        stages: [commit]
