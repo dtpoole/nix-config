@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./fzf.nix
+    ./ghostty.nix
     ./kitty.nix
     ./neovim
     ./packages.nix

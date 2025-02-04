@@ -4,4 +4,5 @@
   ];
 
   kitty.enable = true;
+  ghostty.enable = true;
 }

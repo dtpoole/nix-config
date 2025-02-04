@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -9,15 +8,12 @@
   };
 
   config = lib.mkIf config.ghostty.enable {
-    programs.ghostty = {
-      enable = true;
-      settings = {
-        theme = "nord";
-        window-height = 50;
-        window-width = 200;
-        font-size = 13.5;
-        alpha-blending = "linear-corrected";
-      };
-    };
+    xdg.configFile."ghostty/config".text = ''
+      alpha-blending = linear-corrected
+      font-size = 13.500000
+      theme = nord
+      window-height = 50
+      window-width = 200
+    '';
   };
 }
