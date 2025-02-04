@@ -58,5 +58,4 @@ in {
 
   # for nixd
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-
 }

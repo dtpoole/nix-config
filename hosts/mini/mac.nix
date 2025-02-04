@@ -1,5 +1,4 @@
 {
-
   system.defaults.finder = {
     # show full path in finder title
     _FXShowPosixPathInTitle = true;
@@ -67,5 +66,4 @@
       CriticalUpdateInstall = 1;
     };
   };
-  
 }
