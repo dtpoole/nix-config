@@ -5,6 +5,7 @@ host := `hostname -s`
 
 alias develop := shell
 alias hm := home-manager
+alias fmt := format
 
 # switch the NixOS/nix-darwin configuration
 default: switch
