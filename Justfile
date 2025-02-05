@@ -14,12 +14,12 @@ default: switch
 # build the NixOS configuration without switching to it
 [linux]
 build target_host=host flags="":
-    nixos-rebuild build --flake .#{{ target_host }} {{ flags }}
+    @nh os build .
 
 # switch the NixOS configuration
 [linux]
 switch target_host=host:
-    nixos-rebuild switch --use-remote-sudo --flake .#{{ target_host }}
+    @nh os switch --ask .
 
 # build the NixOS config with the --show-trace flag set
 [linux]
