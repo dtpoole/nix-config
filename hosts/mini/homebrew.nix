@@ -12,6 +12,7 @@
     brews = [
       "colima"
       "docker"
+      "ffmpeg"
       "flac"
       "libdvdcss"
       "mas"
@@ -30,7 +31,6 @@
       "ioquake3"
       "itsycal"
       "jordanbaird-ice"
-      "kitty"
       "launchbar"
       "logi-options+"
       "lunar"
@@ -42,7 +42,6 @@
       "omnidisksweeper"
       "plexamp"
       "retroarch-metal"
-      "rocket"
       "transmit"
       "transnomino"
       "utm"
@@ -60,6 +59,7 @@
       "1Password for Safari" = 1569813296;
       "Copilot: Track & Budget Money" = 1447330651;
       "Drafts" = 1435957248;
+      "Enchanted LLM" = 6474268307;
       "Front and Center" = 1493996622;
       "PCalc" = 403504866;
       "Tailscale" = 1475387142;

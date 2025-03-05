@@ -3,6 +3,6 @@
     ./default.nix
   ];
 
-  kitty.enable = true;
+  kitty.enable = false;
   ghostty.enable = true;
 }
