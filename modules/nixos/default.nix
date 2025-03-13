@@ -9,6 +9,7 @@
     ./autoupgrade.nix
     ./beszel.nix
     ./desktop.nix
+    ./dns.nix
     ./healthchecks-ping.nix
     ./netdata.nix
     ./postgres.nix
