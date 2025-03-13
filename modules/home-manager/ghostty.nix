@@ -12,8 +12,8 @@
       alpha-blending = linear-corrected
       font-size = 13.500000
       theme = nord
-      window-height = 50
-      window-width = 200
+      window-height = 45
+      window-width = 160
     '';
   };
 }
