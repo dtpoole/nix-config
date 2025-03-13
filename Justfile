@@ -67,7 +67,7 @@ rekey:
 
 # format nix files in directory
 format:
-    nix fmt
+    nix fmt .
 
 # run pre-commit hooks on all files
 pre-commit:
