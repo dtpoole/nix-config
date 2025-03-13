@@ -16,6 +16,7 @@
         X11Forwarding = false;
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
+        PermitRootLogin = "no";
       };
       extraConfig = ''
         AllowTcpForwarding yes
