@@ -75,9 +75,14 @@
       ["slug" "supernaut" "hope" "jumbo" "sparkles" "vm1"]
     );
 
-    darwinConfigurations = {
-      mini = mkDarwinConfiguration "mini";
-    };
+    darwinConfigurations = builtins.listToAttrs (
+      map
+      (hostname: {
+        name = hostname;
+        value = mkDarwinConfiguration hostname;
+      })
+      ["mini" "aurora"]
+    );
 
     homeConfigurations = builtins.listToAttrs (
       map
