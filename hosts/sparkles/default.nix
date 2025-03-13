@@ -55,7 +55,7 @@ in {
   networking = {
     firewall.enable = true;
     nftables.enable = true;
-  }
+  };
 
   services.openssh.openFirewall = false;
 
