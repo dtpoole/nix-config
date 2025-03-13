@@ -49,11 +49,14 @@ in {
       address = "2606:a8c0:100::1";
       interface = "enp3s0";
     };
-    nameservers = ["9.9.9.9" "1.1.1.1"];
   };
 
   # turn on firewall. only allow ssh from tailscale interface
-  networking.firewall.enable = true;
+  networking = {
+    firewall.enable = true;
+    nftables.enable = true;
+  }
+
   services.openssh.openFirewall = false;
 
   virtualisation.podman.autoPrune = {
