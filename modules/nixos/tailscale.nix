@@ -18,6 +18,7 @@ in {
       enable = true;
       package = unstablePkgs.tailscale;
       authKeyFile = config.age.secrets.tailscale_auth_key.path;
+      useRoutingFeatures = "client";
     };
 
     networking = {
