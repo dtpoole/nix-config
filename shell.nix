@@ -8,6 +8,7 @@
       just
       nh
       nix-output-monitor
+      nix-tree
       nvd
       statix
     ];
