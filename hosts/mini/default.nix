@@ -30,7 +30,9 @@ in {
       "makemkv"
       "musicbrainz-picard"
       "mullvad-browser"
+      "parsec"
       "retroarch-metal"
+      "thunderbird"
       "vmware-fusion"
       "xld"
     ];
