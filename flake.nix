@@ -39,7 +39,7 @@
       inherit (home-manager.lib) homeManagerConfiguration;
     });
 
-    systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+    systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
     forEachSystem = lib.genAttrs systems;
 
     pkgsFor = forEachSystem (system: nixpkgs.legacyPackages.${system});
@@ -72,7 +72,7 @@
         name = hostname;
         value = mkNixosConfiguration hostname;
       })
-      ["slug" "supernaut" "hope" "jumbo" "sparkles" "vm1"]
+      ["slug" "supernaut" "jumbo" "sparkles" "vm1"]
     );
 
     darwinConfigurations = builtins.listToAttrs (
@@ -90,7 +90,7 @@
         name = "dave@${host}";
         value = mkHomeConfiguration "dave";
       })
-      ["PF2N1Y5V" "ram" "sapphire"]
+      ["PF2N1Y5V" "sapphire"]
     );
   };
 }
