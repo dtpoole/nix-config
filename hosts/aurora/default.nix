@@ -12,6 +12,10 @@ in {
   # Aurora-specific configuration can be added here
   darwin.homebrew = {
     # Any Aurora-specific brews, casks, or Mac App Store apps would go here
+    extraCasks = [
+      "claude"
+      "parsec"
+    ];
   };
 
   # Add any Aurora-specific packages
