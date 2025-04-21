@@ -31,6 +31,7 @@
       nix-direnv.enable = true;
       config = {
         hide_env_diff = true;
+        DIRENV_WARN_TIMEOUT = 0;
       };
     };
 
