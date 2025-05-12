@@ -36,4 +36,7 @@ in {
   "eplustv_env.age".publicKeys = allUsers ++ [systems.jumbo];
   "searxng_secret.age".publicKeys = allUsers ++ [systems.sparkles];
   "miniflux_admin.age".publicKeys = allUsers ++ [systems.sparkles];
+
+  "mlbserver_env.age".publicKeys = allUsers ++ [systems.sapphire];
+
 }
