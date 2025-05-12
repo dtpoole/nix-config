@@ -5,6 +5,7 @@ in {
   nixpkgs.hostPlatform = "x86_64-linux";
 
   imports = [
+    ./containers.nix
     ./hardware-configuration.nix
     ../../modules/nixos
 
@@ -52,14 +53,6 @@ in {
   };
 
   services.openssh.openFirewall = false;
-
-  # virtualisation.podman.autoPrune = {
-  #   enable = true;
-  #   flags = [
-  #     "--all"
-  #   ];
-  # };
-
 
   services.beszel-agent.enable = true;
 
