@@ -72,7 +72,7 @@
         name = hostname;
         value = mkNixosConfiguration hostname;
       })
-      ["slug" "supernaut" "jumbo" "sparkles" "vm1"]
+      ["slug" "supernaut" "jumbo" "sparkles" "vm1" "sapphire"]
     );
 
     darwinConfigurations = builtins.listToAttrs (
