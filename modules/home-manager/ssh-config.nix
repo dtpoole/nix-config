@@ -21,7 +21,7 @@
         # multiplexing
         ControlMaster auto
         ControlPath ~/.ssh/control/%r@%h:%p
-        ControlPersist 10m
+        ControlPersist 4h
       '';
       matchBlocks = {
         "tank" = {
@@ -32,11 +32,11 @@
           hostname = "10.10.10.60";
         };
         "jellyfin" = {
-          hostname = "10.10.10.35";
+          hostname = "10.10.2.35";
           user = "root";
         };
         "plex" = {
-          hostname = "10.10.10.36";
+          hostname = "10.10.2.36";
           user = "root";
         };
         "slurp" = {
@@ -53,6 +53,9 @@
         };
         "minecraft-java" = {
           hostname = "10.10.10.146";
+          user = "root";
+        };
+        "punchy" = {
           user = "root";
         };
       };
