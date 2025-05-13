@@ -38,5 +38,4 @@ in {
   "miniflux_admin.age".publicKeys = allUsers ++ [systems.sparkles];
 
   "mlbserver_env.age".publicKeys = allUsers ++ [systems.sapphire];
-
 }
