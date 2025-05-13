@@ -11,7 +11,17 @@
     programs.ssh = {
       enable = true;
       extraConfig = ''
-        StrictHostKeyChecking no
+        HashKnownHosts yes
+        # trusted network
+        Host 10.10.2.*
+            StrictHostKeyChecking accept-new
+        Host *
+          StrictHostKeyChecking yes
+
+        # multiplexing
+        ControlMaster auto
+        ControlPath ~/.ssh/control/%r@%h:%p
+        ControlPersist 10m
       '';
       matchBlocks = {
         "tank" = {
@@ -47,5 +57,8 @@
         };
       };
     };
+
+    # Ensure control directory exists
+    home.file.".ssh/control/.keep".text = "";
   };
 }
