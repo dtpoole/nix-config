@@ -52,6 +52,17 @@ in {
     nftables.enable = true;
   };
 
+  documentation.nixos.enable = false;
+  documentation.man.enable = false;
+  documentation.info.enable = false;
+  documentation.doc.enable = false;
+
+  #  remove build dependencies
+  nix.extraOptions = ''
+    keep-outputs = true
+    keep-derivations = false
+  '';
+
   services.openssh.openFirewall = false;
 
   services.beszel-agent.enable = true;
