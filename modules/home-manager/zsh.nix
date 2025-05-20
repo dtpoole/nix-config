@@ -51,11 +51,7 @@
         share = true;
       };
 
-      initExtraFirst = ''
-        #zmodload zsh/zprof
-      '';
-
-      initExtra = ''
+      initContent = ''
         bindkey '^ ' autosuggest-accept
         if [[ -z "$LS_COLORS" ]]; then
             export LS_COLORS="$(${pkgs.vivid}/bin/vivid generate nord)"
