@@ -26,6 +26,8 @@ in {
 
   users.users.${username}.home = "/Users/${username}";
 
+  system.primaryUser = "${username}";
+
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -39,8 +41,6 @@ in {
     };
   };
 
-  # Make sure the nix daemon always runs
-  services.nix-daemon.enable = true;
 
   # if you use zsh (the default on new macOS installations),
   # you'll need to enable this so nix-darwin creates a zshrc sourcing needed environment changes
