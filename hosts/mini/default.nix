@@ -22,6 +22,7 @@ in {
     extraCasks = [
       "balenaetcher"
       "calibre"
+      "dolphin"
       "fission"
       "gzdoom"
       "handbrake"
