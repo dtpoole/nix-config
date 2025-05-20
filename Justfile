@@ -39,7 +39,7 @@ build target_host=host flags="":
 # build the nix-darwin configuration and switch to it
 [macos]
 switch target_host=host: (build target_host)
-    darwin-rebuild switch --flake .#{{ target_host }}
+    sudo darwin-rebuild switch --flake .#{{ target_host }}
 
 # build the nix-darwin config with the --show-trace flag set
 [macos]
