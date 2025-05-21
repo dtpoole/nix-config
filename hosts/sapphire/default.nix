@@ -67,8 +67,12 @@ in {
 
   services.beszel-agent.enable = true;
 
+  age.secrets = {
+    hc_ping.file = ../../secrets/sapphire_hc_ping_uuid.age;
+  };
+
   dns.enable = true;
-  healthchecks-ping.enable = false;
+  healthchecks-ping.enable = true;
   netdata.enable = false;
   postgres.enable = false;
   restic.enable = false;
