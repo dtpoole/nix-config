@@ -1,10 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: let
-  unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
-in {
+{pkgs, ...}: {
   imports = [
     ../../modules/darwin
   ];
@@ -45,7 +39,7 @@ in {
   };
 
   # Add any Mini-specific packages
-  environment.systemPackages = with unstablePkgs; [
-    yt-dlp
+  environment.systemPackages = with pkgs; [
+    unstable.yt-dlp
   ];
 }

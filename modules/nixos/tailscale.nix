@@ -2,11 +2,8 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
-}: let
-  unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
-in {
+}: {
   options = {
     tailscale.enable = lib.mkEnableOption "enables tailscale";
   };
@@ -16,7 +13,7 @@ in {
 
     services.tailscale = {
       enable = true;
-      package = unstablePkgs.tailscale;
+      package = pkgs.unstable.tailscale;
       authKeyFile = config.age.secrets.tailscale_auth_key.path;
       useRoutingFeatures = "client";
     };

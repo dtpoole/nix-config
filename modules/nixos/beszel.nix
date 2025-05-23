@@ -1,20 +1,18 @@
 {
   config,
   lib,
-  inputs,
   pkgs,
   ...
 }:
 with lib; let
   cfg = config.services.beszel-agent;
-  unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
 in {
   options.services.beszel-agent = {
     enable = mkEnableOption "Beszel agent service";
 
     package = mkOption {
       type = types.package;
-      default = unstablePkgs.beszel;
+      default = pkgs.unstable.beszel;
       description = "The beszel package to use.";
     };
 

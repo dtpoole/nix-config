@@ -46,13 +46,23 @@
 
     mkNixosConfiguration = hostname:
       nixpkgs.lib.nixosSystem {
-        modules = [(import ./hosts/${hostname})];
+        modules = [
+          (import ./hosts/${hostname})
+          {
+            nixpkgs.overlays = [(import ./overlays {inherit inputs;})];
+          }
+        ];
         specialArgs = {inherit inputs outputs;};
       };
 
     mkDarwinConfiguration = hostname:
       nix-darwin.lib.darwinSystem {
-        modules = [(import ./hosts/${hostname})];
+        modules = [
+          (import ./hosts/${hostname})
+          {
+            nixpkgs.overlays = [(import ./overlays {inherit inputs;})];
+          }
+        ];
         specialArgs = {inherit inputs outputs;};
       };
 
@@ -65,6 +75,7 @@
   in {
     devShells = forEachSystem (system: import ./shell.nix {pkgs = pkgsFor.${system};});
     formatter = forEachSystem (system: pkgsFor.${system}.alejandra);
+    nixpkgs.overlays = [(import ./overlays {inherit inputs;})];
 
     nixosConfigurations = builtins.listToAttrs (
       map
