@@ -22,12 +22,12 @@
       file
       gitui
       jq
+      magic-wormhole
       mc
       nmap
       parallel
       pre-commit
       ripgrep
-      shellcheck
       sqlite
       unzip
       unixtools.column
