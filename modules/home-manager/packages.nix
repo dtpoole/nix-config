@@ -27,6 +27,7 @@
       nmap
       parallel
       pre-commit
+      procs
       ripgrep
       sqlite
       unzip
