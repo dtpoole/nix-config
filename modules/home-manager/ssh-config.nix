@@ -24,6 +24,9 @@
           hostname = "10.10.2.40";
           user = "tank";
         };
+        "pure" = {
+          hostname = "10.10.2.45";
+        };
         "mini" = {
           hostname = "10.10.2.60";
         };
