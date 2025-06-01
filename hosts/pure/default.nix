@@ -36,6 +36,7 @@ in {
       ];
     };
     defaultGateway = "10.10.2.1";
+    nameservers = ["10.10.10.2"];
 
     firewall.enable = true;
     nftables.enable = true;
