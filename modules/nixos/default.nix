@@ -11,6 +11,7 @@
     ./desktop.nix
     ./dns.nix
     ./healthchecks-ping.nix
+    ./hm.nix
     ./netdata.nix
     ./postgres.nix
     ./restic.nix
@@ -22,6 +23,7 @@
     inputs.agenix.nixosModules.default
   ];
 
+  hm.enable = lib.mkDefault true;
   sshd.enable = lib.mkDefault true;
   users.enable = lib.mkDefault true;
 
