@@ -1,6 +1,4 @@
-{inputs, ...}: let
-  username = "dave";
-in {
+{
   networking.hostName = "sapphire";
   nixpkgs.hostPlatform = "x86_64-linux";
 
@@ -8,16 +6,6 @@ in {
     ./containers.nix
     ./hardware-configuration.nix
     ../../modules/nixos
-
-    inputs.home-manager.nixosModules.home-manager
-    {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        users.${username} = import ../../modules/home-manager;
-        extraSpecialArgs = {inherit username;};
-      };
-    }
   ];
 
   boot.loader.grub.enable = true;

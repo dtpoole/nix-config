@@ -1,6 +1,4 @@
-{inputs, ...}: let
-  username = "dave";
-in {
+{
   networking.hostName = "jumbo";
   nixpkgs.hostPlatform = "x86_64-linux";
 
@@ -8,15 +6,6 @@ in {
     ./hardware-configuration.nix
     ../../modules/nixos
     ./containers.nix
-    inputs.home-manager.nixosModules.home-manager
-    {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        users.${username} = import ../../modules/home-manager;
-        extraSpecialArgs = {inherit username;};
-      };
-    }
   ];
 
   boot.tmp.cleanOnBoot = true;

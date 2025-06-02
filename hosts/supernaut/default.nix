@@ -3,9 +3,7 @@
   lib,
   modulesPath,
   ...
-}: let
-  username = "dave";
-in {
+}: {
   networking.hostName = "supernaut";
   nixpkgs.hostPlatform = "x86_64-linux";
 
@@ -13,15 +11,6 @@ in {
     (modulesPath + "/virtualisation/lxc-container.nix")
     ../../modules/nixos
     ./vaultwarden.nix
-    inputs.home-manager.nixosModules.home-manager
-    {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        users.${username} = import ../../modules/home-manager;
-        extraSpecialArgs = {inherit username;};
-      };
-    }
   ];
 
   # Supress systemd units that don't work because of LXC

@@ -1,21 +1,9 @@
-{inputs, ...}: let
-  username = "dave";
-in {
+{
   nixpkgs.hostPlatform = "x86_64-linux";
 
   imports = [
     ./hardware-configuration.nix
     ../../modules/nixos
-
-    inputs.home-manager.nixosModules.home-manager
-    {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        users.${username} = import ../../modules/home-manager;
-        extraSpecialArgs = {inherit username;};
-      };
-    }
   ];
 
   boot.loader.systemd-boot.enable = true;
