@@ -64,6 +64,9 @@
   netdata.enable = false;
   postgres.enable = false;
   restic.enable = false;
-  tailscale.enable = true;
+  tailscale = {
+    enable = true;
+    useAuthKey = true;
+  };
   zram.enable = true;
 }

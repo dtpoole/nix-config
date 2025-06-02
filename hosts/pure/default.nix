@@ -39,6 +39,6 @@
   netdata.enable = false;
   postgres.enable = false;
   restic.enable = false;
-  tailscale.enable = false;
+  tailscale.enable = true;
   zram.enable = true;
 }
