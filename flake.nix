@@ -35,7 +35,6 @@
     inherit (self) outputs;
 
     lib = nixpkgs.lib.extend (final: prev: {
-      inherit (nix-darwin.lib) darwinSystem;
       inherit (home-manager.lib) homeManagerConfiguration;
     });
 
