@@ -9,9 +9,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Optimize for virtualized environment
-  boot.kernelParams = ["elevator=noop"];
-
   networking = {
     hostName = "pure";
     dhcpcd.enable = false;
