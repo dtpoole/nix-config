@@ -4,6 +4,11 @@
   config,
   ...
 }: {
+  # Import home-manager module first
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+  ];
+
   options = {
     hm = {
       enable = lib.mkEnableOption "enables home-manager integration";
@@ -23,10 +28,6 @@
   };
 
   config = lib.mkIf config.hm.enable {
-    imports = [
-      inputs.home-manager.nixosModules.home-manager
-    ];
-
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
