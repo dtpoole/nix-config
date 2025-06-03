@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }: {
   options = {
@@ -9,7 +8,6 @@
   };
 
   config = lib.mkIf config.profiles.vps.enable {
-
     documentation.nixos.enable = false;
     documentation.man.enable = false;
     documentation.info.enable = false;
@@ -43,7 +41,5 @@
       enable = true;
       useAuthKey = true;
     };
-
   };
-
 }
