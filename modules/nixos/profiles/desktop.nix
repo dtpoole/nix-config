@@ -42,7 +42,11 @@
     # Enable touchpad support (enabled default in most desktopManager).
     # services.xserver.libinput.enable = true;
 
-    programs.firefox.enable = true;
+    programs.firefox = {
+      enable = true;
+      policies.Homepage.StartPage = "about:blank";
+      policies.DisableTelemetry = true;
+    };
 
     fonts = {
       enableDefaultPackages = true;
