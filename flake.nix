@@ -41,66 +41,72 @@
     systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
     forEachSystem = lib.genAttrs systems;
 
-    pkgsFor = forEachSystem (system: nixpkgs.legacyPackages.${system});
+    overlays = [(import ./overlays {inherit inputs;})];
 
+    commonModules = {
+      nixos = [
+        {nixpkgs.overlays = overlays;}
+      ];
+      darwin = [
+        {nixpkgs.overlays = overlays;}
+      ];
+    };
+
+    # for devShell/standalone home manager
+    pkgsFor = forEachSystem (
+      system:
+        import nixpkgs {
+          inherit system;
+        }
+    );
+
+    specialArgs = {inherit inputs outputs;};
+
+    # helper functions
     mkNixosConfiguration = hostname:
       nixpkgs.lib.nixosSystem {
-        modules = [
-          (import ./hosts/${hostname})
-          {
-            nixpkgs.overlays = [(import ./overlays {inherit inputs;})];
-          }
-        ];
-        specialArgs = {inherit inputs outputs;};
+        modules =
+          commonModules.nixos
+          ++ [
+            (import ./hosts/${hostname})
+          ];
+        inherit specialArgs;
       };
 
     mkDarwinConfiguration = hostname:
       nix-darwin.lib.darwinSystem {
-        modules = [
-          (import ./hosts/${hostname})
-          {
-            nixpkgs.overlays = [(import ./overlays {inherit inputs;})];
-          }
-        ];
-        specialArgs = {inherit inputs outputs;};
+        modules =
+          commonModules.darwin
+          ++ [
+            (import ./hosts/${hostname})
+          ];
+        inherit specialArgs;
       };
 
-    mkHomeConfiguration = username:
+    mkHomeConfiguration = {
+      username,
+      system,
+    }:
       home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgsFor.x86_64-linux;
+        pkgs = pkgsFor.${system};
         modules = [(import ./modules/home-manager)];
-        extraSpecialArgs = {inherit inputs outputs username;};
+        extraSpecialArgs = specialArgs // {inherit username;};
       };
+
+    nixosHosts = ["jumbo" "pure" "sparkles" "vm1" "sapphire"];
+    darwinHosts = ["mini" "aurora"];
   in {
     devShells = forEachSystem (system: import ./shell.nix {pkgs = pkgsFor.${system};});
     formatter = forEachSystem (system: pkgsFor.${system}.alejandra);
-    nixpkgs.overlays = [(import ./overlays {inherit inputs;})];
 
-    nixosConfigurations = builtins.listToAttrs (
-      map
-      (hostname: {
-        name = hostname;
-        value = mkNixosConfiguration hostname;
-      })
-      ["jumbo" "pure" "sparkles" "vm1" "sapphire"]
-    );
+    nixosConfigurations = lib.genAttrs nixosHosts mkNixosConfiguration;
+    darwinConfigurations = lib.genAttrs darwinHosts mkDarwinConfiguration;
 
-    darwinConfigurations = builtins.listToAttrs (
-      map
-      (hostname: {
-        name = hostname;
-        value = mkDarwinConfiguration hostname;
-      })
-      ["mini" "aurora"]
-    );
-
-    homeConfigurations = builtins.listToAttrs (
-      map
-      (host: {
-        name = "dave@${host}";
-        value = mkHomeConfiguration "dave";
-      })
-      ["PF2N1Y5V"]
-    );
+    homeConfigurations = {
+      "dave@PF2N1Y5V" = mkHomeConfiguration {
+        username = "dave";
+        system = "x86_64-linux";
+      };
+    };
   };
 }
