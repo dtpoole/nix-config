@@ -39,6 +39,11 @@
       extraConfig = "Storage=none";
     };
 
+    tailscale = {
+      enable = true;
+      useAuthKey = true;
+    };
+
   };
 
 }
