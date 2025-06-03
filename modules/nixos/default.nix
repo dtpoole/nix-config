@@ -20,6 +20,8 @@
     ./users.nix
     ./zram.nix
 
+    ./profiles/vps.nix
+
     inputs.agenix.nixosModules.default
   ];
 
@@ -76,24 +78,6 @@
 
   # allows vscode remote-ssh to work
   programs.nix-ld.enable = true;
-
-  services.journald = {
-    extraConfig = ''
-      SystemMaxUse=100M
-      RuntimeMaxUse=50M
-      MaxFileSec=7day
-      RateLimitInterval=30s
-      RateLimitBurst=1000
-      Storage=persistent
-      Compress=yes
-      ForwardToSyslog=no
-    '';
-  };
-
-  systemd.coredump = {
-    enable = true;
-    extraConfig = "Storage=none";
-  };
 
   system.stateVersion = "24.05";
 }

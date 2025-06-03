@@ -68,6 +68,8 @@
 
   services.beszel-agent.enable = true;
 
+  profiles.vps.enable = true;
+
   dns.enable = true;
   healthchecks-ping.enable = true;
   netdata.enable = false;
