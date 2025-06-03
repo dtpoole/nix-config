@@ -4,7 +4,7 @@
 
   imports = [
     ./hardware-configuration.nix
-    ../../modules/nixos
+    ../../modules/nixos/profiles/vps.nix
     ./containers.nix
   ];
 
@@ -42,10 +42,6 @@
 
   age.secrets.hc_ping.file = ../../secrets/jumbo_hc_ping_uuid.age;
 
-  services.beszel-agent.enable = true;
+  profiles.vps.enable = true;
 
-  autoupgrade.enable = false;
-  tailscale.enable = true;
-  zram.enable = true;
-  healthchecks-ping.enable = true;
 }

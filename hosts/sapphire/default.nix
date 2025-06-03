@@ -3,9 +3,9 @@
   nixpkgs.hostPlatform = "x86_64-linux";
 
   imports = [
-    ./containers.nix
     ./hardware-configuration.nix
-    ../../modules/nixos
+    ../../modules/nixos/profiles/vps.nix
+    ./containers.nix
   ];
 
   boot.loader.grub.enable = true;
@@ -40,20 +40,10 @@
     nftables.enable = true;
   };
 
-  services.openssh.openFirewall = false;
-
-  services.beszel-agent.enable = true;
-
   age.secrets = {
     hc_ping.file = ../../secrets/sapphire_hc_ping_uuid.age;
   };
 
   profiles.vps.enable = true;
 
-  dns.enable = true;
-  healthchecks-ping.enable = true;
-  netdata.enable = false;
-  postgres.enable = false;
-  restic.enable = false;
-  zram.enable = true;
 }

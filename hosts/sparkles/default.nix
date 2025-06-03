@@ -4,7 +4,7 @@
 
   imports = [
     ./hardware-configuration.nix
-    ../../modules/nixos
+    ../../modules/nixos/profiles/vps.nix
     ./gitea.nix
     ./acme.nix
     ./nginx.nix
@@ -66,18 +66,9 @@
     searxng_secret.file = ../../secrets/searxng_secret.age;
   };
 
-  services.beszel-agent.enable = true;
-
   profiles.vps.enable = true;
 
-  dns.enable = true;
-  healthchecks-ping.enable = true;
-  netdata.enable = false;
   postgres.enable = true;
   restic.enable = true;
-  tailscale = {
-    enable = true;
-    useAuthKey = true;
-  };
-  zram.enable = true;
+
 }

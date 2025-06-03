@@ -3,7 +3,7 @@
 
   imports = [
     ./hardware-configuration.nix
-    ../../modules/nixos
+    ../../modules/nixos/profiles/server.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -31,14 +31,4 @@
 
   services.openssh.openFirewall = true;
 
-  services.beszel-agent.enable = true;
-  services.qemuGuest.enable = true;
-
-  dns.enable = false;
-  healthchecks-ping.enable = false;
-  netdata.enable = false;
-  postgres.enable = false;
-  restic.enable = false;
-  tailscale.enable = true;
-  zram.enable = true;
 }

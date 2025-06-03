@@ -2,32 +2,8 @@
   pkgs,
   lib,
   inputs,
-  outputs,
   ...
 }: {
-  imports = [
-    ./autoupgrade.nix
-    ./beszel.nix
-    ./desktop.nix
-    ./dns.nix
-    ./healthchecks-ping.nix
-    ./hm.nix
-    ./netdata.nix
-    ./postgres.nix
-    ./restic.nix
-    ./sshd.nix
-    ./tailscale.nix
-    ./users.nix
-    ./zram.nix
-
-    ./profiles/vps.nix
-
-    inputs.agenix.nixosModules.default
-  ];
-
-  hm.enable = lib.mkDefault true;
-  sshd.enable = lib.mkDefault true;
-  users.enable = lib.mkDefault true;
 
   boot.loader.systemd-boot.configurationLimit = 5;
 
