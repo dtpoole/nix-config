@@ -1,8 +1,7 @@
-{inputs}: final: prev: {
-  unstable = import inputs.nixpkgs-unstable {
-    system = final.system;
-    config = {
-      allowUnfree = true;
-    };
-  };
+{inputs}: final: prev: let
+  unstablePkgs = ["tailscale" "yt-dlp" "beszel"];
+in {
+  unstable = prev.lib.genAttrs unstablePkgs (name:
+    inputs.nixpkgs-unstable.legacyPackages.${final.system}.${name}
+  );
 }
