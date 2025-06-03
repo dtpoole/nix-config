@@ -40,17 +40,6 @@
     nftables.enable = true;
   };
 
-  documentation.nixos.enable = false;
-  documentation.man.enable = false;
-  documentation.info.enable = false;
-  documentation.doc.enable = false;
-
-  #  remove build dependencies
-  nix.extraOptions = ''
-    keep-outputs = true
-    keep-derivations = false
-  '';
-
   services.openssh.openFirewall = false;
 
   services.beszel-agent.enable = true;
@@ -59,14 +48,12 @@
     hc_ping.file = ../../secrets/sapphire_hc_ping_uuid.age;
   };
 
+  profiles.vps.enable = true;
+
   dns.enable = true;
   healthchecks-ping.enable = true;
   netdata.enable = false;
   postgres.enable = false;
   restic.enable = false;
-  tailscale = {
-    enable = true;
-    useAuthKey = true;
-  };
   zram.enable = true;
 }
