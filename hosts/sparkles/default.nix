@@ -5,6 +5,9 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/nixos/profiles/vps.nix
+    ../../modules/nixos/postgres.nix
+    ../../modules/nixos/restic.nix
+
     ./gitea.nix
     ./acme.nix
     ./nginx.nix
@@ -70,5 +73,4 @@
 
   postgres.enable = true;
   restic.enable = true;
-
 }
