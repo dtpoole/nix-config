@@ -4,7 +4,6 @@
   inputs,
   ...
 }: {
-
   boot.loader.systemd-boot.configurationLimit = 5;
 
   time.timeZone = "America/New_York";

@@ -10,5 +10,4 @@
   zram.enable = true;
 
   services.beszel-agent.enable = true;
-
 }

@@ -3,12 +3,11 @@
   config,
   ...
 }: {
-
   imports = [
-      ./server.nix
-      ../dns.nix
-      ../healthchecks-ping.nix
-    ];
+    ./server.nix
+    ../dns.nix
+    ../healthchecks-ping.nix
+  ];
 
   options = {
     profiles.vps.enable = lib.mkEnableOption "VPS profile with cloud-optimized defaults";
@@ -48,6 +47,5 @@
     healthchecks-ping.enable = true;
 
     tailscale.useAuthKey = true;
-
   };
 }
