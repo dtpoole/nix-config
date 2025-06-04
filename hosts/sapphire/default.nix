@@ -45,5 +45,4 @@
   };
 
   profiles.vps.enable = true;
-
 }

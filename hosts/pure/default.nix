@@ -30,5 +30,4 @@
   services.lldpd.enable = true;
 
   services.openssh.openFirewall = true;
-
 }

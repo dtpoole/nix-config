@@ -43,5 +43,4 @@
   age.secrets.hc_ping.file = ../../secrets/jumbo_hc_ping_uuid.age;
 
   profiles.vps.enable = true;
-
 }
