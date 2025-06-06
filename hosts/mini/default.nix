@@ -27,6 +27,7 @@
       "mullvad-browser"
       "parsec"
       "retroarch-metal"
+      "syncthing"
       "thunderbird"
       "vmware-fusion"
       "xld"

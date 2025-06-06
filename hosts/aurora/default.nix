@@ -9,6 +9,7 @@
     extraCasks = [
       "claude"
       "parsec"
+      "syncthing"
     ];
   };
 
