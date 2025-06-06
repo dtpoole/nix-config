@@ -75,6 +75,13 @@
           ".DS_Store"
           ".vscode"
           "Thumbs.db"
+          ".stfolder"
+          ".stignore"
+          ".stversions/"
+          "*.sync-conflict-*"
+          "*~syncthing~*"
+          ".syncthing.*"
+          "*.tmp-syncthing-*"
         ];
       };
 
