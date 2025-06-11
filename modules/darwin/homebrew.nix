@@ -46,6 +46,8 @@ in {
         [
           "1password"
           "acorn"
+          "claude"
+          "discord"
           "ghostty"
           "google-chrome"
           "itsycal"
