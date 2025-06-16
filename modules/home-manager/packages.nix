@@ -24,7 +24,6 @@
       jq
       magic-wormhole
       mc
-      nil
       nmap
       parallel
       pre-commit
