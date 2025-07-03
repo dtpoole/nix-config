@@ -171,7 +171,6 @@
         # Telescope dependencies
         plenary-nvim
 
-
         tcomment_vim
         vim-fugitive
         vim-surround
