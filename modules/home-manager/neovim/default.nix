@@ -91,14 +91,88 @@
                 enable = true,
                 disable = {},
               },
+              incremental_selection = {
+                enable = true,
+                keymaps = {
+                  init_selection = "gnn",
+                  node_incremental = "grn",
+                  scope_incremental = "grc",
+                  node_decremental = "grm",
+                },
+              },
             }
           '';
         }
 
-        fzf-vim
-        polyglot
+        {
+          plugin = telescope-nvim;
+          type = "lua";
+          config = ''
+            require('telescope').setup({
+              defaults = {
+                -- Default configuration for telescope
+                prompt_prefix = "🔍 ",
+                selection_caret = "❯ ",
+                path_display = { "truncate" },
+                file_ignore_patterns = {
+                  "node_modules",
+                  ".git/",
+                  "*.pyc",
+                  "__pycache__",
+                  ".direnv",
+                  "result"
+                },
+                layout_strategy = 'horizontal',
+                layout_config = {
+                  horizontal = {
+                    prompt_position = "top",
+                    preview_width = 0.55,
+                    results_width = 0.8,
+                  },
+                  vertical = {
+                    mirror = false,
+                  },
+                  width = 0.87,
+                  height = 0.80,
+                  preview_cutoff = 120,
+                },
+                sorting_strategy = 'ascending',
+                winblend = 0,
+                border = {},
+                borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+                color_devicons = true,
+                use_less = true,
+                set_env = { ['COLORTERM'] = 'truecolor' },
+                file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+                grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+                qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+
+              },
+              pickers = {
+                find_files = {
+                  theme = "dropdown",
+                  previewer = false,
+                  hidden = true,
+                },
+                buffers = {
+                  theme = "dropdown",
+                  previewer = false,
+                  sort_lastused = true,
+                },
+                live_grep = {
+                  theme = "dropdown",
+                },
+              },
+            })
+
+          '';
+        }
+
+        # Telescope dependencies
+        plenary-nvim
+
+
         tcomment_vim
-        vim-nix
         vim-fugitive
         vim-surround
         vim-just

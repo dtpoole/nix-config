@@ -45,7 +45,7 @@ opt.shiftwidth = 4
 opt.expandtab = true
 
 opt.cursorline = true
-opt.showmatch = true     -- set show matching parenthesis
+opt.showmatch = true -- set show matching parenthesis
 
 -- Searching
 opt.ignorecase = true
@@ -61,7 +61,7 @@ opt.splitbelow = true
 
 opt.nrformats = ''
 
-opt.listchars = {eol = '↲', tab = '▸ ', trail = '·'}
+opt.listchars = { eol = '↲', tab = '▸ ', trail = '·' }
 
 -- Tab completion
 opt.wildmode = 'list:longest,list:full'
@@ -112,19 +112,26 @@ Map('n', '<leader>n', ':set number!<CR>')
 --nmap <silent> <leader>v :vsplit $MYVIMRC<CR>
 Map('n', '<leader>v', ':vsplit $MYVIMRC<CR>')
 
-
-
 -- netrw
 Map('', '<C-d>', ':Lexplore<CR>')
-g['g:netrw_liststyle'] = 3
-g['g:netrw_winsize'] = 35
-g['g:netrw_browse_split'] = 4
-g['g:netrw_altv'] = 1
+g.netrw_liststyle = 3
+g.netrw_winsize = 35
+g.netrw_browse_split = 4
+g.netrw_altv = 1
 
--- fzf
-Map('n', '<leader>b', ':Buffers<CR>')
-Map('n', '<leader>f', ':<c-u>FZF<CR>')
+-- telescope
+Map('n', '<leader>f', '<cmd>Telescope find_files<cr>')
+Map('n', '<leader>b', '<cmd>Telescope buffers<cr>')
+Map('n', '<leader>g', '<cmd>Telescope live_grep<cr>')
+Map('n', '<leader>h', '<cmd>Telescope help_tags<cr>')
+Map('n', '<leader>r', '<cmd>Telescope oldfiles<cr>')
+Map('n', '<leader>s', '<cmd>Telescope grep_string<cr>')
+Map('n', '<leader>m', '<cmd>Telescope marks<cr>')
+Map('n', '<leader>c', '<cmd>Telescope commands<cr>')
 
+Map('n', '<leader>gb', '<cmd>Telescope git_branches<cr>')
+Map('n', '<leader>gc', '<cmd>Telescope git_commits<cr>')
+Map('n', '<leader>gs', '<cmd>Telescope git_status<cr>')
 
 -- Colors / Display
 opt.background = 'dark'
