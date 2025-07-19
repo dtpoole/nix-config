@@ -25,6 +25,22 @@ switch target_host=host:
 [linux]
 trace target_host=host: (build target_host "--show-trace")
 
+# build remotely on pure and deploy to target host
+[linux]
+remote-build target_host build_host="pure" flags="":
+    nixos-rebuild build --flake .#{{ target_host }} \
+        --build-host {{ build_host }} \
+        --target-host {{ target_host }} \
+        {{ flags }}
+
+# build remotely and switch on target host
+[linux]
+remote-deploy target_host build_host="pure":
+    nixos-rebuild switch --flake .#{{ target_host }} \
+        --build-host {{ build_host }} \
+        --target-host {{ target_host }} \
+        --use-remote-sudo
+
 # switch the home-manager configuration
 [linux]
 home-manager: _home-manager
