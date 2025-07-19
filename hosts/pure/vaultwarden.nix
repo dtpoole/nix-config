@@ -2,7 +2,7 @@
   services.vaultwarden = {
     enable = true;
     config = {
-      DOMAIN = "https://vault.poole.fun";
+      DOMAIN = "https://vault.poole.foo";
       SIGNUPS_ALLOWED = true;
       ROCKET_ADDRESS = "0.0.0.0";
       ROCKET_PORT = 8222;

@@ -4,6 +4,8 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/nixos/profiles/server.nix
+    ../../modules/nixos/remote-builder.nix
+    ./vaultwarden.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -30,4 +32,6 @@
   services.lldpd.enable = true;
 
   services.openssh.openFirewall = true;
+
+  remote-builder.enable = true;
 }
