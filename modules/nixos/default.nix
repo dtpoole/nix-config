@@ -33,6 +33,7 @@
       auto-optimise-store = true;
       experimental-features = ["nix-command" "flakes"];
       warn-dirty = false;
+      download-buffer-size = 134217728;
 
       min-free = 1 * 1024 * 1024 * 1024;
       max-free = 25 * 1024 * 1024 * 1024;
