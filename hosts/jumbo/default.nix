@@ -5,7 +5,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/nixos/profiles/vps.nix
-    ./containers.nix
+    # ./containers.nix
   ];
 
   boot.tmp.cleanOnBoot = true;
