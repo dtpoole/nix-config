@@ -1,4 +1,7 @@
 {config, ...}: {
+
+  age.secrets.vaultwarden_admin_token.file = ../../secrets/vaultwarden_admin_token.age;
+
   services.vaultwarden = {
     enable = true;
     config = {
