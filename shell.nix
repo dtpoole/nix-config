@@ -1,5 +1,5 @@
 {pkgs}: {
-  default = pkgs.mkShell {
+  default = pkgs.mkShellNoCC {
     nativeBuildInputs = with pkgs; [
       alejandra
       deadnix
