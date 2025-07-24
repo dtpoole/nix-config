@@ -9,14 +9,6 @@
     recommendedTlsSettings = true;
 
     virtualHosts = {
-      "netdata.sparkles.poole.foo" = {
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:19999";
-          proxyWebsockets = true;
-        };
-        forceSSL = true;
-        useACMEHost = "sparkles.poole.foo";
-      };
       "git.poole.foo" = {
         locations."/" = {
           proxyPass = "http://127.0.0.1:3000";
