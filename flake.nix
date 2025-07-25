@@ -33,8 +33,7 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
-
-    lib = nixpkgs.lib;
+    inherit (nixpkgs) lib;
 
     systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
     forEachSystem = lib.genAttrs systems;
@@ -45,8 +44,8 @@
     pkgsFor = forEachSystem (
       system:
         import nixpkgs {
-          inherit system;
-          inherit overlays;
+          inherit system overlays;
+          config.allowUnfree = true;
         }
     );
 
