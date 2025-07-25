@@ -34,67 +34,50 @@
   } @ inputs: let
     inherit (self) outputs;
 
-    lib = nixpkgs.lib.extend (final: prev: {
-      inherit (home-manager.lib) homeManagerConfiguration;
-
-      lazyAttrs = f: names:
-        builtins.listToAttrs (map (name: {
-            inherit name;
-            value = f name;
-          })
-          names);
-    });
+    lib = nixpkgs.lib;
 
     systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
     forEachSystem = lib.genAttrs systems;
 
     overlays = [(import ./overlays {inherit inputs;})];
 
-    commonModules = {
-      nixos = [
-        {nixpkgs.overlays = overlays;}
-      ];
-      darwin = [
-        {nixpkgs.overlays = overlays;}
-      ];
-    };
-
     # for devShell/standalone home manager
     pkgsFor = forEachSystem (
       system:
         import nixpkgs {
           inherit system;
+          inherit overlays;
         }
     );
 
     specialArgs = {inherit inputs outputs;};
 
     # helper functions
-    mkNixosConfiguration = hostname: let
-      hostConfig = import ./hosts/${hostname};
-    in
+    mkNixosConfiguration = hostname:
       nixpkgs.lib.nixosSystem {
-        modules = commonModules.nixos ++ [hostConfig];
+        modules = [
+          {nixpkgs.overlays = overlays;}
+          (import ./hosts/${hostname})
+        ];
         inherit specialArgs;
       };
 
-    mkDarwinConfiguration = hostname: let
-      hostConfig = import ./hosts/${hostname};
-    in
+    mkDarwinConfiguration = hostname:
       nix-darwin.lib.darwinSystem {
-        modules = commonModules.darwin ++ [hostConfig];
+        modules = [
+          {nixpkgs.overlays = overlays;}
+          (import ./hosts/${hostname})
+        ];
         inherit specialArgs;
       };
 
     mkHomeConfiguration = {
       username,
       system,
-    }: let
-      homeConfig = import ./modules/home-manager;
-    in
+    }:
       home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.${system};
-        modules = [homeConfig];
+        modules = [(import ./modules/home-manager)];
         extraSpecialArgs = specialArgs // {inherit username;};
       };
 
@@ -117,14 +100,21 @@
     devShells = forEachSystem (system: import ./shell.nix {pkgs = pkgsFor.${system};});
     formatter = forEachSystem (system: pkgsFor.${system}.alejandra);
 
-    nixosConfigurations = lib.lazyAttrs mkNixosConfiguration nixosHosts;
-    darwinConfigurations = lib.lazyAttrs mkDarwinConfiguration darwinHosts;
+    nixosConfigurations = builtins.listToAttrs (map (host: {
+        name = host;
+        value = mkNixosConfiguration host;
+      })
+      nixosHosts);
+
+    darwinConfigurations = builtins.listToAttrs (map (host: {
+        name = host;
+        value = mkDarwinConfiguration host;
+      })
+      darwinHosts);
 
     homeConfigurations = builtins.listToAttrs (map (cfg: {
         name = "${cfg.username}@${cfg.host}";
-        value = mkHomeConfiguration {
-          inherit (cfg) username system;
-        };
+        value = mkHomeConfiguration {inherit (cfg) username system;};
       })
       homeConfigs);
   };
