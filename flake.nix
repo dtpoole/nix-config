@@ -36,6 +36,13 @@
 
     lib = nixpkgs.lib.extend (final: prev: {
       inherit (home-manager.lib) homeManagerConfiguration;
+
+      lazyAttrs = f: names:
+        builtins.listToAttrs (map (name: {
+            inherit name;
+            value = f name;
+          })
+          names);
     });
 
     systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
@@ -63,50 +70,62 @@
     specialArgs = {inherit inputs outputs;};
 
     # helper functions
-    mkNixosConfiguration = hostname:
+    mkNixosConfiguration = hostname: let
+      hostConfig = import ./hosts/${hostname};
+    in
       nixpkgs.lib.nixosSystem {
-        modules =
-          commonModules.nixos
-          ++ [
-            (import ./hosts/${hostname})
-          ];
+        modules = commonModules.nixos ++ [hostConfig];
         inherit specialArgs;
       };
 
-    mkDarwinConfiguration = hostname:
+    mkDarwinConfiguration = hostname: let
+      hostConfig = import ./hosts/${hostname};
+    in
       nix-darwin.lib.darwinSystem {
-        modules =
-          commonModules.darwin
-          ++ [
-            (import ./hosts/${hostname})
-          ];
+        modules = commonModules.darwin ++ [hostConfig];
         inherit specialArgs;
       };
 
     mkHomeConfiguration = {
       username,
       system,
-    }:
+    }: let
+      homeConfig = import ./modules/home-manager;
+    in
       home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.${system};
-        modules = [(import ./modules/home-manager)];
+        modules = [homeConfig];
         extraSpecialArgs = specialArgs // {inherit username;};
       };
 
     nixosHosts = ["jumbo" "pure" "sparkles" "vm1" "sapphire"];
     darwinHosts = ["mini" "aurora"];
+
+    homeConfigs = [
+      {
+        username = "dave";
+        system = "x86_64-linux";
+        host = "PF2N1Y5V";
+      }
+      {
+        username = "dave";
+        system = "x86_64-linux";
+        host = "PF5R9ELQ";
+      }
+    ];
   in {
     devShells = forEachSystem (system: import ./shell.nix {pkgs = pkgsFor.${system};});
     formatter = forEachSystem (system: pkgsFor.${system}.alejandra);
 
-    nixosConfigurations = lib.genAttrs nixosHosts mkNixosConfiguration;
-    darwinConfigurations = lib.genAttrs darwinHosts mkDarwinConfiguration;
+    nixosConfigurations = lib.lazyAttrs mkNixosConfiguration nixosHosts;
+    darwinConfigurations = lib.lazyAttrs mkDarwinConfiguration darwinHosts;
 
-    homeConfigurations = {
-      "dave@PF2N1Y5V" = mkHomeConfiguration {
-        username = "dave";
-        system = "x86_64-linux";
-      };
-    };
+    homeConfigurations = builtins.listToAttrs (map (cfg: {
+        name = "${cfg.username}@${cfg.host}";
+        value = mkHomeConfiguration {
+          inherit (cfg) username system;
+        };
+      })
+      homeConfigs);
   };
 }
