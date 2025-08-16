@@ -2,7 +2,6 @@ let
   systems = {
     mini = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL6M0/XCWHHLcCWzwvao+COZ5hDb9/gQp7Yp6jZRcCdu";
     sparkles = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIItEj1cbmZqIyGZgLfwIb3jmr7byFfTWrMf4FevPsxzn";
-    jumbo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG+jRGsr5gDvuAZVInvp6IuLeV7lRD5u8GTbGNmDRa5j";
     vm1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlsETz033DfRhx3oWV8smITgaEh2wf5euhlVyPNUd0W";
     sapphire = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGyWx8Tkh7ORKbXPZ5oclwOxPdmAG39zujS0f7n4unQa";
     pure = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC0hFkXxBFuXWhP8A7mI2ReXVCIjzdcBjLAnwYdNRkeg";
@@ -18,7 +17,6 @@ in {
   "acme_cloudflare_credentials.age".publicKeys = allUsers ++ [systems.pure systems.sparkles];
   "tailscale_auth_key.age".publicKeys = allUsers ++ allSystems;
 
-  "jumbo_hc_ping_uuid.age".publicKeys = allUsers ++ [systems.jumbo];
   "sapphire_hc_ping_uuid.age".publicKeys = allUsers ++ [systems.sapphire];
   "sparkles_hc_ping_uuid.age".publicKeys = allUsers ++ [systems.sparkles];
   "sparkles_hc_restic_uuid.age".publicKeys = allUsers ++ [systems.sparkles];

@@ -80,7 +80,7 @@
         extraSpecialArgs = specialArgs // {inherit username;};
       };
 
-    nixosHosts = ["jumbo" "pure" "sparkles" "vm1" "sapphire"];
+    nixosHosts = ["pure" "sparkles" "vm1" "sapphire"];
     darwinHosts = ["mini" "aurora"];
 
     homeConfigs = [
