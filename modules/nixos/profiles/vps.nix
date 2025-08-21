@@ -43,6 +43,9 @@
       extraConfig = "Storage=none";
     };
 
+    # Enable automatic kernel tuning via eBPF
+    services.bpftune.enable = true;
+
     dns.enable = true;
     healthchecks-ping.enable = true;
 
