@@ -33,7 +33,7 @@
   } @ inputs: let
     inherit (nixpkgs) lib;
 
-    systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
+    systems = ["x86_64-linux" "aarch64-darwin"];
     forEachSystem = lib.genAttrs systems;
 
     overlays = [(import ./overlays {inherit inputs;})];
