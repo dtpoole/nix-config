@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   username,
@@ -7,7 +8,6 @@
   imports = [
     ./fzf.nix
     ./ghostty.nix
-    ./kitty.nix
     ./neovim
     ./packages.nix
     ./programs.nix
