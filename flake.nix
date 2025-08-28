@@ -26,13 +26,12 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     home-manager,
     nix-darwin,
     ...
   } @ inputs: let
-    inherit (self) outputs;
+
     inherit (nixpkgs) lib;
 
     systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
