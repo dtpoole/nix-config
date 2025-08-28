@@ -81,7 +81,7 @@
         extraSpecialArgs = specialArgs // {inherit username;};
       };
 
-    nixosHosts = ["pure" "sparkles" "vm1" "sapphire"];
+    nixosHosts = ["pure" "sparkles" "sapphire"];
     darwinHosts = ["mini" "aurora"];
 
     homeConfigs = [
