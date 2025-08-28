@@ -31,13 +31,22 @@
     nix-darwin,
     ...
   } @ inputs: let
-
     inherit (nixpkgs) lib;
 
     systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
     forEachSystem = lib.genAttrs systems;
 
     overlays = [(import ./overlays {inherit inputs;})];
+
+    commonModules = [
+      {nixpkgs.overlays = overlays;}
+      inputs.agenix.nixosModules.default
+    ];
+
+    commonDarwinModules = [
+      {nixpkgs.overlays = overlays;}
+      inputs.agenix.darwinModules.default
+    ];
 
     # for devShell/standalone home manager
     pkgsFor = forEachSystem (
@@ -53,19 +62,13 @@
     # helper functions
     mkNixosConfiguration = hostname:
       nixpkgs.lib.nixosSystem {
-        modules = [
-          {nixpkgs.overlays = overlays;}
-          (import ./hosts/${hostname})
-        ];
+        modules = commonModules ++ [(import ./hosts/${hostname})];
         inherit specialArgs;
       };
 
     mkDarwinConfiguration = hostname:
       nix-darwin.lib.darwinSystem {
-        modules = [
-          {nixpkgs.overlays = overlays;}
-          (import ./hosts/${hostname})
-        ];
+        modules = commonDarwinModules ++ [(import ./hosts/${hostname})];
         inherit specialArgs;
       };
 

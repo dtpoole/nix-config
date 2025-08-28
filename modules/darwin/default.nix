@@ -12,7 +12,6 @@ in {
     ./homebrew.nix
     ./mac.nix
 
-    inputs.agenix.darwinModules.default
     inputs.home-manager.darwinModules.home-manager
     {
       home-manager = {
