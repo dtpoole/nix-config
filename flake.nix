@@ -49,7 +49,7 @@
         }
     );
 
-    specialArgs = {inherit inputs outputs;};
+    specialArgs = {inherit inputs;};
 
     # helper functions
     mkNixosConfiguration = hostname:
@@ -76,7 +76,9 @@
     }:
       home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.${system};
-        modules = [(import ./modules/home-manager)];
+        modules = [
+          (import ./modules/home-manager)
+        ];
         extraSpecialArgs = specialArgs // {inherit username;};
       };
 
