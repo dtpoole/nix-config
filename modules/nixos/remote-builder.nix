@@ -1,8 +1,8 @@
 {
-lib,
-config,
-pkgs,
-...
+  lib,
+  config,
+  pkgs,
+  ...
 }: {
   options = {
     remote-builder.enable = lib.mkEnableOption "enables remote building capabilities";
@@ -18,12 +18,12 @@ pkgs,
 
     # Allow remote building
     nix.settings = {
-      allowed-users = [ "@wheel" ];
-      trusted-users = [ "root" "@wheel" ];
+      allowed-users = ["@wheel"];
+      trusted-users = ["root" "@wheel"];
     };
 
     # Open firewall for nix-serve
-    networking.firewall.allowedTCPPorts = [ 5000 ];
+    networking.firewall.allowedTCPPorts = [5000];
 
     # Enable SSH for remote building
     programs.ssh.extraConfig = ''
