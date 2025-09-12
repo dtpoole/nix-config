@@ -7,6 +7,7 @@
   darwin.homebrew = {
     # Any Aurora-specific brews, casks, or Mac App Store apps would go here
     extraCasks = [
+      "mullvad-browser"
       "parsec"
       "syncthing-app"
     ];
