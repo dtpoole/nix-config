@@ -91,11 +91,6 @@
       {
         username = "dave";
         system = "x86_64-linux";
-        host = "PF2N1Y5V";
-      }
-      {
-        username = "dave";
-        system = "x86_64-linux";
         host = "PF5R9ELQ";
       }
     ];
