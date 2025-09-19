@@ -83,6 +83,7 @@ in {
           "Pages" = 409201541;
           "StopTheMadness Pro" = 6471380298;
           "Infuse • Video Player" = 1136220934;
+          "Tot" = 1491071483;
         }
         // cfg.extraMasApps;
     };
