@@ -124,6 +124,11 @@
             format = "$shlvl ▼ ";
             threshold = 4;
           };
+          nix_shell = {
+            symbol = "❄️";
+            impure_msg = "";
+            pure_msg = "pure";
+          };
         };
       };
 
