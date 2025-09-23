@@ -30,6 +30,7 @@
   };
 
   services.lldpd.enable = true;
+  services.qemuGuest.enable = true;
 
   services.openssh.openFirewall = true;
 
