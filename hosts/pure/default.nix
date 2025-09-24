@@ -27,6 +27,8 @@
 
     firewall.enable = true;
     nftables.enable = true;
+
+    enableIPv6 = false;
   };
 
   services.lldpd.enable = true;
