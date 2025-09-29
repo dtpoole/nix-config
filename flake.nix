@@ -60,15 +60,15 @@
     specialArgs = {inherit inputs;};
 
     # helper functions
-    mkNixosConfiguration = hostname:
+    mkNixosConfiguration = host:
       nixpkgs.lib.nixosSystem {
-        modules = commonModules ++ [(import ./hosts/${hostname})];
+        modules = commonModules ++ [(import ./hosts/${host})];
         inherit specialArgs;
       };
 
-    mkDarwinConfiguration = hostname:
+    mkDarwinConfiguration = host:
       nix-darwin.lib.darwinSystem {
-        modules = commonDarwinModules ++ [(import ./hosts/${hostname})];
+        modules = commonDarwinModules ++ [(import ./hosts/${host})];
         inherit specialArgs;
       };
 
