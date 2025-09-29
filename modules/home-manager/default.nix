@@ -5,7 +5,6 @@
   ...
 }: {
   imports = [
-    ./fzf.nix
     ./neovim
     ./packages.nix
     ./programs.nix
@@ -27,10 +26,8 @@
   # Set to false. home manager is available in the devShell
   programs.home-manager.enable = false;
 
-  fzf.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
   neovim.enable = lib.mkDefault true;
   packages.enable = lib.mkDefault true;
   programs.enable = lib.mkDefault true;
-
 }
