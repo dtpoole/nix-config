@@ -5,4 +5,5 @@
 
   ghostty.enable = true;
   ssh-config.enable = true;
+  git-config.enable = true;
 }

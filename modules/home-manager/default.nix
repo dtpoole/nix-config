@@ -6,12 +6,13 @@
 }: {
   imports = [
     ./fzf.nix
-    ./ghostty.nix
     ./neovim
     ./packages.nix
     ./programs.nix
-    ./ssh-config.nix
     ./zsh.nix
+    ./ghostty.nix
+    ./git-config.nix
+    ./ssh-config.nix
   ];
 
   home = {
@@ -31,4 +32,5 @@
   neovim.enable = lib.mkDefault true;
   packages.enable = lib.mkDefault true;
   programs.enable = lib.mkDefault true;
+
 }
