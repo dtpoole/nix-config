@@ -57,7 +57,10 @@
         }
     );
 
-    specialArgs = {inherit inputs;};
+    specialArgs = {
+      inherit inputs;
+      username = "dave";
+    };
 
     # helper functions
     mkNixosConfiguration = host:

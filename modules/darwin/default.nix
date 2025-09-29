@@ -1,10 +1,9 @@
 {
   pkgs,
   inputs,
+  username,
   ...
-}: let
-  username = "dave";
-in {
+}:{
   nixpkgs.hostPlatform = "aarch64-darwin";
   system.stateVersion = 5;
 
