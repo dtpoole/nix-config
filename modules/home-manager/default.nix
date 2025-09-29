@@ -38,4 +38,5 @@
   packages.enable = lib.mkDefault true;
   programs.enable = lib.mkDefault true;
   ssh-config.enable = lib.mkDefault false;
+  ghostty.enable = lib.mkDefault false;
 }

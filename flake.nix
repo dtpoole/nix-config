@@ -80,7 +80,7 @@
       home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.${system};
         modules = [
-          (import ./modules/home-manager/hosts/${host}.nix)
+          (import ./hosts/${host}/home-manager.nix)
         ];
         extraSpecialArgs = specialArgs // {inherit username;};
       };
