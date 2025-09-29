@@ -75,11 +75,12 @@
     mkHomeConfiguration = {
       username,
       system,
+      host ? null,
     }:
       home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.${system};
         modules = [
-          (import ./modules/home-manager)
+          (import ./modules/home-manager/hosts/${host}.nix)
         ];
         extraSpecialArgs = specialArgs // {inherit username;};
       };
@@ -92,6 +93,16 @@
         username = "dave";
         system = "x86_64-linux";
         host = "PF5R9ELQ";
+      }
+      {
+        username = "dave";
+        system = "aarch64-darwin";
+        host = "mini";
+      }
+      {
+        username = "dave";
+        system = "aarch64-darwin";
+        host = "aurora";
       }
     ];
   in {
@@ -112,7 +123,7 @@
 
     homeConfigurations = builtins.listToAttrs (map (cfg: {
         name = "${cfg.username}@${cfg.host}";
-        value = mkHomeConfiguration {inherit (cfg) username system;};
+        value = mkHomeConfiguration {inherit (cfg) username system host;};
       })
       homeConfigs);
   };

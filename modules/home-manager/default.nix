@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   lib,
   username,
@@ -27,16 +26,16 @@
   # Set to false. home manager is available in the devShell
   programs.home-manager.enable = false;
 
-  xdg.configFile."nix/nix.conf".text = ''
-    experimental-features = nix-command flakes
-    max-jobs = auto
-    warn-dirty = false
-  '';
+  # xdg.configFile."nix/nix.conf".text = ''
+  #   experimental-features = nix-command flakes
+  #   max-jobs = auto
+  #   warn-dirty = false
+  # '';
 
   fzf.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
   neovim.enable = lib.mkDefault true;
   packages.enable = lib.mkDefault true;
   programs.enable = lib.mkDefault true;
-  ssh-config.enable = lib.mkDefault true;
+  ssh-config.enable = lib.mkDefault false;
 }

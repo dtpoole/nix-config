@@ -11,16 +11,6 @@ in {
   imports = [
     ./homebrew.nix
     ./mac.nix
-
-    inputs.home-manager.darwinModules.home-manager
-    {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        users.${username} = import ../home-manager/desktop.nix;
-        extraSpecialArgs = {inherit username;};
-      };
-    }
   ];
 
   users.users.${username}.home = "/Users/${username}";
