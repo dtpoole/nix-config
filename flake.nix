@@ -75,7 +75,7 @@
     mkHomeConfiguration = {
       username,
       system,
-      host ? null,
+      host,
     }:
       home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.${system};
@@ -87,38 +87,18 @@
 
     nixosHosts = ["pure" "sparkles" "sapphire"];
     darwinHosts = ["mini" "aurora"];
-
-    homeConfigs = [
-      {
+    homeConfigs = let
+      mkConfig = system: host: {
+        inherit system host;
         username = "dave";
-        system = "x86_64-linux";
-        host = "PF5R9ELQ";
-      }
-      {
-        username = "dave";
-        system = "aarch64-darwin";
-        host = "mini";
-      }
-      {
-        username = "dave";
-        system = "aarch64-darwin";
-        host = "aurora";
-      }
-      {
-        username = "dave";
-        system = "x86_64-linux";
-        host = "pure";
-      }
-      {
-        username = "dave";
-        system = "x86_64-linux";
-        host = "sparkles";
-      }
-      {
-        username = "dave";
-        system = "x86_64-linux";
-        host = "sapphire";
-      }
+      };
+    in [
+      (mkConfig "x86_64-linux" "PF5R9ELQ")
+      (mkConfig "aarch64-darwin" "mini")
+      (mkConfig "aarch64-darwin" "aurora")
+      (mkConfig "x86_64-linux" "pure")
+      (mkConfig "x86_64-linux" "sparkles")
+      (mkConfig "x86_64-linux" "sapphire")
     ];
   in {
     devShells = forEachSystem (system: import ./shell.nix {pkgs = pkgsFor.${system};});
