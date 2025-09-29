@@ -104,6 +104,21 @@
         system = "aarch64-darwin";
         host = "aurora";
       }
+      {
+        username = "dave";
+        system = "x86_64-linux";
+        host = "pure";
+      }
+      {
+        username = "dave";
+        system = "x86_64-linux";
+        host = "sparkles";
+      }
+      {
+        username = "dave";
+        system = "x86_64-linux";
+        host = "sapphire";
+      }
     ];
   in {
     devShells = forEachSystem (system: import ./shell.nix {pkgs = pkgsFor.${system};});
