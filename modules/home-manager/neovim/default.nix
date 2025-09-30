@@ -34,6 +34,40 @@
         }
 
         {
+          plugin = nvim-tree-lua;
+          type = "lua";
+          config = ''
+            -- disable netrw at the very start
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+
+            require('nvim-tree').setup({
+              view = {
+                width = 35,
+                side = "left",
+              },
+              renderer = {
+                icons = {
+                  show = {
+                    git = true,
+                    folder = true,
+                    file = true,
+                  },
+                },
+              },
+              filters = {
+                dotfiles = false,
+                custom = { "^.git$" },
+              },
+              git = {
+                enable = true,
+                ignore = false,
+              },
+            })
+          '';
+        }
+
+        {
           plugin = nord-nvim;
           type = "lua";
           config = ''
@@ -168,8 +202,9 @@
           '';
         }
 
-        # Telescope dependencies
+        # plugin dependencies
         plenary-nvim
+        nvim-web-devicons
 
         tcomment_vim
         vim-fugitive

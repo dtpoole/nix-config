@@ -112,12 +112,8 @@ Map('n', '<leader>n', ':set number!<CR>')
 --nmap <silent> <leader>v :vsplit $MYVIMRC<CR>
 Map('n', '<leader>v', ':vsplit $MYVIMRC<CR>')
 
--- netrw
-Map('', '<C-d>', ':Lexplore<CR>')
-g.netrw_liststyle = 3
-g.netrw_winsize = 35
-g.netrw_browse_split = 4
-g.netrw_altv = 1
+-- nvim-tree
+Map('', '<C-d>', ':NvimTreeToggle<CR>')
 
 -- telescope
 Map('n', '<leader>f', '<cmd>Telescope find_files<cr>')
