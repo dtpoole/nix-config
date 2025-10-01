@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ./neovim
+    ./neovim.nix
     ./packages.nix
     ./programs.nix
     ./zsh.nix

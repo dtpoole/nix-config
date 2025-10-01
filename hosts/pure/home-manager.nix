@@ -3,6 +3,7 @@
     ../../modules/home-manager
   ];
 
+  neovim.enable = true;
   ssh-config.enable = true;
 
   packages.sets = {

@@ -23,6 +23,11 @@
         home-manager.follows = "home-manager";
       };
     };
+
+    nvf-config = {
+      url = "github:dtpoole/nvf-config";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = {
