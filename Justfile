@@ -77,6 +77,10 @@ update:
     @nix flake update
     pre-commit autoupdate
 
+# update nvf-config flake input to latest revision
+update-nvf:
+    @nix flake update nvf-config
+
 # rekey agenix secrets
 rekey:
     cd ./secrets && nix run github:ryantm/agenix -- --rekey
