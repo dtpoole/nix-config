@@ -57,7 +57,7 @@
   environment.systemPackages = with pkgs; [
     curl
     wget
-    git
+    gitMinimal
     neovim
     zsh
   ];
