@@ -19,7 +19,7 @@
       "dolphin"
       "fission"
       "gzdoom"
-      "handbrake"
+      "handbrake-app"
       "ioquake3"
       "logi-options+"
       "makemkv"
