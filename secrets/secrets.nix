@@ -2,7 +2,6 @@ let
   systems = {
     mini = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL6M0/XCWHHLcCWzwvao+COZ5hDb9/gQp7Yp6jZRcCdu";
     sparkles = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIItEj1cbmZqIyGZgLfwIb3jmr7byFfTWrMf4FevPsxzn";
-    vm1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlsETz033DfRhx3oWV8smITgaEh2wf5euhlVyPNUd0W";
     sapphire = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGyWx8Tkh7ORKbXPZ5oclwOxPdmAG39zujS0f7n4unQa";
     pure = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC0hFkXxBFuXWhP8A7mI2ReXVCIjzdcBjLAnwYdNRkeg";
   };
