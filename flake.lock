@@ -216,11 +216,11 @@
         "nvf": "nvf"
       },
       "locked": {
-        "lastModified": 1759360723,
-        "narHash": "sha256-POsoa8mjzJsRUHPHUdVdwLSskp8wmi5CX+v5f0x2Iig=",
+        "lastModified": 1759372191,
+        "narHash": "sha256-/Hs+74Q6t0nf/XnSzsSxYwrLBCcKlU5vzDPMFsPvs+s=",
         "owner": "dtpoole",
         "repo": "nvf-config",
-        "rev": "ea59342d094f3bcb92f724d47f717e09d7ec4827",
+        "rev": "618830938d1bab45405e92a459cca12cc29292c9",
         "type": "github"
       },
       "original": {
