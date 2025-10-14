@@ -11,7 +11,8 @@
     };
     acceptTerms = true;
     certs = {
-      "vault.poole.fun" = {};
+      "vault.poole.foo" = {};
+      "ntfy.poole.foo" = {};
     };
   };
 }
