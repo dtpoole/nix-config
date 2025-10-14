@@ -3,11 +3,11 @@
   config,
   ...
 }: let
-  cfg = config.services.ntfy;
+  cfg = config.ntfy;
 in {
   options = {
-    nfty = {
-      enable = lib.mkEnableOption "enables nfty server";
+    ntfy = {
+      enable = lib.mkEnableOption "enables ntfy server";
 
       domain = lib.mkOption {
         type = lib.types.str;
@@ -23,7 +23,7 @@ in {
     };
   };
 
-  config = lib.mkIf config.nfty.enable {
+  config = lib.mkIf config.ntfy.enable {
     services.ntfy-sh = {
       enable = true;
       settings = {
@@ -32,6 +32,7 @@ in {
         cache-file = "/var/lib/ntfy-sh/cache.db";
         attachment-cache-dir = "/var/lib/ntfy-sh/attachments";
         behind-proxy = true;
+        upstream-base-url = "https://ntfy.sh";
 
         # Authentication settings
         auth-file = lib.mkIf cfg.enableAuth "/var/lib/ntfy-sh/user.db";
@@ -47,7 +48,7 @@ in {
         if cfg.enableAuth
         then ''
           echo "Authentication is ENABLED"
-          echo "Create a user with: sudo ntfy user add USERNAME"
+          echo "Create a user with: sudo ntfy user add --role=admin USERNAME"
         ''
         else ''
           echo "WARNING: Authentication is DISABLED"

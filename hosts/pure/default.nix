@@ -8,6 +8,7 @@
     ../../modules/nixos/ntfy.nix
     ./acme.nix
     ./vaultwarden.nix
+    ./nginx.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -27,7 +28,10 @@
     defaultGateway = "10.10.2.1";
     nameservers = ["10.10.10.2"];
 
-    firewall.enable = true;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 80 443 ];
+    };
     nftables.enable = true;
 
     enableIPv6 = false;
