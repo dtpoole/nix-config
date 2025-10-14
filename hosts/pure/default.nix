@@ -5,6 +5,8 @@
     ./hardware-configuration.nix
     ../../modules/nixos/profiles/server.nix
     ../../modules/nixos/remote-builder.nix
+    ../../modules/nixos/ntfy.nix
+    ./acme.nix
     ./vaultwarden.nix
   ];
 
@@ -37,4 +39,10 @@
   services.openssh.openFirewall = true;
 
   remote-builder.enable = true;
+
+  ntfy = {
+    enable = true;
+    domain = "ntfy.poole.foo";
+    enableAuth = true;
+  };
 }
