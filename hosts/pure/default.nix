@@ -30,7 +30,7 @@
 
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 80 443 ];
+      allowedTCPPorts = [80 443];
     };
     nftables.enable = true;
 
@@ -47,6 +47,6 @@
   ntfy = {
     enable = true;
     domain = "ntfy.poole.foo";
-    enableAuth = true;
+    enableAuth = false;
   };
 }
