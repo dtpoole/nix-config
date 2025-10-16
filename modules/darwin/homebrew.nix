@@ -55,6 +55,7 @@ in {
           "launchbar"
           "lunar"
           "netnewswire"
+          "nova"
           "obsidian"
           "omnidisksweeper"
           "plexamp"
