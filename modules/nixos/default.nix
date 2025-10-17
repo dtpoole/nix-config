@@ -33,7 +33,9 @@
       auto-optimise-store = true;
       experimental-features = ["nix-command" "flakes"];
       warn-dirty = false;
-      download-buffer-size = 134217728;
+      download-buffer-size = 268435456;
+      http-connections = 25;
+      connect-timeout = 5;
       max-jobs = "auto";
       cores = 0;
       substituters = [
