@@ -17,6 +17,15 @@
         addSSL = true;
         useACMEHost = "ntfy.poole.foo";
       };
+
+      "vault.poole.foo" = {
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:8222";
+          proxyWebsockets = true;
+        };
+        addSSL = true;
+        useACMEHost = "vault.poole.foo";
+      };
     };
   };
 

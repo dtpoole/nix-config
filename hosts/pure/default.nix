@@ -49,4 +49,9 @@
     domain = "ntfy.poole.foo";
     enableAuth = false;
   };
+
+  vaultwarden = {
+    enable = true;
+    domain = "vault.poole.foo";
+  };
 }
