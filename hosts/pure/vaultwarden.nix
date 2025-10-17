@@ -23,7 +23,7 @@
       environmentFile = config.age.secrets.vaultwarden_admin_token.path;
       config = {
         DOMAIN = "https://${config.vaultwarden.domain}";
-        SIGNUPS_ALLOWED = true;
+        SIGNUPS_ALLOWED = false;  # set to true when first setting up
         ROCKET_ADDRESS = "127.0.0.1";
         ROCKET_PORT = 8222;
       };
