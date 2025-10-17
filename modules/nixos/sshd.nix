@@ -49,6 +49,9 @@
         AllowAgentForwarding no
         AllowStreamLocalForwarding no
         AuthenticationMethods publickey
+
+        # Rate limiting
+        MaxStartups 10:30:60
       '';
     };
   };
