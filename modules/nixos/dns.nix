@@ -25,9 +25,12 @@
       # These settings can be adjusted according to preference
       extraConfig = ''
         DNSOverTLS=opportunistic
-        MulticastDNS=yes
+        MulticastDNS=no
+        LLMNR=no
         Cache=yes
         CacheFromLocalhost=no
+        DNSStubListener=no
+        DNSStubListenerExtra=127.0.0.1
       '';
     };
 
