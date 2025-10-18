@@ -27,6 +27,7 @@
       enable = true;
       location = "/var/backup/postgresql";
       backupAll = true;
+      compression = "zstd";
     };
   };
 }
