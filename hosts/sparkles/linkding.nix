@@ -22,7 +22,13 @@ in {
     "linkding" = {
       autoStart = true;
       image = "sissbruecker/linkding:${version}";
-      extraOptions = ["--pull=always"];
+      extraOptions = [
+        "--pull=always"
+        "--memory=512m"
+        "--memory-swap=1g"
+        "--cpus=1.0"
+        "--pids-limit=100"
+      ];
       environmentFiles = [config.age.secrets.linkding_password.path];
       environment = {
         "LD_DB_ENGINE" = "postgres";
