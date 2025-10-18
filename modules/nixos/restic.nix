@@ -22,6 +22,7 @@
           "/var/cache"
           "/home/*/.cache"
           "/var/backup/restic"
+          "/var/lib/postgresql"
           "/home/*/.vscode-server"
         ];
         paths = [
