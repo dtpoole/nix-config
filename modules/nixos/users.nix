@@ -9,6 +9,10 @@
   };
 
   config = lib.mkIf config.users.enable {
+    age.secrets.user_password = {
+      file = ../../secrets/user_password.age;
+    };
+
     users = {
       mutableUsers = false;
       users.dave = {
@@ -17,7 +21,7 @@
         group = "users";
         description = lib.mkForce "David Poole";
         extraGroups = ["docker" "wheel" "networkmanager"];
-        hashedPassword = "$6$faPngAjiSid77.8t$8iLvE/E.ChK2GD.52gp4oMqG7gY.Gyd2TkfV.solZF9SMKSTmjGhkN.nJDwS26QLjAo3aAf4PCbEqrWJN2/cZ/";
+        hashedPasswordFile = config.age.secrets.user_password.path;
         shell = pkgs.zsh;
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDL8vV4xFbHiAkqYOSgwT2hdTVtnXqH5yC2mZEsQUnuJ"
