@@ -41,6 +41,7 @@
         dc = "docker compose";
         dtail = "docker logs -tf --tail='30'";
         ip = "ip --color=auto";
+        destroy_ds = "find . -type f \\( -name .DS_Store -o -name \"._*\" \\) -delete";
       };
 
       history = {
@@ -62,7 +63,7 @@
             . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
         fi
 
-        path+=($HOME/.cargo/bin /usr/local/bin /usr/local/sbin /opt/homebrew/bin)
+        path+=($HOME/bin $HOME/.cargo/bin /usr/local/bin /usr/local/sbin /opt/homebrew/bin)
 
         fpath+=( $ZDOTDIR/functions )
         autoload -Uz ssh
