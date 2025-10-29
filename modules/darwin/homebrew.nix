@@ -47,6 +47,7 @@ in {
           "1password"
           "acorn"
           "claude"
+          "claude-code"
           "discord"
           "ghostty"
           "google-chrome"
