@@ -52,7 +52,32 @@
     };
   };
 
-  security.sudo.wheelNeedsPassword = false;
+  security.sudo = {
+    wheelNeedsPassword = true;
+    extraRules = [
+      {
+        groups = ["wheel"];
+        commands = [
+          {
+            command = "${pkgs.systemd}/bin/systemctl";
+            options = ["NOPASSWD"];
+          }
+          {
+            command = "${pkgs.systemd}/bin/journalctl";
+            options = ["NOPASSWD"];
+          }
+          {
+            command = "/run/current-system/sw/bin/nixos-rebuild";
+            options = ["NOPASSWD"];
+          }
+          {
+            command = "${pkgs.nix}/bin/nix-collect-garbage";
+            options = ["NOPASSWD"];
+          }
+        ];
+      }
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
