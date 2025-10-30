@@ -59,6 +59,9 @@
       # ss06    Stylistic Set 6 <- gap 0, slash 7
       font-feature = +calt
       font-feature = +ss01
+      
+      keybind = shift+enter=text:\x1b\r
+
     '';
   };
 }
