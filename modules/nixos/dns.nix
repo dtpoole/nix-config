@@ -15,7 +15,7 @@
       # DNS over TLS
       dnssec = "true";
 
-      # Use these DNS servers (you can change these)
+      # Use these DNS servers
       fallbackDns = [
         "9.9.9.9" # Quad9
         "1.1.1.1" # Cloudflare
