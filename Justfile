@@ -98,6 +98,11 @@ lint:
     @statix check -i .direnv
     @deadnix .
 
+# nix store garbage collect and optimize
+optimize:
+    nix-store -j auto --gc
+    nix-store -j auto --optimise
+    
 # clean up
 cleanup:
     @nh clean all
