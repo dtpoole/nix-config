@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   boot.loader.systemd-boot.configurationLimit = 5;
 
   time.timeZone = "America/New_York";
@@ -52,32 +47,8 @@
     };
   };
 
-  security.sudo = {
-    wheelNeedsPassword = true;
-    extraRules = [
-      {
-        groups = ["wheel"];
-        commands = [
-          {
-            command = "${pkgs.systemd}/bin/systemctl";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "${pkgs.systemd}/bin/journalctl";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "/run/current-system/sw/bin/nixos-rebuild";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "${pkgs.nix}/bin/nix-collect-garbage";
-            options = ["NOPASSWD"];
-          }
-        ];
-      }
-    ];
-  };
+  # Require password for all sudo commands
+  security.sudo.wheelNeedsPassword = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
