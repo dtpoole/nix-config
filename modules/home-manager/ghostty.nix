@@ -16,6 +16,7 @@
       window-width = 150
 
       font-family = "Berkeley Mono Variable"
+      font-family-bold = "Berkeley Mono Variable Regular Bold"
       font-size = 15.500000
 
       # Font width (60 to 100)
@@ -61,6 +62,8 @@
       font-feature = +ss01
 
       keybind = shift+enter=text:\x1b\r
+
+      adjust-cell-height = 10%
 
     '';
   };
