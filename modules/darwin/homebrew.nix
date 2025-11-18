@@ -60,6 +60,7 @@ in {
           "obsidian"
           "omnidisksweeper"
           "plexamp"
+          "rustdesk"
           "transmit"
           "transnomino"
           "utm"
