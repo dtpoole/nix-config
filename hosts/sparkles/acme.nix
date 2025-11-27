@@ -15,7 +15,6 @@
         extraDomainNames = ["*.sparkles.poole.foo"];
       };
       "git.poole.foo" = {};
-      "git2.poole.foo" = {};
       "tools.poole.foo" = {};
       "links.poole.foo" = {};
       "search.poole.foo" = {};

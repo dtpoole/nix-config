@@ -8,7 +8,6 @@
     ../../modules/nixos/postgres.nix
     ../../modules/nixos/restic.nix
 
-    ./gitea.nix
     ./forgejo.nix
     ./acme.nix
     ./nginx.nix

@@ -1,5 +1,5 @@
 let
-  host = "git2.poole.foo";
+  host = "git.poole.foo";
 in {
   services.postgresql = {
     ensureDatabases = ["forgejo"];
@@ -25,7 +25,7 @@ in {
         DOMAIN = "${host}";
         SSH_DOMAIN = "${host}";
         ROOT_URL = "https://${host}/";
-        HTTP_PORT = 3001;
+        HTTP_PORT = 3000;
         DISABLE_ROUTER_LOG = true;
       };
       database.LOG_SQL = false;

@@ -17,14 +17,6 @@
         addSSL = true;
         useACMEHost = "git.poole.foo";
       };
-      "git2.poole.foo" = {
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:3001";
-          proxyWebsockets = true;
-        };
-        addSSL = true;
-        useACMEHost = "git2.poole.foo";
-      };
       "tools.poole.foo" = {
         locations."/" = {
           proxyPass = "http://127.0.0.1:8070";
