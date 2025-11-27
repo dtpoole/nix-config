@@ -9,6 +9,7 @@
     ../../modules/nixos/restic.nix
 
     ./gitea.nix
+    ./forgejo.nix
     ./acme.nix
     ./nginx.nix
     ./it-tools.nix
