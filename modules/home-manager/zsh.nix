@@ -12,7 +12,7 @@
     programs.zsh = {
       enable = true;
 
-      dotDir = ".config/zsh";
+      dotDir = "${config.xdg.configHome}/zsh";
 
       enableCompletion = true;
       autosuggestion.enable = true;
@@ -63,10 +63,21 @@
             . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
         fi
 
-        path+=($HOME/bin $HOME/.cargo/bin /usr/local/bin /usr/local/sbin /opt/homebrew/bin)
+        path+=($HOME/.local/bin $HOME/bin $HOME/.cargo/bin /usr/local/bin /usr/local/sbin /opt/homebrew/bin)
 
         fpath+=( $ZDOTDIR/functions )
         autoload -Uz ssh
+
+        tempe () {
+          cd "$(mktemp -d)"
+          chmod -R 0700 .
+          if [[ $# -eq 1 ]]; then
+            \mkdir -p "$1"
+            cd "$1"
+            chmod -R 0700 .
+          fi
+          pwd
+        }
 
         ZSH_AUTOSUGGEST_MANUAL_REBIND=1
       '';

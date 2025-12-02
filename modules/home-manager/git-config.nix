@@ -12,26 +12,23 @@
     programs.git = {
       enable = true;
       package = pkgs.gitMinimal;
-      userName = "David Poole";
-      userEmail = "dtpoole@users.noreply.github.com";
-      aliases = {
-        st = "status";
-        co = "checkout";
-        br = "branch";
-        up = "rebase";
-        ci = "commit";
-      };
-      delta = {
-        enable = true;
-        options = {
-          side-by-side = "true";
-          theme = "Nord";
+
+      settings = {
+        user = {
+          name = "David Poole";
+          email = "dtpoole@users.noreply.github.com";
         };
-      };
-      extraConfig = {
+        alias = {
+          st = "status";
+          co = "checkout";
+          br = "branch";
+          up = "rebase";
+          ci = "commit";
+        };
         init.defaultBranch = "main";
         pull.rebase = "true";
       };
+
       ignores = [
         "*~"
         ".DS_Store"
@@ -45,6 +42,14 @@
         ".syncthing.*"
         "*.tmp-syncthing-*"
       ];
+    };
+
+    programs.delta = {
+      enable = true;
+      options = {
+        side-by-side = "true";
+        theme = "Nord";
+      };
     };
   };
 }

@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -10,16 +11,32 @@
   config = lib.mkIf config.ssh-config.enable {
     programs.ssh = {
       enable = true;
-      extraConfig = ''
-        # trusted network
-        Host 10.10.2.*
-          StrictHostKeyChecking accept-new
+      enableDefaultConfig = false;
+
+      extraConfig = lib.mkIf pkgs.stdenv.isDarwin ''
+        UseKeychain yes
       '';
-      controlMaster = "auto";
-      controlPersist = "4h";
-      hashKnownHosts = true;
 
       matchBlocks = {
+        "*" = {
+          forwardAgent = false;
+          compression = false;
+          serverAliveInterval = 60;
+          serverAliveCountMax = 3;
+          hashKnownHosts = true;
+          userKnownHostsFile = "~/.ssh/known_hosts";
+          addKeysToAgent = "yes";
+          controlMaster = "auto";
+          controlPersist = "4h";
+          controlPath = "~/.ssh/master-%r@%n:%p";
+        };
+
+        "10.10.2.*" = {
+          extraOptions = {
+            StrictHostKeyChecking = "accept-new";
+          };
+        };
+
         "tank" = {
           hostname = "10.10.2.40";
           user = "tank";
@@ -55,6 +72,10 @@
           user = "root";
         };
       };
+    };
+
+    services.ssh-agent = lib.mkIf pkgs.stdenv.isLinux {
+      enable = true;
     };
   };
 }
