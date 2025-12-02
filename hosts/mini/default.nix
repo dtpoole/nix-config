@@ -21,6 +21,7 @@
       "gzdoom"
       "handbrake-app"
       "ioquake3"
+      "llamabarn"
       "logi-options+"
       "makemkv"
       "musicbrainz-picard"
