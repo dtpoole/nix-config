@@ -6,9 +6,6 @@
   # Mini-specific configuration
   darwin.homebrew = {
     extraBrews = [
-      "colima"
-      "docker"
-      "ffmpeg"
       "flac"
       "libdvdcss"
     ];
@@ -23,10 +20,8 @@
       "ioquake3"
       "llamabarn"
       "logi-options+"
-      "makemkv"
       "musicbrainz-picard"
       "mullvad-browser"
-      "parsec"
       "retroarch-metal"
       "syncthing-app"
       "thunderbird"
@@ -34,10 +29,6 @@
       "xld"
     ];
 
-    extraMasApps = {
-      "The Unarchiver" = 425424353;
-      "Windows App" = 1295203466;
-    };
   };
 
   # Add any Mini-specific packages

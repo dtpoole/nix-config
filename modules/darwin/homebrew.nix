@@ -38,6 +38,7 @@ in {
 
       brews =
         [
+          "ffmpeg"
           "mas"
         ]
         ++ cfg.extraBrews;
@@ -48,6 +49,7 @@ in {
           "acorn"
           "claude"
           "claude-code"
+          "daisydisk"
           "discord"
           "ghostty"
           "google-chrome"
@@ -58,13 +60,9 @@ in {
           "netnewswire"
           "nova"
           "obsidian"
-          "omnidisksweeper"
           "plexamp"
           "rustdesk"
           "transmit"
-          "transnomino"
-          "utm"
-          "visual-studio-code"
           "vlc"
           "zed"
           "font-fira-code"
