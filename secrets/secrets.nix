@@ -31,4 +31,5 @@ in {
   "miniflux_admin.age".publicKeys = allUsers ++ [systems.sparkles];
   "mlbserver_env.age".publicKeys = allUsers ++ [systems.sapphire];
   "vaultwarden_admin_token.age".publicKeys = allUsers ++ [systems.pure];
+  "beszel_agent_env.age".publicKeys = allUsers ++ allSystems;
 }
