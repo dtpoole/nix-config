@@ -65,9 +65,6 @@
 
         path+=($HOME/.local/bin $HOME/bin $HOME/.cargo/bin /usr/local/bin /usr/local/sbin /opt/homebrew/bin)
 
-        fpath+=( $ZDOTDIR/functions )
-        autoload -Uz ssh
-
         tempe () {
           cd "$(mktemp -d)"
           chmod -R 0700 .
@@ -100,14 +97,5 @@
         fi
       '';
     };
-
-    xdg.configFile."zsh/functions/ssh".text = ''
-      # -- ssh/keychain (call keychain on first ssh call)
-      ssh() {
-        unfunction "$0"
-        eval "$(${pkgs.keychain}/bin/keychain -q --eval --quick --ignore-missing --agents ssh --inherit any id_rsa id_ed25519)"
-        env $0 "$@"
-      }
-    '';
   };
 }
