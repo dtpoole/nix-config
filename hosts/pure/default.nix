@@ -1,15 +1,61 @@
 {
+  lib,
+  ...
+}: {
   nixpkgs.hostPlatform = "x86_64-linux";
 
   imports = [
     ./hardware-configuration.nix
     ../../modules/nixos/profiles/server.nix
+    ../../modules/nixos/profiles/desktop.nix
     ../../modules/nixos/remote-builder.nix
+    ../../modules/nixos/rustdesk.nix
     ../../modules/nixos/ntfy.nix
     ./acme.nix
     ./vaultwarden.nix
     ./nginx.nix
   ];
+
+  # Enable desktop profile
+  profiles.desktop.enable = true;
+
+  # Enable RustDesk
+  rustdesk = {
+    enable = true;
+    tailscaleOnly = true;
+  };
+
+  # Headless display configuration for QEMU VM
+  services.xserver = {
+    # Use dummy driver for virtual display
+    videoDrivers = ["dummy"];
+
+    # Configure virtual display
+    monitorSection = ''
+      HorizSync   30.0 - 83.0
+      VertRefresh 50.0 - 85.0
+      # Virtual 1920x1080 display
+      Modeline "1920x1080" 148.50 1920 2008 2052 2200 1080 1084 1089 1125
+    '';
+
+    deviceSection = ''
+      VideoRam 256000
+    '';
+
+    screenSection = ''
+      DefaultDepth 24
+      SubSection "Display"
+        Depth 24
+        Modes "1920x1080"
+      EndSubSection
+    '';
+  };
+
+  # Auto-login for headless operation
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "dave";
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
