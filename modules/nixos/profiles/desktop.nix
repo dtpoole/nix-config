@@ -24,7 +24,7 @@
     };
 
     # Enable sound with pipewire.
-    hardware.pulseaudio.enable = false;
+    services.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
@@ -51,19 +51,42 @@
     fonts = {
       enableDefaultPackages = true;
       packages = with pkgs; [
+        # Microsoft-compatible fonts
         corefonts
+        liberation_ttf
+
+        # Programming fonts
         fira-code
         fira-code-symbols
-        gelasio
         jetbrains-mono
-        nerdfonts
-        noto-fonts
-        noto-fonts-cjk
-        noto-fonts-emoji
-        powerline-fonts
+        cascadia-code
+        hack-font
         source-code-pro
+        nerd-fonts.fira-code
+        nerd-fonts.jetbrains-mono
+
+        # Sans-serif fonts
+        dejavu_fonts
+        inter
+        roboto
+        cantarell-fonts
+        ubuntu-classic
+
+        # Serif fonts
+        gelasio
+        roboto-slab
+
+        # CJK and emoji
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-color-emoji
+
+        # Icon fonts
+        font-awesome
+
+        # Other
+        powerline-fonts
         ttf_bitstream_vera
-        ubuntu_font_family
       ];
     };
 
@@ -74,13 +97,10 @@
       vscode
       pciutils
       clinfo
-      glxinfo
+      mesa-demos
       vulkan-tools
       ghostty
       kdePackages.kate
     ];
-
-    services.xrdp.enable = true;
-    services.xrdp.defaultWindowManager = "startplasma-x11";
   };
 }
