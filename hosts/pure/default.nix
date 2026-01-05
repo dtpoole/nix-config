@@ -20,6 +20,7 @@
   rustdesk = {
     enable = true;
     tailscaleOnly = false;
+    serverAddress = "10.10.2.45";
   };
 
   # Enable RustDesk server

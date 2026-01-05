@@ -13,6 +13,12 @@
         default = true;
         description = "Restrict RustDesk to Tailscale interface only";
       };
+
+      serverAddress = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        description = "Address of the RustDesk ID/Rendezvous server (leave empty for public servers)";
+      };
     };
   };
 
@@ -22,15 +28,16 @@
     ];
 
     # Configure RustDesk for direct IP connections
-    system.activationScripts.rustdeskConfig = ''
-            mkdir -p /home/dave/.config/rustdesk
-            cat > /home/dave/.config/rustdesk/RustDesk2.toml << 'EOF'
+    system.activationScripts.rustdeskConfig = lib.mkIf (config.rustdesk.serverAddress != "") ''
+      mkdir -p /home/dave/.config/rustdesk
+      cat > /home/dave/.config/rustdesk/RustDesk2.toml << EOF
       [options]
+      custom-rendezvous-server = "${config.rustdesk.serverAddress}"
       direct-server = true
       direct-access-port = 21118
       allow-only-conn-window-open = false
       EOF
-            chown -R dave:users /home/dave/.config/rustdesk
+      chown -R dave:users /home/dave/.config/rustdesk
     '';
 
     # RustDesk requires these ports:
