@@ -24,10 +24,11 @@
   };
 
   # Enable RustDesk server
-  services.rustdesk-server = {
+  rustdesk-server = {
     enable = true;
     openFirewall = true;
-    signal.relayHosts = ["10.10.2.45"];
+    relayServer = "127.0.0.1";  # hbbr runs on same host
+    tailscaleOnly = false;  # Allow connections from all interfaces
   };
 
   # Force X11 (disable Wayland for RustDesk compatibility)
