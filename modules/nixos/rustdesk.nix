@@ -27,7 +27,7 @@
       rustdesk
     ];
 
-    # Configure RustDesk for direct IP connections
+    # Configure RustDesk to use custom server
     system.activationScripts.rustdeskConfig = lib.mkIf (config.rustdesk.serverAddress != "") ''
       mkdir -p /home/dave/.config/rustdesk
       cat > /home/dave/.config/rustdesk/RustDesk2.toml << EOF
@@ -40,8 +40,6 @@
       relay-server = '${config.rustdesk.serverAddress}'
       api-server = '${config.rustdesk.serverAddress}'
       key = 'w0azzaRTrIJU08jghF5EJCLFF0HxgUlHQwt9BhTk3Pw='
-      direct-server = 'Y'
-      direct-access-port = '21118'
       EOF
       chown -R dave:users /home/dave/.config/rustdesk
     '';
