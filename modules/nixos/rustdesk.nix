@@ -31,11 +31,15 @@
     system.activationScripts.rustdeskConfig = lib.mkIf (config.rustdesk.serverAddress != "") ''
       mkdir -p /home/dave/.config/rustdesk
       cat > /home/dave/.config/rustdesk/RustDesk2.toml << EOF
+      rendezvous_server = '${config.rustdesk.serverAddress}:21116'
+      nat_type = 1
+      serial = 0
+
       [options]
-      custom-rendezvous-server = "${config.rustdesk.serverAddress}"
-      direct-server = true
-      direct-access-port = 21118
-      allow-only-conn-window-open = false
+      custom-rendezvous-server = '${config.rustdesk.serverAddress}'
+      relay-server = '${config.rustdesk.serverAddress}'
+      api-server = '${config.rustdesk.serverAddress}'
+      key = 'w0azzaRTrIJU08jghF5EJCLFF0HxgUlHQwt9BhTk3Pw='
       EOF
       chown -R dave:users /home/dave/.config/rustdesk
     '';
