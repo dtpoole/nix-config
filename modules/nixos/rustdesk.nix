@@ -83,7 +83,7 @@
       Type=Application
       Name=RustDesk
       Comment=RustDesk Remote Desktop
-      Exec=${pkgs.rustdesk}/bin/rustdesk
+      Exec=${pkgs.rustdesk}/bin/rustdesk --tray
       Terminal=false
       X-GNOME-Autostart-enabled=true
       StartupNotify=false
