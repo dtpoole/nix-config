@@ -1,7 +1,4 @@
-{
-  lib,
-  ...
-}: {
+{lib, ...}: {
   nixpkgs.hostPlatform = "x86_64-linux";
 
   imports = [
@@ -10,6 +7,7 @@
     ../../modules/nixos/profiles/desktop.nix
     ../../modules/nixos/remote-builder.nix
     ../../modules/nixos/rustdesk.nix
+    ../../modules/nixos/rustdesk-server.nix
     ../../modules/nixos/ntfy.nix
     ./acme.nix
     ./vaultwarden.nix
@@ -19,11 +17,21 @@
   # Enable desktop profile
   profiles.desktop.enable = true;
 
-  # Enable RustDesk
+  # Enable RustDesk client
   rustdesk = {
     enable = true;
-    tailscaleOnly = true;
+    tailscaleOnly = false;
   };
+
+  # Enable RustDesk server
+  services.rustdesk-server = {
+    enable = true;
+    openFirewall = true;
+    signal.relayHosts = ["10.10.2.45"];
+  };
+
+  # Force X11 (disable Wayland for RustDesk compatibility)
+  services.displayManager.defaultSession = "plasmax11";
 
   # Headless display configuration for QEMU VM
   services.xserver = {

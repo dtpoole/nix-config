@@ -21,6 +21,18 @@
       rustdesk
     ];
 
+    # Configure RustDesk for direct IP connections
+    system.activationScripts.rustdeskConfig = ''
+            mkdir -p /home/dave/.config/rustdesk
+            cat > /home/dave/.config/rustdesk/RustDesk2.toml << 'EOF'
+      [options]
+      direct-server = true
+      direct-access-port = 21118
+      allow-only-conn-window-open = false
+      EOF
+            chown -R dave:users /home/dave/.config/rustdesk
+    '';
+
     # RustDesk requires these ports:
     # TCP: 21115-21119 (signal, relay, web client)
     # UDP: 21116 (ID registration, heartbeat, NAT traversal)
@@ -33,15 +45,37 @@
       };
     };
 
-    # Systemd user service for RustDesk daemon
-    systemd.user.services.rustdesk = {
-      description = "RustDesk Remote Desktop";
+    # RustDesk user service (needs access to X session)
+    systemd.user.services.rustdesk-service = {
+      description = "RustDesk Service";
       wantedBy = ["graphical-session.target"];
       after = ["graphical-session.target"];
+      environment = {
+        DISPLAY = ":0";
+        XAUTHORITY = "/home/dave/.Xauthority";
+      };
       serviceConfig = {
+        Type = "simple";
         ExecStart = "${pkgs.rustdesk}/bin/rustdesk --service";
         Restart = "on-failure";
+        RestartSec = "5s";
       };
+      preStart = ''
+        # Ensure config directory exists
+        mkdir -p ~/.config/rustdesk
+      '';
     };
+
+    # RustDesk GUI autostart (for local session access)
+    environment.etc."xdg/autostart/rustdesk.desktop".text = ''
+      [Desktop Entry]
+      Type=Application
+      Name=RustDesk
+      Comment=RustDesk Remote Desktop
+      Exec=${pkgs.rustdesk}/bin/rustdesk
+      Terminal=false
+      X-GNOME-Autostart-enabled=true
+      StartupNotify=false
+    '';
   };
 }
