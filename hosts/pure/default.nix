@@ -7,7 +7,6 @@
     ../../modules/nixos/profiles/desktop.nix
     ../../modules/nixos/remote-builder.nix
     ../../modules/nixos/rustdesk.nix
-    ../../modules/nixos/rustdesk-server.nix
     ../../modules/nixos/ntfy.nix
     ./acme.nix
     ./vaultwarden.nix
@@ -24,11 +23,10 @@
   };
 
   # Enable RustDesk server
-  rustdesk-server = {
+  services.rustdesk-server = {
     enable = true;
     openFirewall = true;
-    relayServer = "127.0.0.1";  # hbbr runs on same host
-    tailscaleOnly = false;  # Allow connections from all interfaces
+    signal.relayHosts = ["10.10.2.45"];
   };
 
   # Force X11 (disable Wayland for RustDesk compatibility)
