@@ -23,7 +23,7 @@
 
   config = lib.mkIf config.neovim.enable {
     home.packages = [
-      inputs.nvf-config.packages.${pkgs.system}.${config.neovim.profile}
+      inputs.nvf-config.packages.${pkgs.stdenv.hostPlatform.system}.${config.neovim.profile}
     ];
 
     home.sessionVariables = {
