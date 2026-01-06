@@ -29,6 +29,7 @@
           controlMaster = "auto";
           controlPersist = "4h";
           controlPath = "~/.ssh/master-%r@%n:%p";
+          identityFile = "~/.ssh/id_ed25519";
         };
 
         "10.10.2.*" = {
