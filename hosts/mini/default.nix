@@ -28,7 +28,6 @@
       "vmware-fusion"
       "xld"
     ];
-
   };
 
   # Add any Mini-specific packages
