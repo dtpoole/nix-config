@@ -14,6 +14,15 @@
   };
 
   config = lib.mkIf config.profiles.vps.enable {
+    nix.settings = {
+      substituters = [
+        "http://pure.fish-diminished.ts.net:5000"
+      ];
+      trusted-substituters = [
+        "http://pure.fish-diminished.ts.net:5000"
+      ];
+    };
+
     documentation.nixos.enable = false;
     documentation.man.enable = false;
     documentation.info.enable = false;
