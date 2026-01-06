@@ -67,6 +67,11 @@
     pkgs.nixd
   ];
 
+  # Suppress Homebrew auto-update hints
+  environment.variables = {
+    HOMEBREW_NO_ENV_HINTS = "1";
+  };
+
   # for nixd
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 }
