@@ -19,17 +19,16 @@
         PermitRootLogin = "no";
 
         KexAlgorithms = [
+          "sntrup761x25519-sha512@openssh.com"
           "curve25519-sha256"
-          "curve25519-sha256@libssh.org"
+          "diffie-hellman-group18-sha512"
+          "diffie-hellman-group16-sha512"
           "diffie-hellman-group-exchange-sha256"
         ];
         Ciphers = [
           "chacha20-poly1305@openssh.com"
           "aes256-gcm@openssh.com"
           "aes128-gcm@openssh.com"
-          "aes256-ctr"
-          "aes192-ctr"
-          "aes128-ctr"
         ];
         Macs = [
           "hmac-sha2-512-etm@openssh.com"
