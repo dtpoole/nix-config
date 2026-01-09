@@ -13,6 +13,7 @@
       enable = true;
       port = 5000;
       bindAddress = "0.0.0.0";
+      secretKeyFile = "/var/cache-priv-key.pem";
     };
 
     # Allow remote building
