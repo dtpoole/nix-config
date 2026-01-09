@@ -39,7 +39,8 @@ remote-deploy target_host build_host="pure":
     nixos-rebuild switch --flake .#{{ target_host }} \
         --build-host {{ build_host }} \
         --target-host {{ target_host }} \
-        --use-remote-sudo
+        --sudo \
+        --ask-sudo-password
 
 # switch the home-manager configuration
 [linux]
@@ -54,8 +55,9 @@ build target_host=host flags="":
 
 # build the nix-darwin configuration and switch to it
 [macos]
-switch target_host=host: (build target_host)
-    sudo darwin-rebuild switch --flake .#{{ target_host }}
+switch target_host=host: #(build target_host)
+    @nh darwin switch --ask .
+    # sudo darwin-rebuild switch --flake .#{{ target_host }}
 
 # build the nix-darwin config with the --show-trace flag set
 [macos]
