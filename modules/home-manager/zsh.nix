@@ -55,7 +55,11 @@
       initContent = ''
         bindkey '^ ' autosuggest-accept
         if [[ -z "$LS_COLORS" ]]; then
-            export LS_COLORS="$(${pkgs.vivid}/bin/vivid generate nord)"
+            local vivid_cache="$ZDOTDIR/.vivid_cache"
+            if [[ ! -f "$vivid_cache" ]]; then
+                ${pkgs.vivid}/bin/vivid generate nord > "$vivid_cache"
+            fi
+            export LS_COLORS="$(cat "$vivid_cache")"
         fi
 
         # Nix
