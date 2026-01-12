@@ -54,42 +54,56 @@
 
       history = {
         extended = true;
-        ignoreDups = true;
+        expireDuplicatesFirst = true;
+        ignoreAllDups = true;
+        ignoreSpace = true;
         path = "$ZDOTDIR/.zsh_history";
         save = 100000;
+        size = 100000;
         share = true;
       };
 
-      initContent = ''
-        bindkey '^ ' autosuggest-accept
-        if [[ -z "$LS_COLORS" ]]; then
-            local vivid_cache="$ZDOTDIR/.vivid_cache"
-            if [[ ! -f "$vivid_cache" ]]; then
-                ${pkgs.vivid}/bin/vivid generate nord > "$vivid_cache"
-            fi
-            export LS_COLORS="$(cat "$vivid_cache")"
-        fi
-
-        # Nix
-        if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-            . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-        fi
-
-        path+=($HOME/.local/bin $HOME/bin $HOME/.cargo/bin /usr/local/bin /usr/local/sbin /opt/homebrew/bin)
-
-        tempe () {
-          cd "$(mktemp -d)"
-          chmod -R 0700 .
-          if [[ $# -eq 1 ]]; then
-            \mkdir -p "$1"
-            cd "$1"
-            chmod -R 0700 .
+      initContent = lib.mkMerge [
+        # Set up LS_COLORS before completion init (order 550)
+        (lib.mkOrder 550 ''
+          if [[ -z "$LS_COLORS" ]]; then
+              local vivid_cache="$ZDOTDIR/.vivid_cache"
+              local vivid_bin="${pkgs.vivid}/bin/vivid"
+              if [[ ! -f "$vivid_cache" ]] || [[ "$vivid_bin" -nt "$vivid_cache" ]]; then
+                  "$vivid_bin" generate nord > "$vivid_cache"
+              fi
+              export LS_COLORS="$(cat "$vivid_cache")"
           fi
-          pwd
-        }
+        '')
 
-        ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-      '';
+        # General configuration (order 1000)
+        (lib.mkOrder 1000 ''
+          bindkey '^ ' autosuggest-accept
+          bindkey '^[[A' up-line-or-search
+          bindkey '^[[B' down-line-or-search
+
+          # Nix
+          if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+              . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+          fi
+
+          path+=($HOME/.local/bin $HOME/bin $HOME/.cargo/bin /usr/local/bin /usr/local/sbin /opt/homebrew/bin)
+          typeset -U path
+
+          tempe () {
+            cd "$(mktemp -d)"
+            chmod -R 0700 .
+            if [[ $# -eq 1 ]]; then
+              \mkdir -p "$1"
+              cd "$1"
+              chmod -R 0700 .
+            fi
+            pwd
+          }
+
+          ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+        '')
+      ];
 
       completionInit = ''
         autoload -Uz compinit
@@ -101,6 +115,16 @@
         fi
 
         zstyle ':completion:*' menu select
+        zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+
+        # Group completions by category
+        zstyle ':completion:*' group-name '''
+        zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
+        zstyle ':completion:*:warnings' format '%F{red}-- no matches found --%f'
+        zstyle ':completion:*:messages' format '%F{blue}-- %d --%f'
+
+        # Case-insensitive, partial-word, and substring completion
+        zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
       '';
 
       loginExtra = ''
