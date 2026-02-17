@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   boot.loader.systemd-boot.configurationLimit = 5;
+  boot.tmp.useTmpfs = true;
 
   time.timeZone = "America/New_York";
 
