@@ -2,6 +2,8 @@
   pkgs,
   lib,
   config,
+  name,
+  email,
   ...
 }: {
   options = {
@@ -15,8 +17,7 @@
 
       settings = {
         user = {
-          name = "David Poole";
-          email = "dtpoole@users.noreply.github.com";
+          inherit name email;
         };
         alias = {
           st = "status";

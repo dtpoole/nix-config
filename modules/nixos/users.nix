@@ -2,6 +2,8 @@
   pkgs,
   lib,
   config,
+  username,
+  name,
   ...
 }: {
   options = {
@@ -15,11 +17,11 @@
 
     users = {
       mutableUsers = false;
-      users.dave = {
+      users.${username} = {
         isNormalUser = true;
-        home = "/home/dave";
+        home = "/home/${username}";
         group = "users";
-        description = lib.mkForce "David Poole";
+        description = lib.mkForce name;
         extraGroups = ["docker" "wheel" "networkmanager"];
         hashedPasswordFile = config.age.secrets.user_password.path;
         shell = pkgs.zsh;

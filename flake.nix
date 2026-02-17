@@ -53,7 +53,7 @@
       inputs.agenix.darwinModules.default
     ];
 
-    # for devShell/standalone home manager
+    # for standalone home manager
     pkgsFor = forEachSystem (
       system:
         import nixpkgs {
@@ -62,9 +62,19 @@
         }
     );
 
+    # for devShell (unstable has better binary cache coverage)
+    devPkgsFor = forEachSystem (
+      system:
+        import inputs.nixpkgs-unstable {
+          inherit system;
+        }
+    );
+
     specialArgs = {
       inherit inputs;
       username = "dave";
+      name = "David Poole";
+      email = "dtpoole@users.noreply.github.com";
     };
 
     # helper functions
@@ -98,7 +108,7 @@
     homeConfigs = let
       mkConfig = system: host: {
         inherit system host;
-        username = "dave";
+        inherit (specialArgs) username;
       };
     in [
       (mkConfig "x86_64-linux" "PF5R9ELQ")
@@ -109,7 +119,7 @@
       (mkConfig "x86_64-linux" "sapphire")
     ];
   in {
-    devShells = forEachSystem (system: import ./shell.nix {pkgs = pkgsFor.${system};});
+    devShells = forEachSystem (system: import ./shell.nix {pkgs = devPkgsFor.${system};});
     formatter = forEachSystem (system: pkgsFor.${system}.alejandra);
 
     nixosConfigurations = builtins.listToAttrs (map (host: {
