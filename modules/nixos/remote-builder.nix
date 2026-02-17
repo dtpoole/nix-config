@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  username,
   ...
 }: {
   options = {
@@ -29,7 +30,7 @@
     programs.ssh.extraConfig = ''
       Host sparkles
         HostName sparkles.fish-diminished.ts.net
-        User dave
+        User ${username}
         IdentitiesOnly yes
         StrictHostKeyChecking accept-new
     '';

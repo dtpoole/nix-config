@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  username,
   ...
 }: {
   options = {
@@ -29,8 +30,8 @@
 
     # Configure RustDesk to use custom server
     system.activationScripts.rustdeskConfig = lib.mkIf (config.rustdesk.serverAddress != "") ''
-      mkdir -p /home/dave/.config/rustdesk
-      cat > /home/dave/.config/rustdesk/RustDesk2.toml << EOF
+      mkdir -p /home/${username}/.config/rustdesk
+      cat > /home/${username}/.config/rustdesk/RustDesk2.toml << EOF
       rendezvous_server = '${config.rustdesk.serverAddress}:21116'
       nat_type = 1
       serial = 0
@@ -41,7 +42,7 @@
       api-server = '${config.rustdesk.serverAddress}'
       key = 'w0azzaRTrIJU08jghF5EJCLFF0HxgUlHQwt9BhTk3Pw='
       EOF
-      chown -R dave:users /home/dave/.config/rustdesk
+      chown -R ${username}:users /home/${username}/.config/rustdesk
     '';
 
     # RustDesk requires these ports:
@@ -63,7 +64,7 @@
       after = ["graphical-session.target"];
       environment = {
         DISPLAY = ":0";
-        XAUTHORITY = "/home/dave/.Xauthority";
+        XAUTHORITY = "/home/${username}/.Xauthority";
       };
       serviceConfig = {
         Type = "simple";
