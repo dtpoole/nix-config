@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  username,
+  ...
+}: {
   nixpkgs.hostPlatform = "x86_64-linux";
 
   imports = [
@@ -62,7 +66,7 @@
   # Auto-login for headless operation
   services.displayManager.autoLogin = {
     enable = true;
-    user = "dave";
+    user = username;
   };
 
   boot.loader.systemd-boot.enable = true;
