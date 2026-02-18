@@ -43,21 +43,17 @@
 
     overlays = [(import ./overlays {inherit inputs;})];
 
-    commonModules = [
-      {nixpkgs.overlays = overlays;}
-      inputs.agenix.nixosModules.default
-    ];
+    overlayModule = {nixpkgs.overlays = overlays;};
 
-    commonDarwinModules = [
-      {nixpkgs.overlays = overlays;}
-      inputs.agenix.darwinModules.default
-    ];
+    commonModules = [overlayModule inputs.agenix.nixosModules.default];
+
+    commonDarwinModules = [overlayModule inputs.agenix.darwinModules.default];
 
     # for standalone home manager
     pkgsFor = forEachSystem (
       system:
         import (
-          if system == "aarch64-darwin"
+          if lib.hasSuffix "-darwin" system
           then inputs.nixpkgs-darwin
           else nixpkgs
         ) {
@@ -83,7 +79,7 @@
 
     # helper functions
     mkNixosConfiguration = host:
-      nixpkgs.lib.nixosSystem {
+      lib.nixosSystem {
         modules = commonModules ++ [(import ./hosts/${host})];
         inherit specialArgs;
       };
@@ -114,14 +110,11 @@
         inherit system host;
         inherit (specialArgs) username;
       };
-    in [
-      (mkConfig "x86_64-linux" "PF5R9ELQ")
-      (mkConfig "aarch64-darwin" "mini")
-      (mkConfig "aarch64-darwin" "aurora")
-      (mkConfig "x86_64-linux" "pure")
-      (mkConfig "x86_64-linux" "sparkles")
-      (mkConfig "x86_64-linux" "sapphire")
-    ];
+      extraHomeHosts = [(mkConfig "x86_64-linux" "PF5R9ELQ")];
+    in
+      extraHomeHosts
+      ++ map (mkConfig "x86_64-linux") nixosHosts
+      ++ map (mkConfig "aarch64-darwin") darwinHosts;
   in {
     devShells = forEachSystem (system: import ./shell.nix {pkgs = devPkgsFor.${system};});
     formatter = forEachSystem (system: pkgsFor.${system}.alejandra);
