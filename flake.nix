@@ -56,7 +56,11 @@
     # for standalone home manager
     pkgsFor = forEachSystem (
       system:
-        import nixpkgs {
+        import (
+          if system == "aarch64-darwin"
+          then inputs.nixpkgs-darwin
+          else nixpkgs
+        ) {
           inherit system overlays;
           config.allowUnfree = true;
         }
