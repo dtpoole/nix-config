@@ -118,6 +118,9 @@
   in {
     devShells = forEachSystem (system: import ./shell.nix {pkgs = devPkgsFor.${system};});
     formatter = forEachSystem (system: pkgsFor.${system}.alejandra);
+    packages = forEachSystem (system: {
+      agenix = inputs.agenix.packages.${system}.agenix;
+    });
 
     nixosConfigurations = builtins.listToAttrs (map (host: {
         name = host;

@@ -85,7 +85,7 @@ update-nvf:
 
 # rekey agenix secrets
 rekey:
-    cd ./secrets && nix run github:ryantm/agenix -- --rekey
+    cd ./secrets && nix run ..#agenix -- --rekey
 
 # format nix files in directory
 format:
