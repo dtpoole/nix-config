@@ -6,7 +6,7 @@
 }: let
   allPackages = with pkgs; {
     base = [dua dust duf eza fd ripgrep tldr unixtools.column unzip zip];
-    development = [direnv jq nil parallel pre-commit sqlite];
+    development = [direnv jq nil parallel sqlite];
     system = [dig nmap procs];
     misc = [figurine magic-wormhole mc];
   };

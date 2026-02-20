@@ -95,10 +95,9 @@ _home-manager:
 shell:
     nix --experimental-features 'nix-command flakes' develop
 
-# update flake inputs to latest revisions and update pre-commit hooks
+# update flake inputs to latest revisions
 update:
     @nix flake update
-    pre-commit autoupdate
 
 # update nvf-config flake input to latest revision
 update-nvf:
@@ -111,10 +110,6 @@ rekey:
 # format nix files in directory
 format:
     nix fmt .
-
-# run pre-commit hooks on all files
-pre-commit:
-    pre-commit run --all-files
 
 # run nix linters
 lint:
