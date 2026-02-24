@@ -30,11 +30,9 @@ in {
       enable = true;
       onActivation = {
         cleanup = "zap";
-        autoUpdate = true;
-        upgrade = true;
+        autoUpdate = false;
+        upgrade = false;
       };
-
-      global.autoUpdate = true;
 
       brews =
         [
@@ -57,6 +55,7 @@ in {
           "jordanbaird-ice"
           "launchbar"
           "lunar"
+          "macwhisper"
           "netnewswire"
           "nova"
           "obsidian"
