@@ -1,5 +1,5 @@
 {config, ...}: let
-  version = "1.44.2-plus";
+  version = "1.45.0-plus";
 in {
   systemd.services."${config.virtualisation.oci-containers.backend}-linkding" = {
     after = ["postgresql.service"];
